@@ -1,0 +1,13 @@
+Title: Banc Bidule
+
+----
+
+Price: 1500
+
+----
+
+Quantity: 2
+
+----
+
+Description: Proin nec nec urna tempus id nec arcu nisi elementum quis arcu metus condimentum eget quisque metus tempus mi urna rutrum eros portaest dolor placerat.

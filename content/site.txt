@@ -1,1 +1,11 @@
 Title: Site Title
+
+----
+
+Media:
+
+- home_light.mp4
+
+----
+
+Text: 

@@ -1,3 +1,46 @@
 title: Site
-preset: pages
-unlisted: true
+
+tabs:
+  home:
+    icon: home
+    label: Accueil
+    sections:
+      homeContent:
+        type: fields
+        fields:
+          media:
+            label: Média (vidéo ou image)
+            type: files
+            multiple: false
+            layout: cards
+            width: 1/2
+          text:
+            label: Texte introductif
+            type: textarea
+            width: 1/2
+  
+  craftmans:
+    icon: users
+    label: Artisans
+    sections:
+      craftmansPages:
+        headline: Artisans
+        type: pages
+        templates: 
+          - craftman
+        layout: cards
+        image:
+          back: black
+  
+  exhibitions:
+    icon: calendar
+    label: Expositions
+    sections:
+      exhibitionsContent:
+  
+  initiations:
+    icon: live
+    label: Initiations
+    secions:
+      initiationsContent:
+

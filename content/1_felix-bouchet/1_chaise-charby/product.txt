@@ -1,0 +1,13 @@
+Title: Chaise Charby
+
+----
+
+Price: 1200
+
+----
+
+Quantity: 4
+
+----
+
+Description: Bois vert trouvé en forêt de Tourraine.

@@ -1,0 +1,70 @@
+name: Image
+icon: image
+preview: image
+
+tabs:
+  contenu:
+    fields:
+      image:
+        label: Image
+        type: files
+        multiple: false
+        layout: cards
+        size: large
+      alt:
+        label: Texte alternatif
+        type: text
+        icon: title
+  design:
+    fields:
+      blockWidth:
+        label: Taille du bloc
+        type: range
+        min: 0
+        max: 100
+        after: %
+        default: 100
+      marginMode:
+        label: Type de marges
+        type: radio
+        options:
+          margin: Marges extérieures
+          padding: Marges intérieures
+        default: margin
+        width: 1/2
+      marginTop:
+        label: Marge haute
+        type: range
+        min: 0
+        max: 20
+        step: 0.5
+        after: %
+        default: 0
+        width: 1/2
+      marginBottom:
+        label: Marge basse
+        type: range
+        min: 0
+        max: 20
+        step: 0.5
+        after: %
+        default: 0
+        width: 1/2  
+      marginLeft:
+        label: Marge gauche
+        type: range
+        min: 0
+        max: 20
+        step: 0.5
+        after: %
+        default: 0
+        width: 1/2
+      marginRight:
+        label: Marge droite
+        type: range
+        min: 0
+        max: 20
+        step: 0.5
+        after: %
+        default: 0
+        width: 1/2

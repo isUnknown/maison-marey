@@ -1,0 +1,393 @@
+title: Artisan
+
+tabs:
+  portrait:
+    label: portrait
+    icon: user
+    columns:
+      - width: 1/4
+        sections:
+          coverSection:
+            type: fields
+            fields:
+              cover:
+                label: Image de couverture
+                type: files
+                multiple: false
+                layout: cards
+                image:
+                  back: black
+                width: 1/2
+              presentationBackground:
+                label: Couleur de la section de présentation
+                type: color
+                default: '#FFFFFF00'
+      - width: 1/4
+        sections:
+          infos:
+            type: fields
+            fields:
+              materials:
+                label: Matière(s)
+                type: tags
+                width: 1/1
+              items:
+                label: Objet(s)
+                type: tags
+                width: 1/2
+      - width: 1/2
+        sections:
+          intro:
+            type: fields
+            fields:
+              pitch:
+                label: Présentation
+                type: writer
+                width: 1/1
+      - width: 1/1
+        sections:
+          layoutSection:
+            type: fields
+            fields:
+              layout:
+                label: Rythme
+                type: layout
+                layouts:
+                  - "1/1"
+                  - "1/2, 1/2"
+                fieldsets:
+                  - image
+                  - markdown
+                settings:
+                  tabs:
+                    global:
+                      fields:
+
+
+                        layout:
+                          label: Disposition
+                          type: radio
+                          options:
+                            mono: Une colonne
+                            duo: Deux colonnes
+                          default: mono
+                          help: **Cette option doit correspondre à la disposition de votre rangée**, pour avoir accès aux bons réglages.
+
+                        # ================================ WIDTH
+                        
+                        widthTitle:
+                          label: Taille(s)
+                          type: headline
+                        width:
+                          label: Largeur
+                          type: range
+                          min: 0
+                          max: 100
+                          after: %
+                          default: 100
+                          when:
+                            layout: mono
+                        
+                        widthMode:
+                          label: Colonnes
+                          type: radio
+                          options:
+                            mono: Relatives
+                            duo: Indépendantes
+                          default: mono
+                          width: 1/3
+                          when:
+                            layout: duo
+
+                        leftColumnWidth:
+                          label: Colonne de gauche
+                          icon: expand
+                          type: range
+                          min: 0
+                          max: 100
+                          after: %
+                          default: 50
+                          width: 1/3
+                          help: La largeur de la colonne de droite s'adaptera.
+                          when:
+                            layout: duo
+                            widthMode: mono
+                        gutter:
+                          label: Gouttière
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.5
+                          after: %
+                          default: 0
+                          width: 1/3
+                          when:
+                            layout: duo
+                            widthMode: mono
+
+                        soloLeftColumnWidth:
+                          label: Gauche
+                          type: range
+                          min: 0
+                          max: 100
+                          after: %
+                          default: 50
+                          width: 1/3
+                          when:
+                            layout: duo
+                            widthMode: duo
+                        soloRightColumnWidth:
+                          label: Droite
+                          type: range
+                          min: 0
+                          max: 100
+                          after: %
+                          default: 50
+                          width: 1/3
+                          when:
+                            layout: duo
+                            widthMode: duo
+
+                      # ================================ MARGIN
+
+                        marginTitle:
+                          label: Marges
+                          type: headline
+
+                        marginMode:
+                          label: Colonnes
+                          type: radio
+                          options:
+                            mono: Identiques
+                            duo: Indépendantes
+                          default: mono
+                          width: 1/3
+                          when:
+                            layout: duo
+                        marginGap:
+                          type: gap
+                          width: 2/3
+                          when:
+                            layout: duo
+                            marginMode: duo
+
+                        verticalPadding:
+                          label: Marges verticales
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.5
+                          after: %
+                          default: 2
+                          width: 1/3
+                          when: 
+                            marginMode: mono
+                        horizontalPadding:
+                          label: Marges horizontales
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.5
+                          after: %
+                          default: 2
+                          width: 1/3
+                          when: 
+                            marginMode: mono
+                        leftVerticalPadding:
+                          label: Marges verticales colonne gauche
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.1
+                          after: %
+                          default: 2
+                          width: 1/2
+                          when: 
+                            layout: duo
+                            marginMode: duo
+                        rightVerticalPadding:
+                          label: Marges verticales colonne droite
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.1
+                          after: %
+                          default: 2
+                          width: 1/2
+                          when: 
+                            layout: duo
+                            marginMode: duo
+                        leftHorizontalPadding:
+                          label: Marges horizontales colonne gauche
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.1
+                          after: %
+                          default: 2
+                          width: 1/2
+                          when: 
+                            layout: duo
+                            marginMode: duo
+                        rightHorizontalPadding:
+                          label: Marges horizontales colonne droite
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.1
+                          after: %
+                          default: 2
+                          width: 1/2
+                          when: 
+                            layout: duo
+                            marginMode: duo
+
+                        # ================================ COLOR
+
+                        colorTitle:
+                          label: Couleur(s)
+                          type: headline
+                        
+                        colorMode:
+                          label: Colonnes
+                          type: radio
+                          width: 1/3
+                          options:
+                            mono: Identiques
+                            duo: Indépendantes
+                          default: mono
+                          when:
+                            layout: duo
+                        backgroundColor:
+                          label: Arrière-plan
+                          type: color
+                          width: 1/3
+                          when:
+                            colorMode: mono
+                        textColor:
+                          label: Textes
+                          type: color
+                          default: '#000000'
+                          width: 1/3
+                          when:
+                            colorMode: mono
+                        colorGap:
+                          type: gap
+                          width: 1/2
+                          when:
+                            layout: duo
+                            colorMode: duo
+                        leftBackgroundColor:
+                          label: Arrière-plan colonne gauche
+                          type: color
+                          width: 1/2
+                          when:
+                            layout: duo
+                            colorMode: duo
+                        rightBackgroundColor:
+                          label: Arrière-plan colonne droite
+                          type: color
+                          width: 1/2
+                          when:
+                            layout: duo
+                            colorMode: duo
+                        leftTextColor:
+                          label: Textes colonne gauche
+                          type: color
+                          default: '#000000'
+                          width: 1/2
+                          when:
+                            layout: duo
+                            colorMode: duo
+                        rightTextColor:
+                          label: Textes colonne droite
+                          type: color
+                          default: '#000000'
+                          width: 1/2
+                          when:
+                            layout: duo
+                            colorMode: duo
+
+
+                        # ================================ POSITION
+                        positionTitle:
+                          label: Positions des contenus
+                          type: headline
+                        positionInfo:
+                          label: Info
+                          type: info
+                          text: Les effets des réglages de position sont visibles uniquement pour des contenus dont les tailles sont inférieures à 100%. Ces tailles se règlent indépendamment pour chaque contenu.
+                        positionMode:
+                          label: Colonnes
+                          type: radio
+                          options:
+                            mono: Identiques
+                            duo: Indépendantes
+                          default: mono
+                          width: 1/2
+                          when:
+                            layout: duo
+                        positionGap:
+                          type: gap
+                          width: 1/2
+                          when:
+                            layout: duo
+                            positionMode: duo
+                        globalPosition:
+                          label: Position
+                          type: radio
+                          options:
+                            flex-start: Ferrés à gauche
+                            flex-end: Ferrés à droite
+                            center: Centrés
+                          default: center
+                          width: 1/2
+                          when:
+                            positionMode: mono
+                        leftPosition:
+                          label: Colonne gauche
+                          type: radio
+                          options:
+                            flex-start: Ferrés à gauche
+                            flex-end: Ferrés à droite
+                            center: Centrés
+                          default: center
+                          width: 1/2
+                          when:
+                            layout: duo
+                            positionMode: duo
+                        rightPosition:
+                          label: Colonne droite
+                          type: radio
+                          options:
+                            flex-start: Ferrés à gauche
+                            flex-end: Ferrés à droite
+                            center: Centrés
+                          default: center
+                          width: 1/2
+                          when:
+                            layout: duo
+                            positionMode: duo
+                        
+                        # ================================ SPACE
+                        spaceTitle:
+                          label: Espace après la rangée
+                          type: headline
+                        space:
+                          label: taille
+                          type: range
+                          min: 0
+                          max: 20
+                          step: 0.5
+                          after: rem
+                          default: 0
+  
+  shop:
+    label: boutique
+    icon: credit-card
+    sections:
+      shopSection:
+        headline: Articles
+        type: pages
+        template: product
+        layout: cards

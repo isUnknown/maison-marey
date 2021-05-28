@@ -1,0 +1,28 @@
+title: Product
+
+tabs:
+  infos:
+    fields:
+      price:
+        label: Price
+        type: number
+        required: true
+        min: 100
+        width: 1/2
+      quantity:
+        label: Quantité en stock
+        type: number
+        required: true
+        width: 1/2
+      description:
+        label: Description
+        type: textarea
+  gallery:
+    label: Galerie
+    sections:
+      gallerySection:
+        headline: Galerie
+        type: files
+        layout: cards
+        image:
+          back: black

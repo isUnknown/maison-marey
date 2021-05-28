@@ -1,0 +1,31 @@
+Title: Félix Bouchet
+
+----
+
+Cover:
+
+- artisan.jpg
+
+----
+
+Presentationbackground: #5882B4
+
+----
+
+Materials: bois, métal
+
+----
+
+Items: chaises, tabourets, contenants
+
+----
+
+Pitch: <p>J'ai grandi en Touraine, dans une maison entourée de forêts. Après le lycée, je me suis dirigé vers les sciences, pour finalement obtenir un diplôme d'ingénieur bois en 2016. Le goût de voyager et de travailler de mes mains m'ont amené à Montréal où ma vie était partagée entre les petits boulots et l'Ecole d'Ebénisterie d'Art de Montréal. Mon projet final, deux chaises, a été récompensé de la Bourse Excellence en Ebénisterie d'Art - Caisse de la Culture et MMAQ (Musée des Maîtres et Artisans du Québec). Cet élan m'a amené dans l'état américain des montagnes vertes, le Vermont. J'y ai passé 15 mois, dans l'atelier du maître chaisier de seconde génération George Sawyer. Ma sensibilité pour le travail du bois avec des outils manuels a grandi. Aujourd'hui, je vis de nouveau en Touraine. J'y fabrique des chaises et des ustensiles en bois vert.</p>
+
+----
+
+Layout: [{"attrs":{"layout":"mono","width":100,"widthmode":"mono","leftcolumnwidth":50,"gutter":0,"sololeftcolumnwidth":50,"solorightcolumnwidth":50,"marginmode":"mono","verticalpadding":2,"horizontalpadding":2,"leftverticalpadding":2,"rightverticalpadding":2,"lefthorizontalpadding":2,"righthorizontalpadding":2,"colormode":"mono","backgroundcolor":"#FFFFFF","textcolor":"#000000","leftbackgroundcolor":"#FFFFFF","rightbackgroundcolor":"#FFFFFF","lefttextcolor":"#000000","righttextcolor":"#000000","positionmode":"mono","globalposition":"center","leftposition":"center","rightposition":"center","space":0},"columns":[{"blocks":[],"id":"a1fdf8d3-2357-4cbd-be76-7cc21a570c49","width":"1\/2"},{"blocks":[],"id":"46912ca0-70d6-4552-9b4b-a16ab71926fc","width":"1\/2"}],"id":"ba51c8b0-2e45-4aea-a074-be5ce2f2242b"}]
+
+----
+
+Material: bois, métal
