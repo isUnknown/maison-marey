@@ -42,12 +42,11 @@ return [
                     'slug' => $product->slug(),
                     'author' => $product->parent()->title()->value(),
                     'name' => $product->title()->value(),
-                    'unitPrice' => $product->price()->toInt(),
-                    'totalPrice' => 0,
+                    'price' => $product->price()->toInt(),
                     'description' => $product->description()->value(),
                     'inputQuantity' => 1,
-                    'remainingQuantity' => $product->quantity()->toInt(),
-                    'selectedQuantity' => 0,
+                    'quantity' => $product->quantity()->toInt(),
+                    // 'selectedQuantity' => 0,
                     'cover' => $product->images()->first()->url()
                   ];
                   $products[] = $product;

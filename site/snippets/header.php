@@ -18,8 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <!--========== SCRIPTS ==========-->   
-    <script src="<?= url('assets') ?>/js/shop/products.js" type="module" defer></script>
-    <script src="<?= url('assets') ?>/js/shop/cart.js" type="module" defer></script>
+    <script src="<?= url('assets') ?>/js/shop.js" type="module" defer></script>
     <script src="<?= url('assets') ?>/js/script.js" type="module" defer></script>
 
     <!--========== OPEN GRAPHS ==========-->
@@ -48,8 +47,8 @@
                 </h1>
             </div>
             <div class="header__right">
-                <button class="cartBtn">
-                    <h1>Panier (<span class="cartBtn__quantity">0</span>)</h1>
+                <button class="cartBtn" @click="toggleCart">
+                    <h1>Panier<sup>{{ totalQuantity }}</sup></h1>
                 </button>
                 <button class="header__navBtn navBtn">
                     <span class="navBtn__bar"></span>

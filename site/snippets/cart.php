@@ -1,7 +1,7 @@
-<div class="cart">
-  <div class="cart__productWrapper" v-for="product in products" :key="product.id">
-    <div v-if="product.selectedQuantity > 0" class="cart__product">
-      <button @click="addToCart(product.id)">{{ product.id }} {{ product.selectedQuantity }} {{ product.totalPrice }}</button>
-    </div>
+<div class="cart" :class="{open: cart.isOpen}">
+  <div class="cart__product" v-for="product in cart.products" :key="product.id">
+    <div>{{ product.name }}, par {{product.author}}. Quantité : {{ product.quantity }}. Prix : {{ getSelectionPrice(product) }} €</div>
   </div>
+  <div v-if="totalQuantity > 0" class="totalPrice">Total : {{ totalPrice }} €</div>
+  <button @click="cleanCart">Vider le panier</button>
 </div>

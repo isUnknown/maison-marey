@@ -48,6 +48,7 @@ h5 {
 
 p {
     margin-bottom: 1.5rem;
+    font-size: .8rem;
 }
 
 img {
@@ -219,9 +220,25 @@ body {
     display: flex;
 }
 
+.product__infos {
+    margin-left: .7rem;
+}
+
+.product__name {
+    margin-bottom: .3rem;
+}
+
+.product__author {
+    font-weight: 400;
+}
+
+.product__price {
+    margin: 1rem 0;
+    font-weight: 100;
+}
+
 .product__description {
-    width: 50%;
-    margin-left: 1rem;
+    width: 70%;
 }
 
 .cart {
@@ -231,14 +248,14 @@ body {
     right: 0;
     width: 30%;
     background-color: var(--color-main-bg);
-    /* transform: translateX(100%); */
+    transform: translateX(100%);
 
     transition: all .5s ease-in-out;
     -webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
 }
-.cart--open {
+.cart.open {
     transform: translateX(0%);
 }
 
