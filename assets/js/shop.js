@@ -4,15 +4,16 @@ const productsUrl = `${document.body.dataset.rootUrl}/products`
 fetch(productsUrl).then(res => {
     return res.json()
 }).then(products => {
-    console.log(products)
-    const App = new Vue({
+    const vm = new Vue({
         el: '#app',
         data: {
             products: products,
             cart: {
                 isOpen: false,
                 products: []
-            }
+            },
+            filters: {},
+            activeFilters: []
         },
         computed: {
             totalQuantity: function () {
@@ -29,6 +30,13 @@ fetch(productsUrl).then(res => {
                     totalPrice += selectionPrice
                 })
                 return totalPrice
+            },
+            filteredProducts: function() {
+                let filteredProduct = this.products.filter(product => {
+                    this.activeFilters.forEach(activeFilter => {
+
+                    })
+                })
             }
         },
         methods: {
@@ -98,6 +106,29 @@ fetch(productsUrl).then(res => {
             },
             cleanCart: function() {
                 this.cart.products = []
+            },
+            toggleFilter: function(filter) {
+                filter.isOpen = !filter.isOpen
+            },
+            activeFilter: function(filter, tag) {
+                let newFilter = {
+                    name: filter,
+                    value: tag
+                }
+                if (this.activeFilters.some(activeFilter => activeFilter.name === newFilter.name)) {
+                    let target = this.activeFilters.filter(activeFilter => activeFilter.name === newFilter.name)
+                    target[0].value = newFilter.value
+                } else {
+                    this.activeFilters.push(newFilter)
+                }
+                console.log(this.activeFilters)
+            },
+            getActiveTags: function() {
+                let activeTags = []
+                this.activeFilters.forEach(activeFilter => {
+                    activeTags.push(activeFilter.value)
+                })
+                return activeTags
             }
         },
         updated: function() {
@@ -108,7 +139,36 @@ fetch(productsUrl).then(res => {
             if (sessionStorage.getItem('cart')) {
                 this.cart = JSON.parse(sessionStorage.getItem('cart'))
             }
-            console.log(this.cart);
+        },
+        created: function() {
+            let filters = {
+                materials: {
+                    name: 'Matières',
+                    isOpen: false,
+                    values: new Set()
+                },
+                types: {
+                    name: 'Types',
+                    isOpen: false,
+                    values: new Set()
+                },
+                authors: {
+                    name: 'Artisans',
+                    isOpen: false,
+                    values: new Set()
+                }
+            }
+            
+            this.products.forEach(product => {
+                product.materials.forEach(material => {
+                    filters.materials.values.add(material)
+                })
+                product.types.forEach(type => {
+                    filters.types.values.add(type)
+                })
+                filters.authors.values.add(product.author)
+            })
+            this.filters = Object.assign({}, this.filters, filters)
         }
     })
 })

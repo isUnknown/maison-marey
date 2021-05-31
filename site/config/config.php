@@ -16,7 +16,7 @@ return [
             if ( $page = page($page) ) {
             try {
                 $page->update([
-                $key => $value,
+                  $key => $value
                 ]);
                 return new Response('Page successfully updated', 'text/plain', 200);
             } catch( Exception $e) {
@@ -46,8 +46,10 @@ return [
                     'description' => $product->description()->value(),
                     'inputQuantity' => 1,
                     'quantity' => $product->quantity()->toInt(),
-                    // 'selectedQuantity' => 0,
-                    'cover' => $product->images()->first()->url()
+                    'cover' => $product->images()->first()->url(),
+                    'isVisible' => true,
+                    'materials' => $product->materials()->split(),
+                    'types' => $product->types()->split()                    
                   ];
                   $products[] = $product;
                 }

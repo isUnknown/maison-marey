@@ -2,6 +2,14 @@ Title: Chaise Charby
 
 ----
 
+Types: chaise
+
+----
+
+Materials: bois
+
+----
+
 Price: 1200
 
 ----

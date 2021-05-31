@@ -2,6 +2,14 @@ Title: Banc Bidule
 
 ----
 
+Types: banc
+
+----
+
+Materials: métal
+
+----
+
 Price: 1500
 
 ----

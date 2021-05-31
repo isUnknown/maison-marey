@@ -41,6 +41,10 @@ a, button {
     -webkit-tap-highlight-color: transparent;
 }
 
+li {
+    list-style-type: none;
+}
+
 h5 {
     font-weight: 100;
     text-transform: uppercase;
@@ -88,6 +92,10 @@ body {
 
 .header__logo h1 {
     font-weight: 100;
+}
+
+.header__filters {
+    display: flex;
 }
 
 .header__right {

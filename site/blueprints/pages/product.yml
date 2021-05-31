@@ -3,17 +3,29 @@ title: Product
 tabs:
   infos:
     fields:
+      types:
+        label: Type(s)
+        type: checkboxes
+        options: query
+        query: page.parent.types.split
+        width: 1/4
+      materials:
+        label: Matière(s)
+        type: checkboxes
+        options: query
+        query: page.parent.materials.split
+        width: 1/4
       price:
         label: Price
         type: number
         required: true
         min: 100
-        width: 1/2
+        width: 1/4
       quantity:
         label: Quantité en stock
         type: number
         required: true
-        width: 1/2
+        width: 1/4
       description:
         label: Description
         type: textarea

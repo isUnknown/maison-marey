@@ -46,6 +46,16 @@
                     Marey
                 </h1>
             </div>
+            <div class="header__filters filters">
+                <div class="filter" v-for="filter in filters" :key="filter.name">
+                    <button @click="toggleFilter(filter)" >{{ filter.name }}</button>
+                    <ul v-if="filter.isOpen">
+                        <li v-for="tag in filter.values">
+                            <button @click="activeFilter(filter.name, tag)">{{ tag }}</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="header__right">
                 <button class="cartBtn" @click="toggleCart">
                     <h1>Panier<sup>{{ totalQuantity }}</sup></h1>
