@@ -1,4 +1,5 @@
 import { Data } from './libraries/app.js'
+import './components/filters.js'
 
 const productsUrl = `${document.body.dataset.rootUrl}/products`
 fetch(productsUrl).then(res => {
@@ -12,7 +13,10 @@ fetch(productsUrl).then(res => {
                 isOpen: false,
                 products: []
             },
-            filters: {},
+            filters: {
+                all: {},
+                active: []
+            },
             activeFilters: []
         },
         computed: {
@@ -32,14 +36,43 @@ fetch(productsUrl).then(res => {
                 return totalPrice
             },
             filteredProducts: function() {
-                let filteredProduct = this.products.filter(product => {
-                    this.activeFilters.forEach(activeFilter => {
+                if (this.filters.active.length === 0) {
 
+                    return this.products
+
+                } else {
+                    const activeFilters = this.filters.active.map(activeFilter => activeFilter.value)
+                
+                    let filteredProducts = []
+                    this.products.forEach(product => {
+                        let tags = []
+                        tags.push(product.author)
+                        tags.push(product.materials)
+                        tags.push(product.types)
+                        tags = tags.flat()
+                        if (activeFilters.every(activeFilter => tags.includes(activeFilter))) {
+                            filteredProducts.push(product)
+                        }
                     })
-                })
+                    return filteredProducts
+                }
             }
         },
         methods: {
+            refreshActiveFilters: function(newFilter) {
+                if (this.filters.active.some(activeFilter => activeFilter.name === newFilter.name)) {
+                    this.filters.active = this.filters.active.filter(activeFilter => activeFilter.name !== newFilter.name)
+                    if (newFilter.value === '') {
+                        return false
+                    }
+                    this.filters.active.push(newFilter)
+                } else {
+                    if (newFilter.value === '') {
+                        return false
+                    }
+                    this.filters.active.push(newFilter)
+                }
+            },
             addToCart: function(product) {
                 this.showCart()
 
@@ -141,34 +174,13 @@ fetch(productsUrl).then(res => {
             }
         },
         created: function() {
-            let filters = {
-                materials: {
-                    name: 'Matières',
-                    isOpen: false,
-                    values: new Set()
-                },
-                types: {
-                    name: 'Types',
-                    isOpen: false,
-                    values: new Set()
-                },
-                authors: {
-                    name: 'Artisans',
-                    isOpen: false,
-                    values: new Set()
-                }
-            }
-            
-            this.products.forEach(product => {
-                product.materials.forEach(material => {
-                    filters.materials.values.add(material)
-                })
-                product.types.forEach(type => {
-                    filters.types.values.add(type)
-                })
-                filters.authors.values.add(product.author)
+            let filters = JSON.parse(document.querySelector('[data-filters]').dataset.filters)
+            filters.forEach(filter => {
+                filter.isOpen = false
             })
-            this.filters = Object.assign({}, this.filters, filters)
+
+            console.log('filters', filters)
+            this.filters.all = Object.assign({}, this.filters.all, filters)
         }
     })
 })

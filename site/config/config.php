@@ -49,7 +49,7 @@ return [
                     'cover' => $product->images()->first()->url(),
                     'isVisible' => true,
                     'materials' => $product->materials()->split(),
-                    'types' => $product->types()->split()                    
+                    'types' => $product->types()->split()
                   ];
                   $products[] = $product;
                 }

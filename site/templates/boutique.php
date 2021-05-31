@@ -2,8 +2,8 @@
 
 <?= snippet('cart') ?>
 
-<section class="products">
-    <div class="product" v-for="product in products" v-if="product.isVisible" :key="product.id">
+<section class="products" data-filters='<?= $filters ?>'>
+    <div class="product" v-for="product in filteredProducts" v-if="product.isVisible" :key="product.id">
         <div class="product__images">
             <img :src="product.cover" alt="">
         </div>
