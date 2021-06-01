@@ -2,33 +2,51 @@ title: Product
 
 tabs:
   infos:
-    fields:
-      types:
-        label: Type(s)
-        type: checkboxes
-        options: query
-        query: page.parent.types.split
-        width: 1/4
-      materials:
-        label: Matière(s)
-        type: checkboxes
-        options: query
-        query: page.parent.materials.split
-        width: 1/4
-      price:
-        label: Price
-        type: number
-        required: true
-        min: 100
-        width: 1/4
-      quantity:
-        label: Quantité en stock
-        type: number
-        required: true
-        width: 1/4
-      description:
-        label: Description
-        type: textarea
+    columns:
+      - width: 1/2
+        fields:
+          types:
+            label: Type(s)
+            type: checkboxes
+            options: query
+            query: page.parent.types.split
+            width: 1/2
+          materials:
+            label: Matière(s)
+            type: checkboxes
+            options: query
+            query: page.parent.materials.split
+            width: 1/2
+          price:
+            label: Price
+            type: number
+            required: true
+            min: 100
+            width: 1/2
+          quantity:
+            label: Quantité en stock
+            type: number
+            required: true
+            width: 1/2
+      
+      - width: 1/2
+        fields:
+          options:
+            label: Options
+            type: structure
+            fields:
+              name:
+                label: Nom
+                type: text
+              entries:
+                label: Options
+                type: tags
+      
+      - width: 1/1
+        fields:
+          description:
+            label: Description
+            type: textarea
   gallery:
     label: Galerie
     sections:

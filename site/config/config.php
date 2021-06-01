@@ -37,6 +37,16 @@ return [
             foreach ($craftmans as $craftman) {
                 $craftmanProducts = $craftman->children()->listed();
                 foreach ($craftmanProducts as $product) {
+                  $rawOptions = $product->options()->toStructure();
+                  $preparedOptions = [];
+                  foreach ($rawOptions as $option) {
+                    $newOption = [
+                      'name' => $option->name()->value(),
+                      'values' => $option->entries()->split()
+                    ];
+                    $preparedOptions[] = $newOption;
+                  }
+                  
                   $product = [
                     'id' => $product->id(),
                     'slug' => $product->slug(),
@@ -45,11 +55,14 @@ return [
                     'price' => $product->price()->toInt(),
                     'description' => $product->description()->value(),
                     'inputQuantity' => 1,
-                    'quantity' => $product->quantity()->toInt(),
+                    'MaxQuantity' => $product->quantity()->toInt(),
+                    'remainingQuantity' => $product->quantity()->toInt(),
                     'cover' => $product->images()->first()->url(),
                     'isVisible' => true,
                     'materials' => $product->materials()->split(),
-                    'types' => $product->types()->split()
+                    'types' => $product->types()->split(),
+                    'url' => $product->url(),
+                    'options' => $preparedOptions
                   ];
                   $products[] = $product;
                 }

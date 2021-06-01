@@ -56,7 +56,7 @@
             </div>
             <div class="header__right">
                 <button class="cartBtn" @click="toggleCart">
-                    <h1>Panier<sup>{{ totalQuantity }}</sup></h1>
+                    <h1>Panier<sup>{{ sharedProperties.cart.quantity }}</sup></h1>
                 </button>
                 <button class="header__navBtn navBtn">
                     <span class="navBtn__bar"></span>

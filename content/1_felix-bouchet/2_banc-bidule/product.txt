@@ -18,4 +18,12 @@ Quantity: 2
 
 ----
 
+Options:
+
+- 
+  name: tailles
+  values: petit, moyen, grand
+
+----
+
 Description: Proin nec nec urna tempus id nec arcu nisi elementum quis arcu metus condimentum eget quisque metus tempus mi urna rutrum eros portaest dolor placerat.

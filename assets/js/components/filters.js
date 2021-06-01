@@ -68,7 +68,6 @@ Vue.component('vue-filter', {
     },
     mounted: function() {
         this.setHeight()
-        console.log(this.filter)
     },
     updated: function() {
         this.$emit('update-filters', {

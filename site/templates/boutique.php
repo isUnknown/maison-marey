@@ -1,28 +1,34 @@
 <?= snippet('header') ?>
 
-<?= snippet('cart') ?>
+    <cart
+        :get-is-open="sharedProperties.cart.isOpen"
+        :get-new-product="sharedProperties.cart.newProduct"
+        @update-quantity="getCartQuantity"
+    ></cart>
 
-<section class="products" data-filters='<?= $filters ?>'>
-    <div class="product" v-for="product in filteredProducts" v-if="product.isVisible" :key="product.id">
-        <div class="product__images">
-            <img :src="product.cover" alt="">
-        </div>
-        <div class="product__infos">
-            <h1 class="product__name">{{ product.name }}</h1>
-            <p class="product__author">{{ product.author }}</p>
-            <h4 class="product__price">{{ product.price }} €</h4>
-            <p class="product__description">{{ product.description }}</p>
-            <div class="addWrapper" v-if="getRemainingQuantity(product) > 0">
-                <input autocomplete="off" type="number" class="product__quantity" v-model="product.inputQuantity" :max="getRemainingQuantity(product)">
-                <button @click="addToCart(product)" class="add">Ajouter</button>
-            </div>
-            <div class="orderMessage" v-if="getRemainingQuantity(product) === 0">
-                <p>Il n'y a plus d'article en stock.</p>
-                <p>Ce n'est pas grave, <a href="#">passez commande !</a></p>
-            </div>
-        </div>
-    </div>
-</section>
+    <transition name="allProducts">
+        <product-modal
+            v-if="modalIsEmpty === false"
+            :get-product="sharedProperties.modal.product"
+        ></product-modal>
+    </transition>
+
+    <transition name="allProducts">
+        <transition-group 
+            v-if="modalIsEmpty"
+            name="products" 
+            tag="section" 
+            class="products" 
+            data-filters='<?= $filters ?>'
+        >
+            <product-sheet
+                v-for="product in filteredProducts"
+                :product="product"
+                :key="product.id"
+                @open-product="openModal"
+            ></product-sheet>
+        </transition-group>
+    </transition>
 
 <?= snippet('footer') ?>
 
