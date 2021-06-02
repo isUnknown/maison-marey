@@ -31,6 +31,7 @@ return [
           'pattern' => 'products',
           'action' => function() {
             $site = site();
+            $kirby = kirby();
             $products = [];
             $craftmans = $site->children()->listed();
             

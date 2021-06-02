@@ -2,7 +2,8 @@ title: Product
 
 tabs:
   infos:
-    columns:
+    icon: question
+    columns:          
       - width: 1/2
         fields:
           types:
@@ -29,8 +30,22 @@ tabs:
             required: true
             width: 1/2
       
-      - width: 1/2
+      - width: 1/1
         fields:
+          description:
+            label: Description
+            type: textarea
+  order:
+    label: Stock
+    icon: cart
+    fields:
+          orderMode:
+            label: Mode de commande
+            type: checkboxes
+            options:
+              stock: Modèles en stock
+              order: Production à la commande
+            width: 1/2
           options:
             label: Options
             type: structure
@@ -41,14 +56,25 @@ tabs:
               entries:
                 label: Options
                 type: tags
-      
-      - width: 1/1
-        fields:
-          description:
-            label: Description
-            type: textarea
+            width: 1/2
+          models:
+            label: Modèles
+            type: structure
+            fields:
+              model:
+                label: Modèle
+                type: text
+              quantity:
+                label: Quantité
+                type: number
+              price:
+                label: Prix
+                type: number
+              when:
+                orderMode: stock
   gallery:
     label: Galerie
+    icon: layers
     sections:
       gallerySection:
         headline: Galerie

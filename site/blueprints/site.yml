@@ -43,4 +43,13 @@ tabs:
     label: Initiations
     secions:
       initiationsContent:
-
+  
+  shop:
+    icon: credit-card
+    label: Boutique
+    sections:
+      products:
+        headline: Articles
+        type: pagesdisplay
+        query: kirby.collection('products')
+        layout: cards
