@@ -19,9 +19,7 @@ fetch(productsUrl).then(res => {
             activeFilters: [],
             sharedProperties: {
                 cart: {
-                    isOpen: false,
-                    newProduct: {},
-                    quantity: 0
+                    isOpen: false
                 },
                 modal: {
                     product: {}
@@ -31,7 +29,6 @@ fetch(productsUrl).then(res => {
         computed: {
             filteredProducts: function() {
                 if (this.filters.active.length === 0) {
-
                     return this.products
 
                 } else {
@@ -57,14 +54,20 @@ fetch(productsUrl).then(res => {
                 } else {
                     return false
                 }
+            },
+            totalQuantity: function() {
+                let totalQuantity = 0
+                this.products.forEach(product => {
+                    totalQuantity += product.selectedQuantity
+                })
+                return totalQuantity
             }
         },
         methods: {
             parseToNumber: function() {
                 this.products.forEach(product => {
                     product.inputQuantity = parseInt(product.inputQuantity)
-                    // product.selectedQuantity = parseInt(product.selectedQuantity)
-                    product.quantity = parseInt(product.quantity)
+                    product.selectedQuantity = parseInt(product.selectedQuantity)
                     product.price = parseInt(product.price)
                 })
             },
@@ -108,30 +111,14 @@ fetch(productsUrl).then(res => {
                 this.sharedProperties.cart.isOpen = !this.sharedProperties.cart.isOpen
             },
             addToCart: function(product) {
-                console.log('App : addToCart()')
-                this.sharedProperties.cart.isOpen = true
-
-                let newProduct = {}
-                newProduct.id = product.id
-                newProduct.name = product.name
-                newProduct.author = product.author
-                newProduct.cover = product.cover
-                newProduct.price = product.price
-                newProduct.quantity = product.inputQuantity
-
-                this.sharedProperties.cart.newProduct = newProduct
-
-                product.remainingQuantity -= newProduct.quantity
-                product.inputQuantity = 1
-            },
-            getCartQuantity: function (quantity) {
-                this.sharedProperties.cart.quantity = quantity
+                this.toggleCart()
+                this.sharedProperties.cart.newProduct = product
             },
             openModal: function(product) {
                 this.sharedProperties.modal.product = product
             }
         },
-        updated: function() {
+        beforeUpdate: function() {
             this.parseToNumber()
         },
         created: function() {
@@ -140,6 +127,11 @@ fetch(productsUrl).then(res => {
                 filter.isOpen = false
             })
             this.filters.all = Object.assign({}, this.filters.all, filters)
+
+            if (sessionStorage.getItem('cart')) {
+                let cart = JSON.parse(sessionStorage.getItem('cart'))
+                this.products = cart.products
+            }
         }
     })
 })

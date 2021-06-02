@@ -1,73 +1,47 @@
 Vue.component('cart', {
     props: {
+        getProducts: Array,
         getIsOpen: Boolean,
-        getNewProduct: Object
+        getTotalQuantity: Number
     },
-    data: function() {
-        return {
-            products: []
+    computed: {
+        products: function() {
+            return this.getProducts
+        },
+        isOpen: function() {
+            return this.getIsOpen
+        },
+        totalQuantity: function() {
+            return this.getTotalQuantity
+        },
+        totalPrice: function() {
+            let totalPrice = 0
+            this.products.forEach(product => {
+                const productSelectionPrice = product.selectedQuantity * product.price
+                totalPrice += productSelectionPrice
+            })
+            return totalPrice
         }
     },
     template: `
     <div class="cart" :class="{open: this.isOpen}">
-        <div class="cart__product" v-for="product in products" :key="product.id">
-            <div>{{ product.name }}, par {{product.author}}. Quantité : {{ product.quantity }}. Prix : {{ getSelectionPrice(product) }} €</div>
+        <div class="cart__product" v-for="product in products" v-if="product.selectedQuantity > 0" :key="product.id">
+            <div>{{ product.name }}, par {{product.author}}. Quantité : {{ product.selectedQuantity }}. Prix : {{ getSelectionPrice(product) }} €</div>
         </div>
-        <div v-if="quantity > 0" class="totalPrice">Total : {{ price }} €</div>
+        <div v-if="totalQuantity > 0" class="totalPrice">Total : {{ totalPrice }} €</div>
         <button @click="cleanCart">Vider le panier</button>
     </div>
     `,
-    computed: {
-        isOpen: function() {
-            return this.getIsOpen
-        },
-        newProduct: function() {
-            return this.getNewProduct
-        },
-        quantity: function() {
-            let quantity = 0
-            this.products.forEach(product => {
-                quantity += product.quantity
-            })
-            return quantity
-        },
-        price: function() {
-            let price = 0
-            this.products.forEach(product => {
-                price += product.quantity * product.price
-            })
-            return price
-        }
-    },
-    watch: {
-        newProduct: function(newProduct) {
-            
-            if(this.isInCart(newProduct)) {
-                let registeredProduct = this.getProduct(newProduct)
-                this.updateQuantity(registeredProduct, newProduct)
-            } else {
-                this.addToCart(newProduct)
-            }
-            
-            this.saveCart()
-        },
-        quantity: function() {
-            this.sendQuantity()
-        }
-    },
     methods: {
-        addToCart: function(newProduct) {
-            this.products.push(newProduct)
+        cleanCart: function() {
+            this.products.forEach(product => {
+                product.selectedQuantity = 0
+                product.remainingQuantity = product.maxQuantity
+            })
         },
-        updateQuantity: function(registeredProduct, newProduct) {
-            registeredProduct.quantity += newProduct.quantity
-        },
-        isInCart: function(product) {
-            return this.products.some(registeredProduct => registeredProduct.id === product.id)
-        },
-        getProduct: function(product) {
-            let registeredProduct = this.products.filter(registeredProduct => registeredProduct.id === product.id)
-            return registeredProduct[0]
+        getSelectionPrice: function(product) {
+            const selectionPrice = product.selectedQuantity * product.price
+            return selectionPrice
         },
         saveCart: function() {
             const cart = {
@@ -76,28 +50,9 @@ Vue.component('cart', {
             }
             const jsonCart = JSON.stringify(cart)
             sessionStorage.setItem('cart', jsonCart)
-        },
-        getCart: function() {
-            let cart = JSON.parse(sessionStorage.getItem('cart'))
-        },
-        cleanCart: function() {
-            this.products = []
-        },
-        sendQuantity: function() {
-            let quantity = 0
-            this.products.forEach(product => {
-                quantity += product.quantity
-            })
-            this.$emit('update-quantity', quantity)
-        },
-        getSelectionPrice: function(product) {
-            const selectionPrice = product.quantity * product.price
-            return selectionPrice
         }
     },
-    mounted: function() {
-        if (sessionStorage.getItem('cart')) {
-            this.cart = JSON.parse(sessionStorage.getItem('cart'))
-        }
+    updated: function() {
+        this.saveCart()
     }
 })

@@ -1,19 +1,20 @@
 <?= snippet('header') ?>
 
     <cart
+        :get-total-quantity="totalQuantity"
+        :get-products="products"
         :get-is-open="sharedProperties.cart.isOpen"
-        :get-new-product="sharedProperties.cart.newProduct"
-        @update-quantity="getCartQuantity"
     ></cart>
 
-    <transition name="allProducts">
+    <transition name="fade">
         <product-modal
+            @add-to-cart="addToCart"
             v-if="modalIsEmpty === false"
             :get-product="sharedProperties.modal.product"
         ></product-modal>
     </transition>
 
-    <transition name="allProducts">
+    <transition name="fade">
         <transition-group 
             v-if="modalIsEmpty"
             name="products" 
