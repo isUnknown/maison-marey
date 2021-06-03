@@ -16,7 +16,7 @@ Materials: bois, métal
 
 ----
 
-Types: chaise, banc
+Itemstypes: chaise, banc
 
 ----
 
@@ -25,6 +25,10 @@ Pitch: <p>J'ai grandi en Touraine, dans une maison entourée de forêts. Après 
 ----
 
 Layout: [{"attrs":{"layout":"mono","width":100,"widthmode":"mono","leftcolumnwidth":50,"gutter":0,"sololeftcolumnwidth":50,"solorightcolumnwidth":50,"marginmode":"mono","verticalpadding":2,"horizontalpadding":2,"leftverticalpadding":2,"rightverticalpadding":2,"lefthorizontalpadding":2,"righthorizontalpadding":2,"colormode":"mono","backgroundcolor":"#FFFFFF","textcolor":"#000000","leftbackgroundcolor":"#FFFFFF","rightbackgroundcolor":"#FFFFFF","lefttextcolor":"#000000","righttextcolor":"#000000","positionmode":"mono","globalposition":"center","leftposition":"center","rightposition":"center","space":0},"columns":[{"blocks":[{"content":{"text":"J'ai grandi en Touraine, dans une maison entour\u00e9e de for\u00eats. Apr\u00e8s le lyc\u00e9e, je me suis dirig\u00e9 vers les sciences, pour finalement obtenir un dipl\u00f4me d'ing\u00e9nieur bois en 2016. Le go\u00fbt de voyager et de travailler de mes mains m'ont amen\u00e9 \u00e0 Montr\u00e9al o\u00f9 ma vie \u00e9tait partag\u00e9e entre les petits boulots et l'Ecole d'Eb\u00e9nisterie d'Art de Montr\u00e9al. Mon projet final, deux chaises, a \u00e9t\u00e9 r\u00e9compens\u00e9 de la Bourse Excellence en Eb\u00e9nisterie d'Art - Caisse de la Culture et MMAQ (Mus\u00e9e des Ma\u00eetres et Artisans du Qu\u00e9bec). Cet \u00e9lan m'a amen\u00e9 dans l'\u00e9tat am\u00e9ricain des montagnes vertes, le Vermont. J'y ai pass\u00e9 15 mois, dans l'atelier du ma\u00eetre chaisier de seconde g\u00e9n\u00e9ration George Sawyer.  Ma sensibilit\u00e9 pour le travail du bois avec des outils manuels a grandi. Aujourd'hui, je vis de nouveau en Touraine. J'y fabrique des chaises et des ustensiles en bois vert.","blockwidth":100,"position":"center","marginmode":"margin","margintop":0,"marginbottom":0,"marginleft":0,"marginright":0},"id":"029d4edc-deb0-4231-bc20-665ebe7a7870","isHidden":false,"type":"markdown"}],"id":"a1fdf8d3-2357-4cbd-be76-7cc21a570c49","width":"1\/2"},{"blocks":[{"content":{"image":["artisan.jpg"],"alt":"","blockwidth":100,"marginmode":"margin","margintop":0,"marginbottom":0,"marginleft":0,"marginright":0},"id":"b5f9ed4a-8045-4735-b06d-941e1eb8ad6b","isHidden":false,"type":"image"}],"id":"46912ca0-70d6-4552-9b4b-a16ab71926fc","width":"1\/2"}],"id":"ba51c8b0-2e45-4aea-a074-be5ce2f2242b"}]
+
+----
+
+Types: chaise, banc
 
 ----
 

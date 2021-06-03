@@ -1,0 +1,147 @@
+Title: Chaise chaby
+
+----
+
+Pictures:
+
+- chaise_3-4.jpg
+
+----
+
+Description: Bois vert trouvé en forêt —  Fabriqué à la main en Tourraine.
+
+----
+
+Types: chaise
+
+----
+
+Materials: bois
+
+----
+
+Price: 600
+
+----
+
+Delivery: false
+
+----
+
+Order: false
+
+----
+
+Productiontime: 7
+
+----
+
+Options:
+
+- 
+  name: Taille
+  entries:
+    - 
+      name: Petit
+      variable: Prix
+
+----
+
+Stock: true
+
+----
+
+Pickuptime: 1
+
+----
+
+Models:
+
+- 
+  name: Grande bleu
+  quantity: 4
+  extracost: 100
+  cover:
+    - chaise_plongee.jpg
+- 
+  name: Petite jaune
+  quantity: 3
+  extracost: null
+  cover:
+    - chaise_plongee.jpg
+
+----
+
+Gallery: 
+
+----
+
+Itemstypes: chaise
+
+----
+
+Coverimage:
+
+- 
+  filename: chaise_3-4.jpg
+  dragText: '(image: chaise_3-4.jpg)'
+  icon:
+    type: file-image
+    ratio: 3/2
+    back: white
+    color: '#de935f'
+    cover: false
+    url: >
+      http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise_3-4.jpg
+    cards:
+      url: >
+        data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw
+      srcset: >
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-352x.jpg
+        352w,
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-864x.jpg
+        864w,
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-1408x.jpg
+        1408w
+    list:
+      url: >
+        data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw
+      srcset: >
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-38x38.jpg
+        1x,
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-76x76.jpg
+        2x
+  id: >
+    felix-bouchet/chaise-chaby/chaise_3-4.jpg
+  image:
+    ratio: 3/2
+    back: white
+    cover: false
+    url: >
+      http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise_3-4.jpg
+    cards:
+      url: >
+        data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw
+      srcset: >
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-352x.jpg
+        352w,
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-864x.jpg
+        864w,
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-1408x.jpg
+        1408w
+    list:
+      url: >
+        data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw
+      srcset: >
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-38x38.jpg
+        1x,
+        http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise-3-4-76x76.jpg
+        2x
+  info: ""
+  link: >
+    /pages/felix-bouchet+chaise-chaby/files/chaise_3-4.jpg
+  text: chaise_3-4.jpg
+  type: image
+  url: >
+    http://localhost:8888/maison-marey/media/pages/felix-bouchet/chaise-chaby/c1252a26a3-1622706690/chaise_3-4.jpg
+  uuid: chaise_3-4.jpg

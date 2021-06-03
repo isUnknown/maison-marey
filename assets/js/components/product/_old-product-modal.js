@@ -1,4 +1,6 @@
-Vue.component('product-modal', {
+import ProductHeader from './product-header.js'
+
+const ProductModal = {
     props: {
         getProduct: Object
     },
@@ -7,19 +9,21 @@ Vue.component('product-modal', {
             selectedOptions: []
         }
     },
+    components: {
+        'product-header': ProductHeader
+    },
     template: `
         <div class="modal">
 
             <div class="modal__product">
                 <div class="modal__product__images">
-                    <img :src="product.cover" />
+                    <img :src="product.images[0]" />
                 </div>
                 
                 <div class="modal__product__options">
-                    <h1 class="product__name">{{ product.name }}</h1>
-                    <p class="product__author">{{ product.author }}</p>
-                    <h4 class="product__price">{{ product.price }} €</h4>
-                    <p class="product__description">{{ product.description }}</p>
+                    <product-header
+                        :product="product"
+                    ></product-header>
                     
                     <div class="productOptions">
                         <div class="productOptions__option" v-for="option in product.options" :key="option.name">
@@ -75,4 +79,6 @@ Vue.component('product-modal', {
             }
         }
     }
-})
+}
+
+export default ProductModal

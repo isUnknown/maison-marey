@@ -3,75 +3,139 @@ title: Product
 tabs:
   infos:
     icon: question
-    columns:          
+    columns:
       - width: 1/2
         fields:
+          pictures:
+            label: Images
+            type: files
+            layout: cards
+            image:
+              back: white
+      
+      - width: 1/2
+        fields:
+          description:
+            label: Description
+            type: textarea
           types:
             label: Type(s)
-            type: checkboxes
+            type: multiselect
             options: query
             query: page.parent.types.split
             width: 1/2
           materials:
             label: Matière(s)
-            type: checkboxes
+            type: multiselect
             options: query
             query: page.parent.materials.split
             width: 1/2
-          price:
-            label: Price
-            type: number
-            required: true
-            min: 100
-            width: 1/2
-          quantity:
-            label: Quantité en stock
-            type: number
-            required: true
-            width: 1/2
-      
-      - width: 1/1
-        fields:
-          description:
-            label: Description
-            type: textarea
-  order:
+          info:
+            label: Type ou matière introuvable ?
+            type: info
+            text: Pour être disponible pour ce produit, une option doit d'abord être renseignées dans l'onglet boutique du site, puis au niveau de son artisan.
+  stock:
     label: Stock
     icon: cart
-    fields:
-          orderMode:
-            label: Mode de commande
-            type: checkboxes
-            options:
-              stock: Modèles en stock
-              order: Production à la commande
+    columns:
+      - width: 1/1
+        fields:
+          price:
+            label: Prix
+            type: number
+            after: €
+            width: 1/4
+          delivery:
+            label: Livraison
+            type: toggle
+            width: 1/4
+          # minDeliveryTime:
+          #   label: Délai minimum
+          #   type: number
+          #   after: jours
+          #   default: 2
+          #   width: 1/4
+          #   when:
+          #     delivery: true
+          # maxDeliveryTime:
+          #   label: Délai maximum
+          #   type: number
+          #   after: jours
+          #   default: 7
+          #   width: 1/4
+          #   when:
+          #     delivery: true
+      - width: 1/2
+        fields:
+          order:
+            label: Production à la commande
+            type: toggle
+            default: true
             width: 1/2
+          productionTime:
+            label: Délai moyen de production
+            type: number
+            after: jours
+            default: 7
+            width: 1/2
+            when:
+              order: true
           options:
             label: Options
             type: structure
+            when:
+              order: true
             fields:
               name:
                 label: Nom
                 type: text
               entries:
                 label: Options
-                type: tags
+                type: structure
+                fields:
+                  name:
+                    label: Nom
+                    type: text
+                  variable:
+                    label: Variable
+                    type: text
+      - width: 1/2
+        fields:
+          stock:
+            label: Modèles en stock
+            type: toggle
             width: 1/2
+          pickUpTime:
+            label: Délai de retrait
+            type: number
+            after: jours
+            width: 1/2
+            default: 1
+            when:
+              stock: true
           models:
             label: Modèles
             type: structure
+            when:
+              stock: true
             fields:
-              model:
-                label: Modèle
+              name:
+                label: Nom
                 type: text
               quantity:
                 label: Quantité
                 type: number
-              price:
-                label: Prix
+                width: 1/2
+              extraCost:
+                label: Surcoût
                 type: number
-              when:
-                orderMode: stock
+                after: €
+                width: 1/2
+              cover:
+                label: Image
+                type: files
+                layout: cards
+                multiple: false
   gallery:
     label: Galerie
     icon: layers

@@ -7,9 +7,13 @@ tabs:
     columns:
       - width: 1/4
         sections:
-          coverSection:
+          infos:
             type: fields
             fields:
+              presentationBackground:
+                label: Couleur de fond de la section de présentation
+                type: color
+                default: '#FFFFFF00'
               cover:
                 label: Image de couverture
                 type: files
@@ -17,29 +21,24 @@ tabs:
                 layout: cards
                 image:
                   back: black
-                width: 1/2
-              presentationBackground:
-                label: Couleur de la section de présentation
-                type: color
-                default: '#FFFFFF00'
-      - width: 1/4
-        sections:
-          infos:
-            type: fields
-            fields:
-              materials:
-                label: Matière(s)
-                type: tags
-                width: 1/1
-              types:
-                label: Objet(s)
-                type: tags
-                width: 1/2
       - width: 1/2
         sections:
           intro:
             type: fields
             fields:
+              materials:
+                label: Matière(s)
+                type: multiselect
+                width: 1/1
+                options: query
+                query: site.materials.split
+                width: 1/2
+              itemsTypes:
+                label: Objet(s)
+                type: multiselect
+                options: query
+                query: site.itemsTypes.split
+                width: 1/2
               pitch:
                 label: Présentation
                 type: writer
@@ -62,7 +61,6 @@ tabs:
                   tabs:
                     global:
                       fields:
-
 
                         layout:
                           label: Disposition

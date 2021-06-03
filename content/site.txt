@@ -9,3 +9,30 @@ Media:
 ----
 
 Text: 
+
+----
+
+Materials: bois, métal
+
+----
+
+Itemstypes: chaise, banc
+
+----
+
+Mindeliverytime: 2
+
+----
+
+Maxdeliverytime: 7
+
+----
+
+Types:
+
+- 
+  value: chaise
+  text: chaise
+- 
+  value: banc
+  text: banc

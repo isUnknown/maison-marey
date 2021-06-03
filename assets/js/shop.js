@@ -1,15 +1,22 @@
 import { Data } from './libraries/app.js'
-import './components/filters.js'
-import './components/cart.js'
-import './components/product-sheet.js'
-import './components/product-modal.js'
+import Filter from './components/filter.js'
+import Cart from './components/cart.js'
+import ProductSheet from './components/product/product-sheet.js'
+import ProductModal from './components/product/product-modal.js'
 
 const productsUrl = `${document.body.dataset.rootUrl}/products`
 fetch(productsUrl).then(res => {
     return res.json()
-}).then(products => {
+}).then(products => {   
+    console.log(products)
     const vm = new Vue({
         el: '#app',
+        components: {
+            'vue-filter': Filter,
+            'cart': Cart,
+            'product-sheet': ProductSheet,
+            'product-modal': ProductModal
+        },
         data: {
             products: products,
             filters: {
@@ -58,19 +65,14 @@ fetch(productsUrl).then(res => {
             totalQuantity: function() {
                 let totalQuantity = 0
                 this.products.forEach(product => {
-                    totalQuantity += product.selectedQuantity
+                    product.selected.forEach(selectedProduct => {
+                        totalQuantity += selectedProduct.quantity
+                    })
                 })
                 return totalQuantity
             }
         },
         methods: {
-            parseToNumber: function() {
-                this.products.forEach(product => {
-                    product.inputQuantity = parseInt(product.inputQuantity)
-                    product.selectedQuantity = parseInt(product.selectedQuantity)
-                    product.price = parseInt(product.price)
-                })
-            },
             refreshActiveFilters: function(newFilter) {
                 if (this.filters.active.some(activeFilter => activeFilter.name === newFilter.name)) {
                     this.filters.active = this.filters.active.filter(activeFilter => activeFilter.name !== newFilter.name)
@@ -117,9 +119,6 @@ fetch(productsUrl).then(res => {
             openModal: function(product) {
                 this.sharedProperties.modal.product = product
             }
-        },
-        beforeUpdate: function() {
-            this.parseToNumber()
         },
         created: function() {
             let filters = JSON.parse(document.querySelector('[data-filters]').dataset.filters)

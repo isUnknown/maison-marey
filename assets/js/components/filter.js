@@ -1,4 +1,4 @@
-Vue.component('vue-filter', {
+const Filter = {
     props: ['filter'],
     data: function() {
         return {
@@ -75,4 +75,6 @@ Vue.component('vue-filter', {
             'value': this.value
         })
     }
-})
+}
+
+export default Filter

@@ -47,9 +47,30 @@ tabs:
   shop:
     icon: credit-card
     label: Boutique
-    sections:
-      products:
-        headline: Articles
-        type: pagesdisplay
-        query: kirby.collection('products')
-        layout: cards
+    columns:
+      - width: 1/2
+        fields:
+          materials:
+            label: Matières
+            type: tags
+          itemsTypes:
+            label: Types d'objet
+            type: tags
+          minDeliveryTime:
+            label: Délai de livraison minimum
+            type: number
+            after: jours
+            width: 1/2
+          maxDeliveryTime:
+            label: Délai de livraison maximum
+            type: number
+            after: jours
+            width: 1/2
+          
+      - width: 1/2
+        sections:
+          products:
+            headline: Articles
+            type: pagesdisplay
+            query: kirby.collection('products')
+            layout: cards
