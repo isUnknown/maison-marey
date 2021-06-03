@@ -52,8 +52,6 @@ const ProductModels = {
             } else {
                 this.product.selected.push(this.selection)
             }
-
-            this.selection.quantity -= quantity
         }
     }
 }
