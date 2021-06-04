@@ -30,7 +30,7 @@ const ProductModels = {
             </div>
             
             <add-btn
-            :value="input"
+            :getInput="input"
             :getMax="selection.quantity"
             @add="addToCart"
             v-if="this.selection && selection.quantity > 0"

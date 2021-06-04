@@ -1,14 +1,16 @@
 const Add = {
     props: {
         getMax: Number,
-        value: Number
+        getInput: Number
+    },
+    data: function() {
+        return {
+            input: this.getInput
+        }
     },
     computed: {
         max: function() {
             return this.getMax
-        },
-        input: function() {
-            return this.value
         }
     },
     template: `
@@ -32,6 +34,7 @@ const Add = {
         },
         add: function() {
             this.$emit('add', this.input)
+            this.input = 1
         }
     }
 }

@@ -428,7 +428,7 @@ body {
     margin-top: 2rem;
 }
 
-/* ================= TRANSITION ================= */
+/* ================= VUE TRANSITION ================= */
 
 .fade-item {
     transition: all 1s;
