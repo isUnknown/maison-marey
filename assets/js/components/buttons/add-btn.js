@@ -13,6 +13,11 @@ const Add = {
             return this.getMax
         }
     },
+    watch: {
+        getInput: function() {
+            this.input = this.getInput
+        }
+    },
     template: `
         <div class="addSection">
             <span class="moreless" @click="decrement">-</span>

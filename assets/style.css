@@ -128,7 +128,7 @@ body {
 
     padding: 1rem var(--padding-main);
     background-color: var(--color-main-bg);
-    box-shadow: 0 3px 8px rgb(175, 175, 175);
+    box-shadow: 0 2px 8px rgb(175, 175, 175);
 
     transition: all var(--transition-normal) ease-in-out;
     -webkit-transition: all var(--transition-normal) ease-in-out;
@@ -319,25 +319,6 @@ body {
     width: 70%;
 }
 
-.cart {
-    position: fixed;
-    z-index: 1;
-    top: 8rem;
-    bottom: 0;
-    right: 0;
-    width: 30%;
-    background-color: var(--color-main-bg);
-    transform: translateX(100%);
-
-    transition: all .5s ease-in-out;
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-}
-.cart.open {
-    transform: translateX(0%);
-}
-
 /* ================= DESK MODAL PRODUCT ================= */
 .modal {
     position: fixed;  
@@ -379,13 +360,61 @@ body {
     background-color: green;
 }
 
+/* ================= DESK CART ================= */
+.cart {
+    position: fixed;
+    z-index: 10;
+    top: 6rem;
+    bottom: 0;
+    right: 0;
+    width: 35%;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    background-color: var(--color-main-bg);
+    box-shadow: -2px 5px 8px rgb(175, 175, 175);
+    transform: translateX(100%);
+
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+}
+.cart.open {
+    transform: translateX(0%);
+}
+.cart__entry {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.cart__entry__image {
+    width: 40%;
+}
+.cart__entry :where(h1, h2, h3) {
+    font-weight: 300;
+}
+.cart__entry h1 {
+    font-size: 1.3rem;
+}
+.cart__entry h2 {
+    font-size: 1rem;
+}
+
+.orderBtn {
+    position: absolute;
+    bottom: 2rem;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    text-align: center;
+}
+
 /* ================= GENERIC ================= */
 .content {
     opacity: 0;
 }
 
 .see {
-    background-color: #fff;
+    background-color: transparent;
     color: #000;
     font-size: .9rem;
     font-weight: 300;

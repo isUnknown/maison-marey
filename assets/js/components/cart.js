@@ -1,3 +1,5 @@
+import EventBus from '../eventBus.js'
+
 const cart = {
     props: {
         getProducts: Array,
@@ -8,6 +10,15 @@ const cart = {
         products: function() {
             return this.getProducts
         },
+        selectedProducts: function() {
+            let selectedProducts = []
+            this.products.forEach(product => {
+                product.selected.forEach(selectedProduct => {
+                    selectedProducts.push(selectedProduct)
+                })
+            })
+            return selectedProducts
+        },
         isOpen: function() {
             return this.getIsOpen
         },
@@ -16,7 +27,7 @@ const cart = {
         },
         totalPrice: function() {
             let totalPrice = 0
-            this.products.forEach(product => {
+            this.selectedProducts.forEach(product => {
                 const productSelectionPrice = product.selectedQuantity * product.price
                 totalPrice += productSelectionPrice
             })
@@ -25,30 +36,31 @@ const cart = {
     },
     template: `
     <div class="cart" :class="{open: this.isOpen}">
-        <div class="cart__product" v-for="product in products" v-if="product.selectedQuantity > 0" :key="product.id">
-            <div>{{ product.name }}, par {{product.author}}. Quantité : {{ product.selectedQuantity }}. Prix : {{ getSelectionPrice(product) }} €</div>
+        <div class="cart__entry" v-for="product in selectedProducts" v-if="product.selectedQuantity > 0" :key="product.id">
+            <img class="cart__entry__image" :src="product.image" />
+            <div class="cart__entry__infos">
+                <h1>{{ product.name }}</h1>
+                <h3 v-if="product.modelName">{{ product.modelName }} x <span v-if="product.selectedQuantity > 1">{{ product.selectedQuantity }}</span></h3>
+                <h1>{{ getSelectionPrice(product) }} €</h1>
+                <h2>par {{ product.author }}</h2>
+            </div>
+            
         </div>
-        <div v-if="totalQuantity > 0" class="totalPrice">Total : {{ totalPrice }} €</div>
         <button @click="cleanCart">Vider le panier</button>
+        <button v-if="totalQuantity > 0" class="see orderBtn">Commander | {{ totalPrice }} €</button>
     </div>
     `,
     methods: {
         cleanCart: function() {
-            this.products.forEach(product => {
-                product.selectedQuantity = 0
-                product.remainingQuantity = product.maxQuantity
-            })
+            this.$emit('clean-cart-order')
+            EventBus.$emit('clean-selection')
         },
         getSelectionPrice: function(product) {
             const selectionPrice = product.selectedQuantity * product.price
             return selectionPrice
         },
         saveCart: function() {
-            const cart = {
-                isOpen: false,
-                products: this.products
-            }
-            const jsonCart = JSON.stringify(cart)
+            const jsonCart = JSON.stringify(this.products)
             sessionStorage.setItem('cart', jsonCart)
         }
     },

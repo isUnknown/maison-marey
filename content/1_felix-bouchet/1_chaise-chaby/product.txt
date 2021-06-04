@@ -68,7 +68,7 @@ Models:
   quantity: 3
   extracost: null
   cover:
-    - chaise_plongee.jpg
+    - team.jpg
 
 ----
 

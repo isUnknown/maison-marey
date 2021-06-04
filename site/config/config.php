@@ -30,47 +30,6 @@ return [
         [
           'pattern' => 'products',
           'action' => function() {
-          //   $site = site();
-          //   $kirby = kirby();
-          //   $products = [];
-          //   $craftmans = $site->children()->listed();
-            
-          //   foreach ($craftmans as $craftman) {
-          //       $craftmanProducts = $craftman->children()->listed();
-          //       foreach ($craftmanProducts as $product) {
-          //         $rawOptions = $product->options()->toStructure();
-          //         $preparedOptions = [];
-          //         foreach ($rawOptions as $option) {
-          //           $newOption = [
-          //             'name' => $option->name()->value(),
-          //             'values' => $option->entries()->split()
-          //           ];
-          //           $preparedOptions[] = $newOption;
-          //         }
-                  
-          //         $product = [
-          //           'id' => $product->id(),
-          //           'slug' => $product->slug(),
-          //           'author' => $product->parent()->title()->value(),
-          //           'name' => $product->title()->value(),
-          //           'price' => $product->price()->toInt(),
-          //           'description' => $product->description()->value(),
-          //           'inputQuantity' => 1,
-          //           'maxQuantity' => $product->quantity()->toInt(),
-          //           'selectedQuantity' => 0,
-          //           'remainingQuantity' => $product->quantity()->toInt(),
-          //           'cover' => $product->images()->first()->url(),
-          //           'isVisible' => true,
-          //           'materials' => $product->materials()->split(),
-          //           'types' => $product->types()->split(),
-          //           'url' => $product->url(),
-          //           'options' => $preparedOptions
-          //         ];
-          //         $products[] = $product;
-          //       }
-          //   }
-
-          //   return $products;
           
           // PREPARE PRODUCTS
           $site = site();
@@ -111,11 +70,15 @@ return [
                 $price = $extraCost ? $extraCost + $product->price()->value() : (int)$product->price()->value();
 
                 $preparedModel = [
-                  'name' => $rawModel->name()->value(),
-                  'quantity' => $rawModel->quantity()->value(),
+                  'name' => $product->title()->value(),
+                  'modelName' => $rawModel->name()->value(),
+                  'author' => $product->parent()->title()->value(),
+                  'maxQuantity' => $rawModel->quantity()->value(),
+                  'selectedQuantity' => 0,
+                  'remainingQuantity' => $rawModel->quantity()->value(),
                   'price' => $price,
                   'extraCost' => $extraCost,
-                  'image' => $rawModel->cover()->toFile()->url()
+                  'image' => $rawModel->cover()->toFile()->resize(300, null, 80)->url()
                 ];
 
                 $preparedModels[] = $preparedModel;

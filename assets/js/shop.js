@@ -3,12 +3,13 @@ import Filter from './components/filter.js'
 import Cart from './components/cart.js'
 import ProductSheet from './components/product/product-sheet.js'
 import ProductModal from './components/product/product-modal.js'
+import EventBus from './eventBus.js'
 
 const productsUrl = `${document.body.dataset.rootUrl}/products`
 fetch(productsUrl).then(res => {
     return res.json()
-}).then(products => {   
-    console.log(products)
+}).then(products => {
+    console.log('initial products : ', products)
     const vm = new Vue({
         el: '#app',
         components: {
@@ -18,6 +19,7 @@ fetch(productsUrl).then(res => {
             'product-modal': ProductModal
         },
         data: {
+            originalProducts: products,
             products: products,
             filters: {
                 all: {},
@@ -29,7 +31,7 @@ fetch(productsUrl).then(res => {
                     isOpen: false
                 },
                 modal: {
-                    product: {}
+                    product: {},
                 }
             }
         },
@@ -66,10 +68,19 @@ fetch(productsUrl).then(res => {
                 let totalQuantity = 0
                 this.products.forEach(product => {
                     product.selected.forEach(selectedProduct => {
-                        totalQuantity += selectedProduct.quantity
+                        totalQuantity += selectedProduct.selectedQuantity
                     })
                 })
                 return totalQuantity
+            },
+            cart: function() {
+                let cart = []
+                this.products.forEach(product => {
+                    product.selected.forEach(selectedProduct => {
+                        cart.push(selectedProduct)
+                    })
+                })
+                return cart
             }
         },
         methods: {
@@ -112,12 +123,25 @@ fetch(productsUrl).then(res => {
             toggleCart: function() {
                 this.sharedProperties.cart.isOpen = !this.sharedProperties.cart.isOpen
             },
-            addToCart: function(product) {
-                this.toggleCart()
-                this.sharedProperties.cart.newProduct = product
+            openCart: function() {
+                this.sharedProperties.cart.isOpen = true
+            },
+            cleanCart: function() {
+                this.products.forEach(product => {
+                    product.selected = []
+                    product.stock.forEach(item => {
+                        item.selectedQuantity = 0
+                        item.remainingQuantity = item.maxQuantity
+                    })
+                })
+                this.sharedProperties.cart.isOpen = false
             },
             openModal: function(product) {
                 this.sharedProperties.modal.product = product
+            },
+            closeModal: function() {
+                console.log('closeModal')
+                this.sharedProperties.modal.product = false
             }
         },
         created: function() {
@@ -127,9 +151,24 @@ fetch(productsUrl).then(res => {
             })
             this.filters.all = Object.assign({}, this.filters.all, filters)
 
+            window.addEventListener('keydown', (e) => {
+                if (event.key === 'Escape') {
+                    this.closeModal()
+                }
+            })
+
+            EventBus.$on('open-cart-order', () => {
+                this.openCart()
+            })
+        },
+        mounted: function() {
             if (sessionStorage.getItem('cart')) {
-                let cart = JSON.parse(sessionStorage.getItem('cart'))
-                this.products = cart.products
+                let savedProducts = JSON.parse(sessionStorage.getItem('cart'))
+                this.products = []
+                savedProducts.forEach((savedProduct, index) => {
+                    this.$set(this.products, index, savedProduct)
+                })
+                console.log(this.products)
             }
         }
     })

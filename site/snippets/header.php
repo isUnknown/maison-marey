@@ -33,7 +33,7 @@
     <meta property='og:description' content='<?= $site->desc() ?>' />
 </head>
 <body data-api-url="<?= $page->apiUrl() ?>" data-csrf=<?= csrf() ?> data-root-url="<?= $site->url() ?>">
-    <div id="app">
+    <div id="app" v-on:keyup.esc="closeModal">
         <!-- <svg width="100" height="100" class="cursor">
             <circle class="stroke" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
@@ -56,7 +56,7 @@
             </div>
             <div class="header__right">
                 <button class="cartBtn" @click="toggleCart">
-                    <h1>Panier<sup>{{ totalQuantity }}</sup></h1>
+                    <h1>Panier<sup v-if="totalQuantity > 0">{{ totalQuantity }}</sup></h1>
                 </button>
                 <button class="header__navBtn navBtn">
                     <span class="navBtn__bar"></span>
