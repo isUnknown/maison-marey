@@ -372,17 +372,6 @@ body {
 .productOptions__option {
     margin-bottom: 2rem;
 }
-.add {
-    margin-left: 1rem;
-    padding: .5rem .8rem;
-    border-radius: 1rem;
-    border: 1px solid #000;
-}
-.moreless {
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: 300;
-}
 
 
 .modal__product__details {
@@ -396,12 +385,34 @@ body {
 }
 
 .see {
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     font-size: .9rem;
     font-weight: 300;
     padding: .5rem .8rem;
+    border: 1px solid #000;
     border-radius: 1rem;
+
+    transition: all .1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+}
+.see:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.add {
+    margin-left: 1rem;
+    padding: .5rem .8rem;
+    border-radius: 1rem;
+    border: 1px solid #000;
+}
+.moreless {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 .quantity {
