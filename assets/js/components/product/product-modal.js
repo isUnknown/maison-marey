@@ -72,7 +72,7 @@ const ProductModal = {
 
             setTimeout(() => {
                 EventBus.$emit('open-cart-order')
-            }, 500);
+            }, 200);
         },
         select: function(selection) {
             this.selection = selection
