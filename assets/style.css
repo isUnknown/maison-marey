@@ -437,6 +437,14 @@ body {
     padding: .5rem .8rem;
     border-radius: 1rem;
     border: 1px solid #000;
+    transition: all .1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+}
+.add:hover {
+    background-color: #000;
+    color: #fff;
 }
 .moreless {
     cursor: pointer;
