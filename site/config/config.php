@@ -7,6 +7,7 @@ return [
       'allowInsecure' => true
     ],
     'routes' => [
+        // UPDATE DATA
         [
           'pattern' => 'update-data/(:any)/(:any)/(:all)',
           'action'  => function ($key, $value, $page) {
@@ -27,8 +28,9 @@ return [
             }
           }
         ],
+        // RETURN PREPARED SHOP DATA
         [
-          'pattern' => 'products',
+          'pattern' => 'shop',
           'action' => function() {
           
           // PREPARE PRODUCTS
@@ -48,15 +50,17 @@ return [
                 $preparedEntries = [];
                 foreach ($entries as $entry) {
                   $preparedEntry = [
-                      'name' => $entry['name'],
-                      'variable' => $entry['variable']
+                      'name' => $entry['name']
                   ];
+                  if ($entry['extracost'] !== null && $entry['extracost'] != 0) {
+                    $preparedEntry['extraCost'] = $entry['extracost'];
+                  }
                   $preparedEntries[] = $preparedEntry;
                 }
 
                 $preparedOption = [
                     'name' => $rawOption->name()->value(),
-                    'entries' => $entries
+                    'entries' => $preparedEntries
                 ];
                 $preparedOptions[] = $preparedOption;
               }
@@ -97,6 +101,7 @@ return [
                 'name' => $product->title()->value(),
                 'author' => $product->parent()->title()->value(),
                 'price' => (int)$product->price()->value(),
+                'productionTime' => (int)$product->productionTime()->value(),
                 'description' => $product->description()->value(),
                 'images' => $preparedPics,
                 'isVisible' => true,
@@ -106,18 +111,31 @@ return [
                 'selected' => []
               ];
 
-              if($product->stock()->toBool() === true) {
+              if ($product->stock()->toBool() === true) {
                 $preparedProduct['stock'] =  $preparedModels;
+              } else {
+                $preparedProduct['stock'] =  [];
               }
-              if($product->order()->toBool() === true && $product->options()->isNotEmpty()) {
+              
+              if ($product->order()->toBool() === true && $product->options()->isNotEmpty()) {
                 $preparedProduct['options'] =  $preparedOptions;
+              } else {
+                $preparedProduct['options'] =  [];
               }
 
               $preparedProducts[] = $preparedProduct;
-          }
+            }
 
-          return $preparedProducts;
-        }
-      ]
+            $shop = [
+              'products' => $preparedProducts,
+              'delivery' => [
+                'min' => (int)$site->minDeliveryTime()->value(),
+                'max' => (int)$site->maxDeliveryTime()->value()
+              ]
+            ];
+
+            return $shop;
+          }
+        ]
     ]
 ];

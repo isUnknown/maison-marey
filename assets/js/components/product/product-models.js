@@ -1,6 +1,12 @@
 const ProductModels = {
     props: {
-        getProduct: Object
+        getProduct: Object,
+        delivery: Object
+    },
+    data: function() {
+        return {
+            selection: ''
+        }
     },
     computed: {
         product: function() {
@@ -8,22 +14,27 @@ const ProductModels = {
         },
         models: function() {
             return this.product.stock
+        },
+        selectedModel: function() {
+            const selectedModel = this.models.find(model => model.modelName === this.selection)
+            return selectedModel
+        }
+    },
+    watch: {
+        selection: function() {
+            this.$emit('send-selection', this.selectedModel)
         }
     },
     template: `
-        <div class="product__models">
-            <p>Choisissez un modèle :</p>
-            <div v-for="model in models" :key="model.modelName">
-                <input type="radio" :id="model.modelName" name="model" :value="model.modelName">
-                <label @click="select(model)" class="option__value" :for="model.modelName"> {{ model.modelName }} <span v-if="model.extraCost">(+{{ model.extraCost }} €)</span></label><br>
-            </div>
+        <div>
+            <p><b>Choisissez un modèle en stock :</b><br>
+            Livraison sous {{ delivery.min }} à {{ delivery.max }} jours.</p>
+            <select class="product__models" v-model="selection">
+                <option value="" disabled selected hidden>Modèles disponibles</option>
+                <option v-for="model in models" :value="model.modelName">{{ model.modelName }} <span v-if="model.extraCost">(+ {{ model.extraCost }} €)</span></option>
+            </select>
         </div>
-    `,
-    methods: {
-        select: function(model) {
-            this.$emit('send-selection', model)
-        }
-    }
+    `
 }
 
 export default ProductModels

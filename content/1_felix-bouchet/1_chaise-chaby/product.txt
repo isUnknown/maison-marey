@@ -28,7 +28,7 @@ Delivery: false
 
 ----
 
-Order: false
+Order: true
 
 ----
 
@@ -39,11 +39,23 @@ Productiontime: 7
 Options:
 
 - 
-  name: Taille
+  name: Tailles
   entries:
     - 
-      name: Petit
-      variable: Prix
+      name: Grande
+      extracost: 150
+- 
+  name: Couleurs
+  entries:
+    - 
+      name: Bleu
+      extracost: null
+    - 
+      name: Jaune
+      extracost: null
+    - 
+      name: Rouge
+      extracost: null
 
 ----
 

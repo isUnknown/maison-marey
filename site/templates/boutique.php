@@ -12,7 +12,8 @@
         <product-modal
             v-if="modalIsEmpty === false"
             :get-product="sharedProperties.modal.product"
-            :get-selection="sharedProperties.modal.selection">
+            :get-selection="sharedProperties.modal.selection"
+            :delivery="delivery">
         </product-modal>
     </transition>
 

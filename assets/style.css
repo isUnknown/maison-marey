@@ -65,9 +65,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-label {
+label,
+select {
+    display: block;
     cursor: pointer;
-    display: inline-block;
     border: 1px solid #000;
     padding: .5rem;
     margin-bottom: .5rem;
@@ -358,6 +359,10 @@ body {
 .modal__product__details {
     display: flex;
     background-color: green;
+}
+
+.product__models {
+    margin-bottom: 2rem;
 }
 
 /* ================= DESK CART ================= */

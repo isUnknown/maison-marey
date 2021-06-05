@@ -35,7 +35,7 @@ tabs:
             type: info
             text: Pour être disponible pour ce produit, une option doit d'abord être renseignées dans l'onglet boutique du site, puis au niveau de son artisan.
   stock:
-    label: Stock
+    label: Commande
     icon: cart
     columns:
       - width: 1/1
@@ -49,22 +49,6 @@ tabs:
             label: Livraison
             type: toggle
             width: 1/4
-          # minDeliveryTime:
-          #   label: Délai minimum
-          #   type: number
-          #   after: jours
-          #   default: 2
-          #   width: 1/4
-          #   when:
-          #     delivery: true
-          # maxDeliveryTime:
-          #   label: Délai maximum
-          #   type: number
-          #   after: jours
-          #   default: 7
-          #   width: 1/4
-          #   when:
-          #     delivery: true
       - width: 1/2
         fields:
           order:
@@ -96,9 +80,11 @@ tabs:
                   name:
                     label: Nom
                     type: text
-                  variable:
-                    label: Variable
-                    type: text
+                  extraCost:
+                    label: Surcoût (facultatif)
+                    type: number
+                    after: €
+                    min: 0
       - width: 1/2
         fields:
           stock:
@@ -127,9 +113,10 @@ tabs:
                 type: number
                 width: 1/2
               extraCost:
-                label: Surcoût
+                label: Surcoût (facultatif)
                 type: number
                 after: €
+                min: 0
                 width: 1/2
               cover:
                 label: Image

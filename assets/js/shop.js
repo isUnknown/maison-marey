@@ -5,11 +5,10 @@ import ProductSheet from './components/product/product-sheet.js'
 import ProductModal from './components/product/product-modal.js'
 import EventBus from './eventBus.js'
 
-const productsUrl = `${document.body.dataset.rootUrl}/products`
+const productsUrl = `${document.body.dataset.rootUrl}/shop`
 fetch(productsUrl).then(res => {
     return res.json()
-}).then(products => {
-    console.log('initial products : ', products)
+}).then(shop => {
     const vm = new Vue({
         el: '#app',
         components: {
@@ -19,8 +18,8 @@ fetch(productsUrl).then(res => {
             'product-modal': ProductModal
         },
         data: {
-            originalProducts: products,
-            products: products,
+            products: shop.products,
+            delivery: shop.delivery,
             filters: {
                 all: {},
                 active: []
