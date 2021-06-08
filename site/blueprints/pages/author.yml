@@ -10,10 +10,9 @@ tabs:
           infos:
             type: fields
             fields:
-              presentationBackground:
-                label: Couleur de fond de la section de présentation
-                type: color
-                default: '#FFFFFF00'
+              job:
+                label: Métier
+                type: text
               cover:
                 label: Image de couverture
                 type: files
@@ -43,6 +42,12 @@ tabs:
                 label: Présentation
                 type: writer
                 width: 1/1
+      - width: 1/4
+        fields:
+          presentationBackground:
+                label: Couleur de fond de la section de présentation
+                type: color
+                default: '#FFFFFF00'
       - width: 1/1
         sections:
           layoutSection:

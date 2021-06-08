@@ -2,13 +2,13 @@ Title: Félix Bouchet
 
 ----
 
-Cover:
-
-- artisan.jpg
+Job: Ébéniste
 
 ----
 
-Presentationbackground: #5882B4
+Cover:
+
+- artisan.jpg
 
 ----
 
@@ -21,6 +21,10 @@ Itemstypes: chaise, banc
 ----
 
 Pitch: <p>J'ai grandi en Touraine, dans une maison entourée de forêts. Après le lycée, je me suis dirigé vers les sciences, pour finalement obtenir un diplôme d'ingénieur bois en 2016. Le goût de voyager et de travailler de mes mains m'ont amené à Montréal où ma vie était partagée entre les petits boulots et l'Ecole d'Ebénisterie d'Art de Montréal. Mon projet final, deux chaises, a été récompensé de la Bourse Excellence en Ebénisterie d'Art - Caisse de la Culture et MMAQ (Musée des Maîtres et Artisans du Québec). Cet élan m'a amené dans l'état américain des montagnes vertes, le Vermont. J'y ai passé 15 mois, dans l'atelier du maître chaisier de seconde génération George Sawyer. Ma sensibilité pour le travail du bois avec des outils manuels a grandi. Aujourd'hui, je vis de nouveau en Touraine. J'y fabrique des chaises et des ustensiles en bois vert.</p>
+
+----
+
+Presentationbackground: #5882B4
 
 ----
 
