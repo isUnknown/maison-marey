@@ -399,7 +399,7 @@ body {
 .cart {
     position: fixed;
     z-index: 10;
-    top: 6rem;
+    top: 5rem;
     bottom: 0;
     right: 0;
     width: 35%;

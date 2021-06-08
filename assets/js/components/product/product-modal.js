@@ -28,11 +28,19 @@ const ProductModal = {
             }
         },
         hasModels: function() {
-            if (this.product.stock.length > 0) {
+            return this.product.stock.length > 0
+        },
+        isReadyForCart: function() {
+            if (this.selection && (this.selection.remainingQuantity > 0 || this.selection.options)) {
+                console.log('isReadyForCart')
                 return true
             } else {
+                console.log('isNotReadyForCart')
                 return false
             }
+        },
+        isInStock: function() {
+            return this.selection.remainingQuantity > 0
         }
     },
     components: {
@@ -54,30 +62,31 @@ const ProductModal = {
                     
                     <product-models 
                         @send-selection="select" 
+                        @clean-selection="cleanSelection"
                         :delivery="delivery"
                         :getProduct="product" 
                         v-if="hasModels">
                     </product-models>
+                    <p v-if="isInStock">{{ selection.remainingQuantity }} en stock. Livraison sous {{ delivery.min }} à {{ delivery.max }} jours</p>
+                    <p class=".empty" v-if="selection.remainingQuantity === 0">Ce modèle n'est plus disponible en stock.</p>
 
                     <p v-if="product.stock.length > 0 && product.options.length "><b>Ou passez commande :</b><br>
                     Production sous {{ product.productionTime }} jours en moyenne.</p>
 
                     <product-options
+                        @send-selection="select"
+                        @clean-selection="cleanSelection"
                         :getProduct="product"
                         :delivery="delivery"
                         v-if="hasOptions">
                     </product-options>
-
-                    <p v-if="selection && selection.remainingQuantity > 0">{{ selection.remainingQuantity }} en stock. Livraison sous {{ delivery.min }} à {{ delivery.max }} jours</p>
                     
                     <add-btn
-                        v-if="selection && selection.remainingQuantity > 0"
+                        v-if="isReadyForCart"
                         :getInput="input"
-                        :getMax="selection.remainingQuantity"
+                        :getMax="selection.remainingQuantity ? selection.remainingQuantity : 999"
                         @add="addToCart">
                     </add-btn>
-                    
-                    <p class=".empty" v-if="selection.remainingQuantity === 0">Ce modèle n'est plus disponible en stock.</p>
                 </div>
                 
                 <div class="modal__product__details">
@@ -89,7 +98,7 @@ const ProductModal = {
         addToCart: function(newQuantity) {
             let selection = this.selection
             let selected = this.product.selected
-
+            
             selection.selectedQuantity += newQuantity
             selection.remainingQuantity -= newQuantity
             
@@ -115,6 +124,9 @@ const ProductModal = {
             } else {
                 return false
             }
+        },
+        cleanSelection: function() {
+            this.selection = false
         },
         resetInput: function() {
             this.input = 0
