@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js" defer></script>
     
     <!--========== VUE ==========-->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="<?= url('assets') ?>/js/libraries/vue.js"></script>
 
     <!--========== SCRIPTS ==========-->   
     <script src="<?= url('assets') ?>/js/shop.js" type="module" defer></script>

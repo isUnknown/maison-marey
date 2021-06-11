@@ -110,7 +110,7 @@ h5 {
 }
 
 p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: .8rem;
 }
 
@@ -393,6 +393,11 @@ body {
 
 .product__models {
     margin-bottom: 2rem;
+}
+
+/* ================= DESK PRODUCT WITHDRAWAL ================= */
+.withdrawalMode {
+    margin-top: 2rem;
 }
 
 /* ================= DESK CART ================= */

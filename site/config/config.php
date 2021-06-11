@@ -50,11 +50,10 @@ return [
                 $preparedEntries = [];
                 foreach ($entries as $entry) {
                   $preparedEntry = [
-                      'name' => $entry['name']
+                      'name' => $entry['name'],
+                      'extraCost' => $entry['extracost'],
+                      'extraTime' => $entry['extratime']
                   ];
-                  if ($entry['extracost'] !== null && $entry['extracost'] != 0) {
-                    $preparedEntry['extraCost'] = $entry['extracost'];
-                  }
                   $preparedEntries[] = $preparedEntry;
                 }
 
@@ -76,13 +75,16 @@ return [
                 $preparedModel = [
                   'name' => $product->title()->value(),
                   'modelName' => $rawModel->name()->value(),
+                  'orderType' => 'model',
                   'author' => $product->parent()->title()->value(),
-                  'maxQuantity' => $rawModel->quantity()->value(),
-                  'selectedQuantity' => 0,
-                  'remainingQuantity' => $rawModel->quantity()->value(),
                   'price' => $price,
                   'extraCost' => $extraCost,
-                  'image' => $rawModel->cover()->toFile()->resize(300, null, 80)->url()
+                  'image' => $rawModel->cover()->toFile()->resize(300, null, 80)->url(),
+                  'stock' => [
+                    'maxQuantity' => $rawModel->quantity()->value(),
+                    'selectedQuantity' => 0,
+                    'remainingQuantity' => $rawModel->quantity()->value(),
+                  ]
                 ];
 
                 $preparedModels[] = $preparedModel;
@@ -101,7 +103,12 @@ return [
                 'name' => $product->title()->value(),
                 'author' => $product->parent()->title()->value(),
                 'price' => (int)$product->price()->value(),
+                'isDelivery' => (bool)$product->delivery()->toBool(),
+                'isWithdrawal' => (bool)$product->withdrawal()->toBool(),
+                'withdrawalTime' =>(int)$product->withdrawalTime()->value(),
                 'productionTime' => (int)$product->productionTime()->value(),
+                'hasModels' => (bool)$product->stock()->toBool(),
+                'hasOptions' => (bool)$product->order()->toBool(),
                 'description' => $product->description()->value(),
                 'images' => $preparedPics,
                 'isVisible' => true,

@@ -1,4 +1,5 @@
 import EventBus from '../../eventBus.js'
+import { String } from '../../libraries/app.js'
 
 const ProductOptions = {
     props: {
@@ -17,13 +18,20 @@ const ProductOptions = {
         options: function() {
             return this.product.options
         },
-        isComplete: function() {
+        isCompleteSelection: function() {
             return this.selectedOptions.length === this.options.length
+        },
+        isNotEmptySelection: function() {
+            if (this.selectedOptions) {
+                return true
+            } else {
+                return false
+            }
         }
     },
     watch: {
         selectedOptions: function() {
-            if (this.isComplete) {
+            if (this.isCompleteSelection) {
                 const preparedSelection = this.prepareSelection()
                 this.$emit('send-selection', preparedSelection)
                 console.log('Selection sent : ', preparedSelection)
@@ -59,35 +67,68 @@ const ProductOptions = {
         select: function(option, entry) {
             let newOption = {
                 'name': option.name,
-                'entry': entry.name
+                'entry': entry.name,
+                'extraCost': 0
             }
             if (entry.extraCost) {
                 newOption['extraCost'] = entry.extraCost
             }
-            this.selectedOptions.push(newOption)
+
+            if (this.isNotEmptySelection) {
+                if (this.selectedOptions.some(selectedOption => selectedOption.name === newOption.name)) {
+                    let target = this.selectedOptions.filter(selectedOption => selectedOption.name === newOption.name)
+                    target.entry = newOption.entry
+                    if (entry.extraCost) {
+                        target.extraCost = newOption.extraCost
+                    }
+                    console.log('Updated option: ', newOption)
+                } else {
+                    console.log('New option: ', newOption)
+                    this.selectedOptions.push(newOption)
+                }
+            } else {
+                console.log('New option: ', newOption)
+                this.selectedOptions.push(newOption)
+            }
+        },
+        cleanSelectedOptions: function() {
+            this.selectedOptions = []
         },
         prepareSelection: function() {
             let preparedSelection = {
                 'name': this.product.name,
+                'modelName': '',
+                'orderType': 'options',
                 'author': this.product.author,
                 'image': this.product.images[0],
+                'extraCost': 0,
                 'options': {},
-                'price': this.product.price
+                'price': this.product.price,
+                'stock': {
+                    'selectedQuantity': 0
+                }
             }
-            this.selectedOptions.forEach(option => {
+            this.selectedOptions.forEach((option, index) => {
                 preparedSelection.options[option.name] = option.entry
                 if (option.extraCost) {
+                    preparedSelection.extraCost += option.extraCost
                     preparedSelection.price += option.extraCost
                 }
+                preparedSelection.modelName += `${option.entry} `
             })
+            preparedSelection.modelName = String.capitalizeFirstLetter(preparedSelection.modelName.trim())
             return preparedSelection
         }
     },
     created: function() {
         EventBus.$on('deselect-options-order', () => {
             this.deselect()
+            this.cleanSelectedOptions()
         })
-        console.log(this.options)
+        EventBus.$on('reset-selection', () => {
+            this.deselect()
+            this.cleanSelectedOptions()
+        })
     }
 }
 

@@ -67,7 +67,7 @@ fetch(productsUrl).then(res => {
                 let totalQuantity = 0
                 this.products.forEach(product => {
                     product.selected.forEach(selectedProduct => {
-                        totalQuantity += selectedProduct.selectedQuantity
+                        totalQuantity += selectedProduct.stock.selectedQuantity
                     })
                 })
                 return totalQuantity

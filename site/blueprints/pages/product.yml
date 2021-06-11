@@ -45,8 +45,15 @@ tabs:
             type: number
             after: €
             width: 1/4
+            required: true
           delivery:
             label: Livraison
+            type: toggle
+            width: 1/4
+            help: |
+              Délais à définir dans (link: http://localhost:8888/maison-marey/panel/site#shop text: l'onglet maison marey de la racine du panel).
+          withdrawal:
+            label: Retrait en boutique
             type: toggle
             width: 1/4
       - width: 1/2
@@ -81,24 +88,32 @@ tabs:
                     label: Nom
                     type: text
                   extraCost:
-                    label: Surcoût (facultatif)
+                    label: Surcoût
                     type: number
                     after: €
                     min: 0
+                    default: 0
+                  extraTime:
+                    label: Délai supp.
+                    type: number
+                    after: jours
+                    min: 0
+                    default: 0
       - width: 1/2
         fields:
           stock:
             label: Modèles en stock
             type: toggle
             width: 1/2
-          pickUpTime:
+          withdrawalTime:
             label: Délai de retrait
             type: number
             after: jours
             width: 1/2
-            default: 1
+            default: 0
+            help: Temps éventuellement nécessaire à l'acheminement en boutique.
             when:
-              stock: true
+              withdrawal: true
           models:
             label: Modèles
             type: structure
@@ -113,9 +128,10 @@ tabs:
                 type: number
                 width: 1/2
               extraCost:
-                label: Surcoût (facultatif)
+                label: Surcoût
                 type: number
                 after: €
+                default: 0
                 min: 0
                 width: 1/2
               cover:

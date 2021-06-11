@@ -1,5 +1,26 @@
 # Changelog
 
+## 7.83.0 - 2021-06-07
+* [#1140](https://github.com/stripe/stripe-php/pull/1140) API Updates
+  * Added support for `tax_id_collection` on `Checkout\Session` and `Checkout\Session#create`
+  * Update `Location` to be expandable on `Terminal\Reader`
+
+## 7.82.0 - 2021-06-04
+* [#1136](https://github.com/stripe/stripe-php/pull/1136) Update PHPDocs
+  * Add support for `controller` on `Account`.
+
+## 7.81.0 - 2021-06-04
+* [#1135](https://github.com/stripe/stripe-php/pull/1135) API Updates
+  * Add support for new resource `TaxCode`
+  * Add support for `automatic_tax` `Invoice` and`Checkout.Session`.
+  * Add support for `tax_behavior` on `Price`
+  * Add support for `tax_code` on `Product`
+  * Add support for `tax` on `Customer`
+  * Add support for `tax_type` enum on `TaxRate`
+
+## 7.80.0 - 2021-05-26
+* [#1130](https://github.com/stripe/stripe-php/pull/1130) Update PHPDocs
+
 ## 7.79.0 - 2021-05-19
 * [#1126](https://github.com/stripe/stripe-php/pull/1126) API Updates
   * Added support for new resource `Identity.VerificationReport`

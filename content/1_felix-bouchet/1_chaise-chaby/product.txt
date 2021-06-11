@@ -24,11 +24,15 @@ Price: 600
 
 ----
 
-Delivery: false
+Delivery: true
 
 ----
 
-Order: false
+Withdrawal: true
+
+----
+
+Order: true
 
 ----
 
@@ -39,31 +43,16 @@ Productiontime: 7
 Options:
 
 - 
-  name: Tailles
+  name: Modèles
   entries:
     - 
-      name: Grande
-      extracost: 150
-- 
-  name: Couleurs
-  entries:
-    - 
-      name: Bleu
-      extracost: null
-    - 
-      name: Jaune
-      extracost: null
-    - 
-      name: Rouge
-      extracost: null
+      name: Standard (120 x 50 x 60cm)
+      extracost: 0
+      extratime: 0
 
 ----
 
 Stock: true
-
-----
-
-Pickuptime: 1
 
 ----
 
@@ -81,6 +70,10 @@ Models:
   extracost: null
   cover:
     - team.jpg
+
+----
+
+Pickuptime: 1
 
 ----
 

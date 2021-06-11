@@ -1,3 +1,5 @@
+import EventBus from "../../eventBus.js"
+
 const Add = {
     props: {
         getMax: Number,
@@ -39,6 +41,7 @@ const Add = {
         },
         add: function() {
             this.$emit('add', this.input)
+            EventBus.$emit('reset-selection')
             this.input = 1
         }
     }

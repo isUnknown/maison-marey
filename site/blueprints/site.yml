@@ -27,7 +27,7 @@ tabs:
         headline: Artisans
         type: pages
         templates: 
-          - craftman
+          - author
         layout: cards
         image:
           back: black

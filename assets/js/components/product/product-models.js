@@ -31,7 +31,7 @@ const ProductModels = {
         <div>
             <p>
                 <b>Choisissez un modèle en stock :</b><br>
-                Livraison sous {{ delivery.min }} à {{ delivery.max }} jours.
+                <span v-if="product.isDelivery">Livraison sous {{ delivery.min }} à {{ delivery.max }} jours.</span>
             </p>
             
             <select class="product__models" v-model="selection" @click="deselectOptions">
@@ -61,6 +61,9 @@ const ProductModels = {
     },
     created: function() {
         EventBus.$on('deselect-models-order', () => {
+            this.deselect()
+        })
+        EventBus.$on('reset-selection', () => {
             this.deselect()
         })
     }
