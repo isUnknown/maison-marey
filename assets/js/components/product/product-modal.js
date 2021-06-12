@@ -136,6 +136,7 @@ const ProductModal = {
     `,
     methods: {
         addToCart: function(newQuantity) {
+            console.log('newQuantity', newQuantity)
             this.product.withdrawalModeFixed = true
             let selection = this.selection
             let selected = this.product.selected
@@ -149,9 +150,7 @@ const ProductModal = {
             let target = this.isSelectionModel || this.isSelectionOptions ? selected.find(selectedProduct => selectedProduct.modelName === selection.modelName) : selected.find(selectedProduct => selectedProduct.name === selection.name)
             console.log('target : ', target)
             
-            if (target) {
-                target.stock.selectedQuantity += newQuantity
-            } else {
+            if (!target) {
                 this.product.selected.push(this.selection)
             }
 

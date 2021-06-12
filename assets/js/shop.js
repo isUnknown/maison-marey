@@ -129,9 +129,13 @@ fetch(productsUrl).then(res => {
                 this.products.forEach(product => {
                     product.selected = []
                     product.stock.forEach(item => {
-                        item.selectedQuantity = 0
-                        item.remainingQuantity = item.maxQuantity
+                        item.stock.selectedQuantity = 0
+                        item.stock.remainingQuantity = item.maxQuantity
                     })
+                    if (product.isDelivery && product.isWithdrawal) {
+                        product.withdrawalMode = 'dual'
+                        product.withdrawalModeFixed = false
+                    }
                 })
                 this.sharedProperties.cart.isOpen = false
             },
@@ -163,11 +167,14 @@ fetch(productsUrl).then(res => {
         mounted: function() {
             if (sessionStorage.getItem('cart')) {
                 let savedProducts = JSON.parse(sessionStorage.getItem('cart'))
-                this.products = []
-                savedProducts.forEach((savedProduct, index) => {
-                    this.$set(this.products, index, savedProduct)
-                })
-                console.log(this.products)
+                if (savedProducts.some(savedProduct => savedProduct.selected.length > 0)) {
+                    this.products = []
+                    savedProducts.forEach((savedProduct, index) => {
+                        this.$set(this.products, index, savedProduct)
+                    })
+                } else {
+                    sessionStorage.clear()
+                }
             }
         }
     })

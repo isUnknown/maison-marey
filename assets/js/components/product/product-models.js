@@ -24,7 +24,9 @@ const ProductModels = {
     },
     watch: {
         selection: function() {
-            this.$emit('send-selection', this.selectedModel)
+            if (this.selection !== '') {
+                this.$emit('send-selection', this.selectedModel)
+            }
         }
     },
     template: `
@@ -56,6 +58,8 @@ const ProductModels = {
                     option.selected = false
                 }
             })
+
+            this.selection = ''
         }
     },
     created: function() {
