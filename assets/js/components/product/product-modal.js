@@ -21,6 +21,20 @@ const ProductModal = {
         product: function() {
             return this.getProduct
         },
+        minDelivery: function() {
+            if (this.selection && this.selection.extraTime) {
+                return this.delivery.min + this.selection.extraTime
+            } else {
+                return this.delivery.min
+            }
+        },
+        maxDelivery: function() {
+            if (this.selection && this.selection.extraTime) {
+                return this.delivery.max + this.selection.extraTime
+            } else {
+                return this.delivery.max
+            }
+        },
         isSelectionModel: function() {
             return this.selection.orderType === 'model' ? true : false
         },
@@ -80,7 +94,6 @@ const ProductModal = {
                         v-if="product.hasModels">
                     </product-models>
                     
-                    <p v-if="product.delivery">{{ selection.stock.remainingQuantity }} en stock. Livraison sous {{ delivery.min }} à {{ delivery.max }} jours</p>
                     <p class=".empty" v-if="selection.stock && selection.stock.remainingQuantity === 0">Ce modèle n'est plus disponible en stock.</p>
 
                     <p v-if="product.stock.length > 0 && product.options.length "><b>Ou passez commande :</b><br>
@@ -105,9 +118,8 @@ const ProductModal = {
                     >
                     </withdrawal>
 
-                    <div v-if="product.withdrawalMode !== 'dual'">
-                        <p v-if="product.widthdrawalMode === 'delivery'">Vous recevrez votre produit entre {{ delivery.min + selection.extraTime }} et {{ delivery.max + selection.extraTime }} jours.</p>
-                    </div>
+                    <p class="product__withdrawalMessage" v-if="product.withdrawalMode === 'delivery'"><b>Livraison</b> dans {{ minDelivery }} à {{ maxDelivery }} jours.</p>
+                    <p class="product__withdrawalMessage" v-if="product.withdrawalMode === 'withdrawal'"><b>Retrait en boutique</b> dans environ {{ product.productionTime }} jours.</p>
                     
                     <add-btn
                         v-if="selection && isSelectionReadyForCart"

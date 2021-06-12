@@ -400,6 +400,10 @@ body {
     margin-top: 2rem;
 }
 
+.product__withdrawalMessage {
+    margin-top: 2rem;
+}
+
 /* ================= DESK CART ================= */
 .cart {
     position: fixed;

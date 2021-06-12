@@ -31,7 +31,6 @@ const ProductModels = {
         <div>
             <p>
                 <b>Choisissez un modèle en stock :</b><br>
-                <span v-if="product.isDelivery">Livraison sous {{ delivery.min }} à {{ delivery.max }} jours.</span>
             </p>
             
             <select class="product__models" v-model="selection" @click="deselectOptions">
