@@ -68,10 +68,14 @@ const ProductOptions = {
             let newOption = {
                 'name': option.name,
                 'entry': entry.name,
-                'extraCost': 0
+                'extraCost': 0,
+                'extraTime': entry.extraTime
             }
             if (entry.extraCost) {
                 newOption['extraCost'] = entry.extraCost
+            }
+            if (entry.extraTime) {
+                newOption['extraTime'] = entry.extraTime
             }
 
             if (this.isNotEmptySelection) {
@@ -102,6 +106,7 @@ const ProductOptions = {
                 'author': this.product.author,
                 'image': this.product.images[0],
                 'extraCost': 0,
+                'extraTime': 0,
                 'options': {},
                 'price': this.product.price,
                 'stock': {
@@ -113,6 +118,9 @@ const ProductOptions = {
                 if (option.extraCost) {
                     preparedSelection.extraCost += option.extraCost
                     preparedSelection.price += option.extraCost
+                }
+                if (option.extraTime) {
+                    preparedSelection.extraTime += option.extraTime
                 }
                 preparedSelection.modelName += `${option.entry} `
             })

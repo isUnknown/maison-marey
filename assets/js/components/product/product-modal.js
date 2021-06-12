@@ -21,10 +21,13 @@ const ProductModal = {
         product: function() {
             return this.getProduct
         },
-        selectionIsModel: function() {
+        isSelectionModel: function() {
             return this.selection.orderType === 'model' ? true : false
         },
-        selectionIsInStock: function() {
+        isSelectionOption: function() {
+            return this.selection.orderType === 'options' ? true : false
+        },
+        isSelectionInStock: function() {
             if (!this.selection) {
                 return false
             }
@@ -35,8 +38,8 @@ const ProductModal = {
                 return false
             }
         },
-        selectionIsReadyForCart: function() {
-            if (!this.selection) {
+        isSelectionReadyForCart: function() {
+            if (!this.selection || this.withdrawalMode === 'dual') {
                 return false
             }
 
@@ -92,13 +95,22 @@ const ProductModal = {
                     </product-options>
 
                     <withdrawal
-                        v-if="selection && (product.isDelivery && product.isWithdrawal)">
-                        :getWithDrawalTime="selection.withdrawalTime"
+                        v-if="selection && !product.withdrawalModeFixed"
                         :delivery="delivery"
+                        :is-withdrawal="product.isWithdrawal"
+                        :is-delivery="product.isDelivery"
+                        :withdrawal-time="product.withdrawalTime"
+                        :extra-time="selection.extraTime"
+                        @send-mode="setWithdrawalMode"
+                    >
                     </withdrawal>
+
+                    <div v-if="product.withdrawalMode !== 'dual'">
+                        <p v-if="product.widthdrawalMode === 'delivery'">Vous recevrez votre produit entre {{ delivery.min + selection.extraTime }} et {{ delivery.max + selection.extraTime }} jours.</p>
+                    </div>
                     
                     <add-btn
-                        v-if="selection && selectionIsReadyForCart"
+                        v-if="selection && isSelectionReadyForCart"
                         :getInput="input"
                         :getMax="selection.stock.remainingQuantity ? selection.stock.remainingQuantity : 999"
                         @add="addToCart">
@@ -112,6 +124,7 @@ const ProductModal = {
     `,
     methods: {
         addToCart: function(newQuantity) {
+            this.product.withdrawalModeFixed = true
             let selection = this.selection
             let selected = this.product.selected
 
@@ -121,10 +134,11 @@ const ProductModal = {
                 selection.stock.remainingQuantity -= newQuantity
             }
             
-            let target = this.selectionIsModel ? selected.find(selectedProduct => selectedProduct.modelName === selection.modelName) : selected.find(selectedProduct => selectedProduct.name === selection.name)
+            let target = this.isSelectionModel || this.isSelectionOptions ? selected.find(selectedProduct => selectedProduct.modelName === selection.modelName) : selected.find(selectedProduct => selectedProduct.name === selection.name)
+            console.log('target : ', target)
             
             if (target) {
-                console.log('Update target :', target)
+                target.stock.selectedQuantity += newQuantity
             } else {
                 this.product.selected.push(this.selection)
             }
@@ -146,9 +160,12 @@ const ProductModal = {
             setTimeout(() => {
                 this.input = 1
             }, 5);
+        },
+        setWithdrawalMode: function(mode) {
+            this.product.withdrawalMode = mode
         }
     },
-    created: function() {
+    mounted: function() {
         EventBus.$on('clean-selection', () => {
             this.selection = false
         })

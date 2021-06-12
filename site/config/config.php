@@ -105,6 +105,8 @@ return [
                 'price' => (int)$product->price()->value(),
                 'isDelivery' => (bool)$product->delivery()->toBool(),
                 'isWithdrawal' => (bool)$product->withdrawal()->toBool(),
+                'withdrawalMode' => null,
+                'withdrawalModeFixed' => null,
                 'withdrawalTime' =>(int)$product->withdrawalTime()->value(),
                 'productionTime' => (int)$product->productionTime()->value(),
                 'hasModels' => (bool)$product->stock()->toBool(),
@@ -117,6 +119,18 @@ return [
                 'url' => $product->url(),
                 'selected' => []
               ];
+
+              if ($preparedProduct['isDelivery'] && $preparedProduct['isWithdrawal']) {
+                $preparedProduct['withdrawalMode'] = 'dual';
+                $preparedProduct['withdrawalModeFixed'] = false;
+              } else {
+                $preparedProduct['withdrawalModeFixed'] = true;
+                if ($preparedProduct['isDelivery']) {
+                  $preparedProduct['withdrawalMode'] = 'delivery';
+                } else {
+                  $preparedProduct['withdrawalMode'] = 'withdrawal';
+                }
+              }
 
               if ($product->stock()->toBool() === true) {
                 $preparedProduct['stock'] =  $preparedModels;

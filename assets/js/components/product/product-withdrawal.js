@@ -1,24 +1,36 @@
 const Widthdrawal = {
     props: {
-        delivery: Object
+        isDelivery: Boolean,
+        isWithdrawal: Boolean,
+        delivery: Object,
+        withdrawalTime: Number,
+        extraTime: Number
     },
     data: function() {
         return {
             mode: ''
         }
     },
+    watch: {
+        mode: function() {
+            this.$emit('send-mode', this.mode)
+        }
+    },
     template: `
         <div class="withdrawalMode">
             <p>Mode de retrait :</p>
-            <select v-model="mode">
+            <select>
                 <option selected hidden disabled>Choisissez</option>
-                <option value="delivery">Livraison</option>
-                <option value="withdrawal">Retrait en boutique</option>
+                <option value="delivery" @click="select('delivery')">Livraison</option>
+                <option value="withdrawal" @click="select('withdrawal')">Retrait en boutique</option>
             </select>
-            <p v-if="mode === 'delivery'">Vous recevrez votre colis entre le … et le …</p>
-            <p v-if="mode === 'withdrawal'"></p>
         </div>
-    `
+    `,
+    methods: {
+        select: function(mode) {
+            this.mode = mode
+        }
+    }
 }
 
 export default Widthdrawal

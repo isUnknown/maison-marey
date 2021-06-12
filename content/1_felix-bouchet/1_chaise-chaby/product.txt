@@ -48,11 +48,15 @@ Options:
     - 
       name: Standard (120 x 50 x 60cm)
       extracost: 0
-      extratime: 0
+      extratime: 2
 
 ----
 
 Stock: true
+
+----
+
+Withdrawaltime: 0
 
 ----
 
