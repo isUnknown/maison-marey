@@ -4,6 +4,7 @@ import Cart from './components/cart.js'
 import ProductSheet from './components/product/product-sheet.js'
 import ProductModal from './components/product/product-modal.js'
 import EventBus from './eventBus.js'
+import Store from './store.js'
 
 const productsUrl = `${document.body.dataset.rootUrl}/shop`
 fetch(productsUrl).then(res => {
@@ -32,7 +33,8 @@ fetch(productsUrl).then(res => {
                 modal: {
                     product: {},
                 }
-            }
+            },
+            sharedState: Store
         },
         computed: {
             filteredProducts: function() {
@@ -118,9 +120,6 @@ fetch(productsUrl).then(res => {
                     activeTags.push(activeFilter.value)
                 })
                 return activeTags
-            },
-            toggleCart: function() {
-                this.sharedProperties.cart.isOpen = !this.sharedProperties.cart.isOpen
             },
             openCart: function() {
                 this.sharedProperties.cart.isOpen = true
