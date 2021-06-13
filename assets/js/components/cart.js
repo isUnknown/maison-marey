@@ -20,7 +20,7 @@ const cart = {
             return selectedProducts
         },
         isOpen: function() {
-            return this.getIsOpen
+            
         },
         totalQuantity: function() {
             return this.getTotalQuantity

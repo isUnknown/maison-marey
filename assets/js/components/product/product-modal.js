@@ -53,7 +53,7 @@ const ProductModal = {
             }
         },
         isSelectionReadyForCart: function() {
-            if (!this.selection || this.withdrawalMode === 'dual') {
+            if (!this.selection || this.product.withdrawalMode === 'dual') {
                 return false
             }
 
@@ -108,7 +108,7 @@ const ProductModal = {
                     </product-options>
 
                     <withdrawal
-                        v-if="selection && !product.withdrawalModeFixed"
+                        v-if="!product.withdrawalModeFixed"
                         :delivery="delivery"
                         :is-withdrawal="product.isWithdrawal"
                         :is-delivery="product.isDelivery"
