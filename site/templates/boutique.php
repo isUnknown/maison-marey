@@ -1,7 +1,7 @@
 <?= snippet('header') ?>
 
     <cart
-        @toggle-cart="toggleCart"
+        @toggle-cart="store.state.isCartOpen"
         @clean-cart-order="cleanCart"
         :get-total-quantity="totalQuantity"
         :get-products="products"

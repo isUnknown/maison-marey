@@ -55,7 +55,7 @@
                 ></vue-filter>
             </div>
             <div class="header__right">
-                <button class="cartBtn" @click="sharedState.toggleIsCartOpenAction">
+                <button class="cartBtn" @click="store.toggleIsCartOpenAction">
                     <h1>Panier<sup v-if="totalQuantity > 0">{{ totalQuantity }}</sup></h1>
                 </button>
                 <button class="header__navBtn navBtn">

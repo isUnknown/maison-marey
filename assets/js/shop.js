@@ -34,7 +34,7 @@ fetch(productsUrl).then(res => {
                     product: {},
                 }
             },
-            sharedState: Store
+            store: Store
         },
         computed: {
             filteredProducts: function() {
@@ -129,14 +129,15 @@ fetch(productsUrl).then(res => {
                     product.selected = []
                     product.stock.forEach(item => {
                         item.stock.selectedQuantity = 0
-                        item.stock.remainingQuantity = item.maxQuantity
+                        if (item.stock.remainingQuantity) {
+                            item.stock.remainingQuantity = item.stock.maxQuantity
+                        }
                     })
                     if (product.isDelivery && product.isWithdrawal) {
                         product.withdrawalMode = 'dual'
                         product.withdrawalModeFixed = false
                     }
                 })
-                this.sharedProperties.cart.isOpen = false
             },
             openModal: function(product) {
                 this.sharedProperties.modal.product = product

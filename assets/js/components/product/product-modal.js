@@ -5,6 +5,7 @@ import ProductOptions from '../product/product-options.js'
 import Withdrawal from './product-withdrawal.js'
 
 import EventBus from '../../eventBus.js'
+import Store from '../../store.js'
 
 const ProductModal = {
     props: {
@@ -14,7 +15,8 @@ const ProductModal = {
     data: function() {
         return {
             selection: false,
-            input: 1
+            input: 1,
+            store: Store
         }
     },
     computed: {
@@ -135,27 +137,27 @@ const ProductModal = {
         </div>
     `,
     methods: {
-        addToCart: function(newQuantity) {
-            console.log('newQuantity', newQuantity)
+        addToCart: function(nbrToAdd) {
+            console.log('Composant modale : nombre à ajouter', nbrToAdd)
             this.product.withdrawalModeFixed = true
             let selection = this.selection
             let selected = this.product.selected
 
-            selection.stock.selectedQuantity += newQuantity
+            selection.stock.selectedQuantity += nbrToAdd
 
             if (selection.stock.remainingQuantity) {
-                selection.stock.remainingQuantity -= newQuantity
+                selection.stock.remainingQuantity -= nbrToAdd
             }
             
-            let target = this.isSelectionModel || this.isSelectionOptions ? selected.find(selectedProduct => selectedProduct.modelName === selection.modelName) : selected.find(selectedProduct => selectedProduct.name === selection.name)
-            console.log('target : ', target)
+            let target = this.isSelectionModel || this.isSelectionOptions ? selected.find(selectedProduct => selectedProduct.modelName === selection.modelName) : selected.find(selectedProduct => selectedProduct.modelName === selection.modelName)
+            console.log('Composant modale : target : ', target)
             
             if (!target) {
                 this.product.selected.push(this.selection)
             }
 
             setTimeout(() => {
-                EventBus.$emit('open-cart-order')
+                this.store.toggleIsCartOpenAction()
             }, 200);
             this.selection = false
         },

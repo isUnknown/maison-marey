@@ -4,8 +4,8 @@ const Store = {
       isCartOpen: false
     },
     toggleIsCartOpenAction() {
-      if (this.debug) console.log('toggleIsCartOpenAction déclenchée')
-      this.state.isCartOpen = !this.state.isCartOpen
+      if (Store.debug) console.log('toggleIsCartOpenAction déclenchée')
+      Store.state.isCartOpen = !Store.state.isCartOpen
     }
 }
 

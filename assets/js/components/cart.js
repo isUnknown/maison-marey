@@ -1,10 +1,16 @@
 import EventBus from '../eventBus.js'
+import Store from '../store.js'
 
 const cart = {
     props: {
         getProducts: Array,
         getIsOpen: Boolean,
         getTotalQuantity: Number
+    },
+    data: function() {
+        return {
+            store: Store
+        }
     },
     computed: {
         products: function() {
@@ -35,7 +41,7 @@ const cart = {
         }
     },
     template: `
-    <div class="cart" :class="{open: this.isOpen}">
+    <div class="cart" :class="{ open: store.state.isCartOpen }">
         <div class="cart__entry" v-for="product in selectedProducts" v-if="product.stock.selectedQuantity > 0" :key="product.id">
             <img class="cart__entry__image" :src="product.image" />
             <div class="cart__entry__infos">
@@ -53,6 +59,7 @@ const cart = {
     methods: {
         cleanCart: function() {
             sessionStorage.clear()
+            this.store.toggleIsCartOpenAction()
             this.$emit('clean-cart-order')
             EventBus.$emit('clean-selection')
         },
