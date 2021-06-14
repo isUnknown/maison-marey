@@ -51,10 +51,10 @@ tabs:
       - width: 1/2
         fields:
           materials:
-            label: Matières
+            label: Toutes les matières
             type: tags
           itemsTypes:
-            label: Types d'objet
+            label: Tous les types d'objet
             type: tags
           minDeliveryTime:
             label: Délai de livraison minimum
@@ -66,6 +66,33 @@ tabs:
             type: number
             after: jours
             width: 1/2
+          coupons:
+            label: Coupons de réductions
+            type: structure
+            fields:
+              code:
+                type: text
+                icon: key
+                width: 1/2
+                minlength: 8
+                maxlength: 8
+              expiration:
+                label: Date d'expiration
+                type: date
+                width: 1/2
+              discountMode:
+                label: Mode de réduction
+                type: radio
+                width: 1/2
+                options:
+                  amount: Montant
+                  percent: Pourcentage
+              discount:
+                label: Réduction
+                type: text
+                width: 1/2
+                after: € ou %
+
           
       - width: 1/2
         sections:

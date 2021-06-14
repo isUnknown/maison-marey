@@ -147,13 +147,29 @@ return [
               $preparedProducts[] = $preparedProduct;
             }
 
+            //PREPARE COUPONS
+            $rawCoupons = $site->coupons()->toStructure();
+
+            // $preparedCoupons = []
+            foreach ($rawCoupons as $rawCoupon) {
+              $preparedCoupon = [
+                'code' => (string)$rawCoupon->code()->value(),
+                'mode' => (string)$rawCoupon->discountMode()->value(),
+                'discount' => (int)$rawCoupon->discount()->value(),
+                'expiration' => (string)$rawCoupon->expiration()->value()
+              ];
+              
+              $preparedCoupons[] = $preparedCoupon;
+            }
+
             $shop = [
               'products' => $preparedProducts,
               'delivery' => [
                 'min' => (int)$site->minDeliveryTime()->value(),
                 'max' => (int)$site->maxDeliveryTime()->value(),
                 'rootUrl' => (string)$site->url()
-              ]
+              ],
+              'coupons' => $preparedCoupons
             ];
 
             return $shop;

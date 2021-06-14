@@ -25,9 +25,6 @@ const cart = {
             })
             return selectedProducts
         },
-        isOpen: function() {
-            
-        },
         totalQuantity: function() {
             return this.getTotalQuantity
         },
@@ -56,7 +53,10 @@ const cart = {
             </div>
             
         </div>
-        <button @click="cleanCart">Vider le panier</button>
+        <button v-if="selectedProducts.length > 0" @click="cleanCart">Vider le panier</button>
+        <div v-else class="cart__empty">
+            <h1>Panier vide.</h1>
+        </div>
         <button @click="checkout" v-if="totalQuantity > 0" class="see orderBtn">Commander | {{ totalPrice }} €</button>
     </div>
     `,
@@ -131,6 +131,13 @@ const cart = {
           console.error("Error:", error);
         });
         }
+    },
+    mounted: function() {
+        document.querySelector('.products').addEventListener('click', () => {
+            if (this.store.state.isCartOpen) {
+                this.store.state.isCartOpen = false
+            }
+        })
     },
     updated: function() {
         this.saveCart()
