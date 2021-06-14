@@ -151,7 +151,6 @@ return [
             $rawCoupons = $site->coupons()->toStructure();
             $preparedCoupons = [];
 
-            // $preparedCoupons = []
             foreach ($rawCoupons as $rawCoupon) {
               $preparedCoupon = [
                 'code' => (string)$rawCoupon->code()->value(),
@@ -163,7 +162,24 @@ return [
               $preparedCoupons[] = $preparedCoupon;
             }
 
+            // PREPARE AUTHORS
+            $rawAuthors = $site->index()->template('author');
+            $preparedAuthors = [];
+
+            foreach ($rawAuthors as $rawAuthor) {
+              $preparedAuthor = [
+                'name' => $rawAuthor->title()->value(),
+                'materials' => $rawAuthor->materials()->value(),
+                'itemsTypes' => $rawAuthor->itemsTypes()->value(),
+                'page' => $rawAuthor->url(),
+                'pitch' => $rawAuthor->pitch()->value()
+              ];
+
+              $preparedAuthors[] = $preparedAuthor;
+            }
+
             $shop = [
+              'authors' => $preparedAuthors,
               'products' => $preparedProducts,
               'delivery' => [
                 'min' => (int)$site->minDeliveryTime()->value(),
