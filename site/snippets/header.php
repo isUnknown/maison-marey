@@ -20,6 +20,7 @@
     <!--========== SCRIPTS ==========-->   
     <script src="<?= url('assets') ?>/js/shop.js" type="module" defer></script>
     <script src="<?= url('assets') ?>/js/script.js" type="module" defer></script>
+    <script src="https://js.stripe.com/v3/" defer></script>
 
     <!--========== OPEN GRAPHS ==========-->
     <meta property='og:title' content='<?= $site->title() ?>' />

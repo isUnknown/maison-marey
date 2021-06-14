@@ -151,7 +151,8 @@ return [
               'products' => $preparedProducts,
               'delivery' => [
                 'min' => (int)$site->minDeliveryTime()->value(),
-                'max' => (int)$site->maxDeliveryTime()->value()
+                'max' => (int)$site->maxDeliveryTime()->value(),
+                'rootUrl' => (string)$site->url()
               ]
             ];
 
