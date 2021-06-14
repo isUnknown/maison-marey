@@ -10,6 +10,9 @@ const productsUrl = `${document.body.dataset.rootUrl}/shop`
 fetch(productsUrl).then(res => {
     return res.json()
 }).then(shop => {
+
+    Store.state.coupons = shop.coupons
+
     const vm = new Vue({
         el: '#app',
         components: {
@@ -165,6 +168,7 @@ fetch(productsUrl).then(res => {
             })
         },
         mounted: function() {
+            // GET SAVED CART
             if (sessionStorage.getItem('cart')) {
                 let savedProducts = JSON.parse(sessionStorage.getItem('cart'))
                 if (savedProducts.some(savedProduct => savedProduct.selected.length > 0)) {

@@ -1,7 +1,8 @@
 const Store = {
     debug: true,
     state: {
-      isCartOpen: false
+      isCartOpen: false,
+      coupons: []
     },
     toggleIsCartOpenAction() {
       if (Store.debug) console.log('toggleIsCartOpenAction déclenchée')

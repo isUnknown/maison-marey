@@ -28,15 +28,7 @@ Maxdeliverytime: 7
 
 ----
 
-Coupons:
-
-- 
-  code: AIJ678kl
-  expiration: 2021-06-21
-  discountmode: percent
-  discount: "10"
-  percent: 10
-  amount: null
+Coupons: 
 
 ----
 

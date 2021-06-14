@@ -65,7 +65,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-label,
+label:not(.coupons__label),
 select {
     display: block;
     cursor: pointer;
@@ -78,7 +78,7 @@ select {
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
 }
-label:hover {
+label:not(.coupons__label):hover {
     background-color: #EEE;
     color: #000;
 }
@@ -457,11 +457,35 @@ body {
     font-size: 1rem;
 }
 
-.orderBtn {
+.cart__checkout {
     position: absolute;
     bottom: 2rem;
     left: 1rem;
     width: calc(100% - 2rem);
+    text-align: center;
+}
+
+.cart__checkout :where(label, input) {
+    display: block;
+}
+
+.cart__checkout input {
+    border: 1px solid #000;
+}
+
+.coupons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.coupons__input {
+    margin: 0 1rem;
+    padding: .3rem .5rem;
+}
+
+.cart__checkout button {
+    width: 100%;
     text-align: center;
 }
 

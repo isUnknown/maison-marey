@@ -149,6 +149,7 @@ return [
 
             //PREPARE COUPONS
             $rawCoupons = $site->coupons()->toStructure();
+            $preparedCoupons = [];
 
             // $preparedCoupons = []
             foreach ($rawCoupons as $rawCoupon) {
@@ -168,9 +169,12 @@ return [
                 'min' => (int)$site->minDeliveryTime()->value(),
                 'max' => (int)$site->maxDeliveryTime()->value(),
                 'rootUrl' => (string)$site->url()
-              ],
-              'coupons' => $preparedCoupons
+              ]
             ];
+
+            if (sizeof($preparedCoupons) > 0) {
+              $shop['coupons'] = $preparedCoupons;
+            }
 
             return $shop;
           }

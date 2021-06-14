@@ -76,6 +76,7 @@ tabs:
                 width: 1/2
                 minlength: 8
                 maxlength: 8
+                autofocus: true
               expiration:
                 label: Date d'expiration
                 type: date
@@ -85,13 +86,14 @@ tabs:
                 type: radio
                 width: 1/2
                 options:
-                  amount: Montant
                   percent: Pourcentage
+                  amount: Montant
+                default: percent
               discount:
                 label: Réduction
                 type: text
                 width: 1/2
-                after: € ou %
+                after: % ou €
 
           
       - width: 1/2
