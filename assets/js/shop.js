@@ -129,13 +129,15 @@ fetch(productsUrl).then(res => {
                 this.sharedProperties.cart.isOpen = true
             },
             cleanCart: function() {
+                console.log('shop: cleanCart')
                 this.products.forEach(product => {
                     product.selected = []
                     product.stock.forEach(item => {
                         item.stock.selectedQuantity = 0
-                        if (item.stock.remainingQuantity) {
+                        if (item.orderType === 'model') {
                             item.stock.remainingQuantity = item.stock.maxQuantity
                         }
+                        console.log('item', item)
                     })
                     if (product.isDelivery && product.isWithdrawal) {
                         product.withdrawalMode = 'dual'

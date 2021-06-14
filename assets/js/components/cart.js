@@ -63,23 +63,27 @@ const cart = {
     },
     template: `
     <div class="cart" :class="{ open: store.state.isCartOpen }">
-        <div class="cart__entry" v-for="product in selectedProducts" v-if="product.stock.selectedQuantity > 0" :key="product.id">
-            <img class="cart__entry__image" :src="product.image" />
-            <div class="cart__entry__infos">
-                <h1>{{ product.name }} <span v-if="!product.modelName && product.stock.selectedQuantity > 1">x {{ product.stock.selectedQuantity }}</span></h1>
-                <h3 v-if="product.modelName">{{ product.modelName }} <span v-if="product.stock.selectedQuantity > 1">x {{ product.stock.selectedQuantity }}</span></h3>
-                <h1>{{ product.price }} €</h1>
-                <h2>par {{ product.author }}</h2>
+        <div class="cart__scrollable">
+            <div class="cart__entry" v-for="product in selectedProducts" v-if="product.stock.selectedQuantity > 0" :key="product.id">
+                <img class="cart__entry__image" :src="product.image" />
+                <div class="cart__entry__infos">
+                    <h1>{{ product.name }} <span v-if="!product.modelName && product.stock.selectedQuantity > 1">x {{ product.stock.selectedQuantity }}</span></h1>
+                    <h3 v-if="product.modelName">{{ product.modelName }} <span v-if="product.stock.selectedQuantity > 1">x {{ product.stock.selectedQuantity }}</span></h3>
+                    <h1>{{ product.price }} €</h1>
+                    <h2>par {{ product.author }}</h2>
+                    
+                    <span class="moreless" @click="decrement(product)">-</span>
+                    <input class="quantity" type="number" v-model="product.stock.selectedQuantity" :max="product.stock.remainingQuantity" min="0">
+                    <span class="moreless" :class="product.stock.remainingQuantity === 0 ? 'hidden' : ''" @click="increment(product)">+</span>
+                </div>
                 
-                <span class="moreless" @click="decrement(product)">-</span>
-                <input class="quantity" type="number" v-model="product.stock.selectedQuantity" :max="product.stock.remainingQuantity" min="0">
-                <span class="moreless" @click="increment(product)">+</span>
             </div>
             
-        </div>
-        <button v-if="selectedProducts.length > 0" @click="cleanCart">Vider le panier</button>
-        <div v-else class="cart__empty">
-            <h1>Panier vide.</h1>
+            <button class="cart__cleanBtn" v-if="selectedProducts.length > 0" @click="cleanCart">Vider le panier</button>
+            
+            <div v-else class="cart__empty">
+                <h1>Panier vide.</h1>
+            </div>
         </div>
         
         <div class="cart__checkout">
@@ -97,16 +101,17 @@ const cart = {
     `,
     methods: {
         increment: function(product) {
-            if (product.stock.maxQuantity && product.stock.selectedQuantity < product.stock.maxQuantity) {
-                product.stock.selectedQuantity++
+            product.stock.selectedQuantity++
+            if (product.orderType === 'model') {
                 product.stock.remainingQuantity--
-            } else {
-                product.stock.selectedQuantity++
             }
         },
         decrement: function(product) {
             if (product.stock.selectedQuantity > 0) {
                 product.stock.selectedQuantity--
+                if (product.orderType === 'model') {
+                    product.stock.remainingQuantity++
+                }
             }
         },
         cleanCart: function() {

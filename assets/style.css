@@ -449,6 +449,7 @@ body {
 /* ================= DESK CART ================= */
 .cart {
     position: fixed;
+    overflow: auto;
     z-index: 10;
     top: 5rem;
     bottom: 0;
@@ -467,6 +468,11 @@ body {
 }
 .cart.open {
     transform: translateX(0%);
+}
+
+.cart__scrollable {
+    height: 100%;
+    overflow: auto;
 }
 
 .cart__empty {
@@ -494,6 +500,10 @@ body {
 }
 .cart__entry h2 {
     font-size: 1rem;
+}
+
+.cart__cleanBtn {
+    margin-bottom: 4rem;
 }
 
 .cart__checkout {
@@ -529,6 +539,9 @@ body {
 }
 
 /* ================= GENERIC ================= */
+.hidden {
+    visibility: hidden;
+}
 .content {
     opacity: 0;
 }

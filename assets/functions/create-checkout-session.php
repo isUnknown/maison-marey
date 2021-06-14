@@ -26,19 +26,19 @@ foreach ($rawProducts as $rawProduct) {
 }
 
 // PREPARE COUPON
-$coupon = \Stripe\Coupon::create([
-    'percent_off' => 20,
-    'duration' => 'once',
-]);
+// $coupon = \Stripe\Coupon::create([
+//     'percent_off' => 20,
+//     'duration' => 'once',
+// ]);
 
 // PREPARE CHECKOUT
 $checkout_session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
   'line_items' => $preparedProducts,
   'mode' => 'payment',
-  'discounts' => [[
-    'coupon' => $coupon,
-  ]],
+//   'discounts' => [[
+//     'coupon' => $coupon,
+//   ]],
   'success_url' => $YOUR_DOMAIN . '/success.html',
   'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
 ]);
