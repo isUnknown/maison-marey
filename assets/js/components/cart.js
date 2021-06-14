@@ -175,14 +175,14 @@ const cart = {
             });
         }
     },
-    mounted: function() {
-        document.querySelector('.products').addEventListener('click', () => {
-            if (this.store.state.isCartOpen) {
-                this.store.state.isCartOpen = false
-            }
-        })
-    },
     updated: function() {
+        document.querySelectorAll('.products, .modal').forEach(node => {
+            node.addEventListener('click', () => {
+                if (this.store.state.isCartOpen) {
+                    this.store.state.isCartOpen = false
+                }
+            })
+        })
         this.saveCart()
     }
 }
