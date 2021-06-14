@@ -24,15 +24,13 @@ const Add = {
         <div class="addSection">
             <span class="moreless" @click="decrement">-</span>
             <input class="quantity" type="number" :value="input" :max="max" min="0">
-            <span class="moreless" @click="increment">+</span>
+            <span class="moreless" :class="input === max ? 'hidden' : ''" @click="increment">+</span>
             <button class="add" @click="add">Ajouter au panier</button>
         </div>
     `,
     methods: {
         increment: function() {
-            if (this.input < this.max) {
-                this.input++
-            }
+            this.input++
         },
         decrement: function() {
             if (this.input > 0) {
