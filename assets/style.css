@@ -374,7 +374,7 @@ body {
     width: 50%;
 }
 
-/* ================= DESK PRODUCT OPTIONS ================= */
+/* ================= DESK MODAL OPTIONS ================= */
 .modal__product__options {
     width: 30%;
 }
@@ -388,20 +388,58 @@ body {
 
 .modal__product__details {
     display: flex;
-    background-color: green;
 }
 
 .product__models {
     margin-bottom: 2rem;
 }
 
-/* ================= DESK PRODUCT WITHDRAWAL ================= */
+/* ================= DESK MODAL WITHDRAWAL ================= */
 .withdrawalMode {
     margin-top: 2rem;
 }
 
 .product__withdrawalMessage {
     margin-top: 2rem;
+}
+
+/* ================= DESK MODAL SECTIONS ================= */
+.modal__product__details {
+    margin-bottom: 2rem;
+}
+.modal__section {
+    position: relative;
+    height: 20rem;
+}
+
+.modal__section * {
+    max-height: 100%;
+}
+
+/* ================= DESK MODAL AUTHOR ================= */
+.modal__author {
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    width: 100%;
+}
+
+.modal__authorWrapper {
+    width: 60%;
+}
+.modal__author header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.modal__author .see {
+    margin-left: 1rem;
+}
+.modal__author__main {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 3rem;
 }
 
 /* ================= DESK CART ================= */
@@ -505,7 +543,7 @@ body {
     color: #000;
     font-size: .9rem;
     font-weight: 300;
-    padding: .5rem .8rem;
+    padding: .3rem .5rem;
     border: 1px solid #000;
     border-radius: 1rem;
 

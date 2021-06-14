@@ -3,6 +3,7 @@ import ProductModels from './product-models.js'
 import AddBtn from '../buttons/add-btn.js'
 import ProductOptions from '../product/product-options.js'
 import Withdrawal from './product-withdrawal.js'
+import Author from './product-author.js'
 
 import EventBus from '../../eventBus.js'
 import Store from '../../store.js'
@@ -22,6 +23,11 @@ const ProductModal = {
     computed: {
         product: function() {
             return this.getProduct
+        },
+        author: function() {
+            const author = this.store.state.authors.find(author => author.name === this.product.author)
+
+            return author
         },
         minDelivery: function() {
             if (this.selection && this.selection.extraTime) {
@@ -75,7 +81,8 @@ const ProductModal = {
         'product-models': ProductModels,
         'add-btn': AddBtn,
         'product-options': ProductOptions,
-        'withdrawal': Withdrawal
+        'withdrawal': Withdrawal,
+        'author': Author
     },
     template: `
         <div class="modal">
@@ -132,7 +139,12 @@ const ProductModal = {
                 </div>
                 
                 <div class="modal__product__details">
+                    <author
+                        :author="author"
+                    >
+                    </author>
                 </div>
+                
             </div>
         </div>
     `,

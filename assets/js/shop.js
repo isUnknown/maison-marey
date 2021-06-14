@@ -12,6 +12,7 @@ fetch(productsUrl).then(res => {
 }).then(shop => {
 
     Store.state.coupons = shop.coupons
+    Store.state.authors = shop.authors
 
     const vm = new Vue({
         el: '#app',

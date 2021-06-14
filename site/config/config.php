@@ -172,7 +172,8 @@ return [
                 'materials' => $rawAuthor->materials()->value(),
                 'itemsTypes' => $rawAuthor->itemsTypes()->value(),
                 'page' => $rawAuthor->url(),
-                'pitch' => $rawAuthor->pitch()->value()
+                'pitch' => $rawAuthor->pitch()->kt()->short(400)->value(),
+                'cover' => $rawAuthor->cover()->toFile()->resize(600, null, 80)->url()
               ];
 
               $preparedAuthors[] = $preparedAuthor;
