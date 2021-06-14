@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '69fe6414bda1c5a00bc6da51d9e3c9fb1638e157',
+    'reference' => '1a3e4d1ef0a7be50f8390250ec5ef5e93fa1d932',
     'name' => 'getkirby/plainkit',
   ),
   'versions' => 
@@ -80,7 +80,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '69fe6414bda1c5a00bc6da51d9e3c9fb1638e157',
+      'reference' => '1a3e4d1ef0a7be50f8390250ec5ef5e93fa1d932',
     ),
     'laminas/laminas-escaper' => 
     array (

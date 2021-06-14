@@ -20,7 +20,7 @@
     "require": {
         "php": ">=7.1.0",
         "getkirby/cms": "^3.0",
-        "stripe/stripe-php": "^7.79"
+        "stripe/stripe-php": "^7.83"
     },
     "scripts": {
         "start": [

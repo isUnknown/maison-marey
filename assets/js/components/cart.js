@@ -62,10 +62,17 @@ const cart = {
     `,
     methods: {
         increment: function(product) {
-           product.stock.selectedQuantity++ 
+            if (product.stock.maxQuantity && product.stock.selectedQuantity < product.stock.maxQuantity) {
+                product.stock.selectedQuantity++
+                product.stock.remainingQuantity--
+            } else {
+                product.stock.selectedQuantity++
+            }
         },
         decrement: function(product) {
-           product.stock.selectedQuantity-- 
+            if (product.stock.selectedQuantity > 0) {
+                product.stock.selectedQuantity--
+            }
         },
         cleanCart: function() {
             sessionStorage.clear()
@@ -93,7 +100,7 @@ const cart = {
                 name: `${selectedProduct.name} - ${selectedProduct.modelName}`,
                 price: selectedProduct.price,
                 image: selectedProduct.image,
-                quantity: selectedProduct.selectedQuantity
+                quantity: selectedProduct.stock.selectedQuantity
             }
             
             preparedSelection.push(product)
@@ -105,23 +112,24 @@ const cart = {
         body: JSON.stringify(preparedSelection)
       })
         .then(function (response) {
-            return response.text();
+            console.log(response)
+            return response.json();
         })
         .then(function (session) {
             console.log(session)
-        //   return stripe.redirectToCheckout({ sessionId: session.id });
+            return stripe.redirectToCheckout({ sessionId: session.id });
         })
-        // .then(function (result) {
-        //   // If redirectToCheckout fails due to a browser or network
-        //   // error, you should display the localized error message to your
-        //   // customer using error.message.
-        //   if (result.error) {
-        //     alert(result.error.message);
-        //   }
-        // })
-        // .catch(function (error) {
-        //   console.error("Error:", error);
-        // });
+        .then(function (result) {
+          // If redirectToCheckout fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using error.message.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
         }
     },
     updated: function() {

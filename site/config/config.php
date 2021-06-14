@@ -70,7 +70,7 @@ return [
 
               foreach ($rawModels as $rawModel) {
                 $extraCost = $rawModel->extraCost()->isEmpty() ? false : $rawModel->extraCost()->value();
-                $price = $extraCost ? $extraCost + $product->price()->value() : (int)$product->price()->value();
+                $price = $extraCost ? $extraCost + $product->price()->value() : $product->price()->value();
 
                 $preparedModel = [
                   'name' => $product->title()->value(),
