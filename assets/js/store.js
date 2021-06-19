@@ -1,6 +1,7 @@
 const Store = {
     debug: true,
     state: {
+      products: [],
       isCartOpen: false,
       coupons: [],
       authors: [],

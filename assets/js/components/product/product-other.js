@@ -1,15 +1,18 @@
 import ProductSheet from "./product-sheet.js"
+import Store from "../../store.js"
 
 const Other = {
-    props: {
-        products: Array
-    },
     components: {
         'product-sheet': ProductSheet,
     },
+    data: function() {
+        return {
+            products: Store.state.products
+        }
+    },
     computed: {
         shuffledProducts: function() {
-            const shuffledProducts = this.shuffle(products)
+            const shuffledProducts = this.shuffle(this.products)
             return shuffledProducts
         }
     },

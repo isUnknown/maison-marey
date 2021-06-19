@@ -13,6 +13,7 @@ fetch(productsUrl).then(res => {
 
     Store.state.coupons = shop.coupons
     Store.state.authors = shop.authors
+    Store.state.products = shop.products
 
     console.log(shop)
 
