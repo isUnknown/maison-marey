@@ -18,13 +18,11 @@ const Other = {
     },
     template: `
         <div class="modal__section modal__other">
-            <div class="modal__otherWrapper">
-                <product-sheet                
-                    v-for="product in shuffledProducts"
-                    :product="product"
-                >
-                </product-sheet>
-            </div>
+            <product-sheet                
+                v-for="product in shuffledProducts"
+                :product="product"
+            >
+            </product-sheet>
         </div>
     `,
     methods: {

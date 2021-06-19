@@ -115,7 +115,10 @@ p {
 }
 
 img {
+    height: 100%;
     width: 100%;
+    object-fit: contain;
+    object-position: left;
 }
 
 body::-webkit-scrollbar-track {
@@ -401,14 +404,17 @@ body {
 /* ================= DESK MODAL SECTIONS ================= */
 .modal__product__details {
     margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
 }
+
 .modal__section {
     position: relative;
-    height: 20rem;
+    height: 30%;
 }
 
 /* ================= DESK MODAL AUTHOR ================= */
-.modal__author {
+.modal__section:not(:last-child) {
     margin: 1rem 0;
     padding: 1rem 0;
     border-top: 1px solid #000;
@@ -418,6 +424,7 @@ body {
 
 .modal__authorWrapper {
     width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -435,10 +442,18 @@ body {
 .modal__author__main {
     display: flex;
     gap: 3rem;
+    flex: 1;
+    min-height: 0;
 }
 
 .modal__author__text {
     width: 190%;
+}
+
+/* ================= DESK MODAL OTHER ================= */
+
+.modal__section .product {
+    max-height: 100%;
 }
 
 /* ================= DESK CART ================= */

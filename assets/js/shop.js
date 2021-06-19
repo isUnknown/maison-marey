@@ -26,7 +26,7 @@ fetch(productsUrl).then(res => {
             'product-modal': ProductModal
         },
         data: {
-            products: shop.products,
+            products: Store.state.products,
             delivery: shop.delivery,
             filters: {
                 all: {},
