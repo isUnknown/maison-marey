@@ -3,7 +3,8 @@ const Store = {
     state: {
       isCartOpen: false,
       coupons: [],
-      authors: []
+      authors: [],
+      modal: false
     },
     toggleIsCartOpenAction() {
       if (Store.debug) console.log('toggleIsCartOpenAction déclenchée')

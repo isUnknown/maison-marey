@@ -14,6 +14,8 @@ fetch(productsUrl).then(res => {
     Store.state.coupons = shop.coupons
     Store.state.authors = shop.authors
 
+    console.log(shop)
+
     const vm = new Vue({
         el: '#app',
         components: {
@@ -30,21 +32,12 @@ fetch(productsUrl).then(res => {
                 active: []
             },
             activeFilters: [],
-            sharedProperties: {
-                cart: {
-                    isOpen: false
-                },
-                modal: {
-                    product: {},
-                }
-            },
             store: Store
         },
         computed: {
             filteredProducts: function() {
                 if (this.filters.active.length === 0) {
                     return this.products
-
                 } else {
                     const activeFilters = this.filters.active.map(activeFilter => activeFilter.value)
                 
@@ -63,10 +56,10 @@ fetch(productsUrl).then(res => {
                 }
             },
             modalIsEmpty: function() {
-                if (Object.keys(this.sharedProperties.modal.product).length === 0) {
-                    return true
-                } else {
+                if (this.store.state.modal) {
                     return false
+                } else {
+                    return true
                 }
             },
             totalQuantity: function() {
@@ -125,32 +118,12 @@ fetch(productsUrl).then(res => {
                 })
                 return activeTags
             },
-            openCart: function() {
-                this.sharedProperties.cart.isOpen = true
-            },
-            cleanCart: function() {
-                console.log('shop: cleanCart')
-                this.products.forEach(product => {
-                    product.selected = []
-                    product.stock.forEach(item => {
-                        item.stock.selectedQuantity = 0
-                        if (item.orderType === 'model') {
-                            item.stock.remainingQuantity = item.stock.maxQuantity
-                        }
-                        console.log('item', item)
-                    })
-                    if (product.isDelivery && product.isWithdrawal) {
-                        product.withdrawalMode = 'dual'
-                        product.withdrawalModeFixed = false
-                    }
-                })
-            },
             openModal: function(product) {
-                this.sharedProperties.modal.product = product
+                console.log('openModal')
+                this.store.state.modal = product
             },
             closeModal: function() {
-                console.log('closeModal')
-                this.sharedProperties.modal.product = false
+                this.store.state.modal = false
             }
         },
         created: function() {

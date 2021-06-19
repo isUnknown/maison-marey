@@ -2,17 +2,15 @@
 
     <cart
         @toggle-cart="store.state.isCartOpen"
-        @clean-cart-order="cleanCart"
         :get-total-quantity="totalQuantity"
         :get-products="products"
-        :get-is-open="sharedProperties.cart.isOpen">
+    >
     </cart>
 
     <transition name="fade">
         <product-modal
             v-if="modalIsEmpty === false"
-            :get-product="sharedProperties.modal.product"
-            :get-selection="sharedProperties.modal.selection"
+            :get-product="store.state.modal"
             :delivery="delivery">
         </product-modal>
     </transition>

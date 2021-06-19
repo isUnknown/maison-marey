@@ -7,6 +7,7 @@ import Author from './product-author.js'
 
 import EventBus from '../../eventBus.js'
 import Store from '../../store.js'
+import Other from './product-other.js'
 
 const ProductModal = {
     props: {
@@ -82,7 +83,8 @@ const ProductModal = {
         'add-btn': AddBtn,
         'product-options': ProductOptions,
         'withdrawal': Withdrawal,
-        'author': Author
+        'author': Author,
+        'other': Other
     },
     template: `
         <div class="modal">
@@ -143,6 +145,8 @@ const ProductModal = {
                         :author="author"
                     >
                     </author>
+                    <other>
+                    </other>
                 </div>
                 
             </div>

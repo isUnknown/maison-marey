@@ -108,22 +108,34 @@ const cart = {
         },
         decrement: function(product) {
             if (product.stock.selectedQuantity > 0) {
-                if (product.stock.selectedQuantity === 1) {
-                    console.log('Vider produits sélectionnés')
-                    this.products.forEach(product => {
-                        product.selected = []
-                    })
-                }
                 product.stock.selectedQuantity--
+                if (product.stock.selectedQuantity === 0) {
+                    if (!this.selectedProducts.some(selectedProduct => selectedProduct.stock.selectedQuantity > 0)) {
+                        this.cleanCart()
+                    }
+                }
                 if (product.orderType === 'model') {
                     product.stock.remainingQuantity++
                 }
             }
         },
         cleanCart: function() {
+            this.products.forEach(product => {
+                product.selected = []
+                product.stock.forEach(item => {
+                    item.stock.selectedQuantity = 0
+                    if (item.orderType === 'model') {
+                        item.stock.remainingQuantity = item.stock.maxQuantity
+                    }
+                })
+                if (product.isDelivery && product.isWithdrawal) {
+                    product.withdrawalMode = 'dual'
+                    product.withdrawalModeFixed = false
+                }
+            })
+
             sessionStorage.clear()
             this.store.toggleIsCartOpenAction()
-            this.$emit('clean-cart-order')
             EventBus.$emit('clean-selection')
         },
         getSelectionPrice: function(product) {

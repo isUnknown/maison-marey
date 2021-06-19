@@ -132,13 +132,13 @@ return [
                 }
               }
 
-              if ($product->stock()->toBool() === true) {
+              if ($product->stock()->toBool()) {
                 $preparedProduct['stock'] =  $preparedModels;
               } else {
                 $preparedProduct['stock'] =  [];
               }
               
-              if ($product->order()->toBool() === true && $product->options()->isNotEmpty()) {
+              if ($product->order()->toBool() && $product->options()->isNotEmpty()) {
                 $preparedProduct['options'] =  $preparedOptions;
               } else {
                 $preparedProduct['options'] =  [];
