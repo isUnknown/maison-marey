@@ -108,6 +108,12 @@ const cart = {
         },
         decrement: function(product) {
             if (product.stock.selectedQuantity > 0) {
+                if (product.stock.selectedQuantity === 1) {
+                    console.log('Vider produits sélectionnés')
+                    this.products.forEach(product => {
+                        product.selected = []
+                    })
+                }
                 product.stock.selectedQuantity--
                 if (product.orderType === 'model') {
                     product.stock.remainingQuantity++
