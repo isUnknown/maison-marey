@@ -22,6 +22,11 @@
     <script src="<?= url('assets') ?>/js/script.js" type="module" defer></script>
     <script src="https://js.stripe.com/v3/" defer></script>
 
+    <!--========== SWIPER ==========-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
     <!--========== OPEN GRAPHS ==========-->
     <meta property='og:title' content='<?= $site->title() ?>' />
     <meta property='og:type' content='website' />

@@ -91,7 +91,7 @@ return [
               }
 
               //PREPARE IMAGES
-              $rawPics = $product->pictures()->toFiles();
+              $rawPics = $product->images();
               $preparedPics = [];
 
               foreach ($rawPics as $rawPic) {

@@ -50,11 +50,13 @@ tabs:
             label: Livraison
             type: toggle
             width: 1/4
+            default: false
             help: |
               Délais à définir dans (link: http://localhost:8888/maison-marey/panel/site#shop text: l'onglet maison marey de la racine du panel).
           withdrawal:
             label: Retrait en boutique
             type: toggle
+            default: true
             width: 1/4
       - width: 1/2
         fields:

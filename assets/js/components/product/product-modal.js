@@ -1,13 +1,15 @@
+// =========================================== COMPONENTS
 import ProductHeader from './product-header.js'
 import ProductModels from './product-models.js'
 import AddBtn from '../buttons/add-btn.js'
 import ProductOptions from '../product/product-options.js'
 import Withdrawal from './product-withdrawal.js'
 import Author from './product-author.js'
+import Other from './product-other.js'
 
+// =========================================== SHARE
 import EventBus from '../../eventBus.js'
 import Store from '../../store.js'
-import Other from './product-other.js'
 
 const ProductModal = {
     props: {
@@ -90,8 +92,10 @@ const ProductModal = {
         <div class="modal">
 
             <div class="modal__product">
-                <div class="modal__product__images">
-                    <img :src="product.images[0]" />
+                <div class="modal__product__images swiper-container">
+                    <div class="swiper-wrapper">
+                        <img class="swiper-slide" v-for="image in product.images" :src="image" />
+                    </div>
                 </div>
                 
                 <div class="modal__product__options">
@@ -198,6 +202,28 @@ const ProductModal = {
         EventBus.$on('clean-selection', () => {
             this.selection = false
         })
+        const swiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+        
+            // If we need pagination
+            // pagination: {
+            // el: '.swiper-pagination',
+            // },
+        
+            // Navigation arrows
+            // navigation: {
+            // nextEl: '.swiper-button-next',
+            // prevEl: '.swiper-button-prev',
+            // },
+        
+            // And if we need scrollbar
+            // scrollbar: {
+            // el: '.swiper-scrollbar',
+            // },
+        });
+          
     }
 }
 
