@@ -79,7 +79,7 @@ return [
                   'author' => $product->parent()->title()->value(),
                   'price' => $price,
                   'extraCost' => $extraCost,
-                  'image' => $rawModel->cover()->toFile()->resize(300, null, 80)->url(),
+                  'image' => $rawModel->cover()->toFile()->url(),
                   'stock' => [
                     'maxQuantity' => $rawModel->quantity()->value(),
                     'selectedQuantity' => 0,

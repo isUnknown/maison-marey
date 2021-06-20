@@ -20,7 +20,8 @@ const ProductModal = {
         return {
             selection: false,
             input: 1,
-            store: Store
+            store: Store,
+            swiper: {}
         }
     },
     computed: {
@@ -182,8 +183,18 @@ const ProductModal = {
             this.selection = false
         },
         select: function(selection) {
+            this.reachImage(selection.image)
             this.selection = selection
             this.resetInput()
+        },
+        reachImage: function(url) {
+            const images = this.product.images
+            const imageIndex = this.product.images.indexOf(url) + 1
+
+            this.swiper.slideTo(imageIndex)
+            console.log('images',images)
+            console.log('url', url)
+            console.log(imageIndex)
         },
         cleanSelection: function() {
             this.selection = false
@@ -202,7 +213,8 @@ const ProductModal = {
         EventBus.$on('clean-selection', () => {
             this.selection = false
         })
-        const swiper = new Swiper('.swiper-container', {
+        
+        this.swiper = new Swiper('.swiper-container', {
             // Optional parameters
             direction: 'horizontal',
             loop: true,
@@ -222,8 +234,7 @@ const ProductModal = {
             // scrollbar: {
             // el: '.swiper-scrollbar',
             // },
-        });
-          
+        })
     }
 }
 
