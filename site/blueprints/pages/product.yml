@@ -46,6 +46,11 @@ tabs:
             after: €
             width: 1/4
             required: true
+          withdrawal:
+            label: Retrait en boutique
+            type: toggle
+            default: true
+            width: 1/4
           delivery:
             label: Livraison
             type: toggle
@@ -53,11 +58,6 @@ tabs:
             default: false
             help: |
               Délais à définir dans (link: http://localhost:8888/maison-marey/panel/site#shop text: l'onglet maison marey de la racine du panel).
-          withdrawal:
-            label: Retrait en boutique
-            type: toggle
-            default: true
-            width: 1/4
       - width: 1/2
         fields:
           order:
@@ -95,12 +95,14 @@ tabs:
                     after: €
                     min: 0
                     default: 0
+                    width: 1/2
                   extraTime:
                     label: Délai supp.
                     type: number
                     after: jours
                     min: 0
                     default: 0
+                    width: 1/2
       - width: 1/2
         fields:
           stock:
