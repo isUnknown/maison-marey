@@ -1,4 +1,4 @@
-/* ================= DESK CUSTOM PROPERTIES - MOB VARIABLES ================= */
+/* ================= DESK CUSTOM PROPERTIES - DESK VARIABLES ================= */
 :root {
     --padding-main: 2vw;
     --width-full: calc(100% - var(--padding-main) * 2);
@@ -386,7 +386,10 @@ body {
 
 .author__job {
     text-transform: lowercase;
-    margin-top: .2rem;
+}
+.author__job,
+.initiation__author {
+    margin-top: .5rem;
 }
 
 /* ================= DESK SHOP ================= */
@@ -847,6 +850,7 @@ footer::before {
     /* ================= MOB CUSTOM PROPERTIES - MOB VARIABLES ================= */
     :root {
         --padding-main: 4vw;
+        --padding-top: 3rem;
     }
 
     /* ================= MOB GENERIC ================= */
@@ -864,6 +868,10 @@ footer::before {
         line-height: 1.3rem;
     }
 
+    .description {
+        font-size: .9rem;
+    }
+
     .grid-2,
     .grid-3,
     .grid-4,
@@ -874,6 +882,7 @@ footer::before {
         width: 100%;
         padding: 1rem;
     }
+
     .presentation__text {
         margin-top: 0;
     }
@@ -983,6 +992,25 @@ footer::before {
     .nav__item:first-child h3::before {
         transform: translateY(2.6rem);
         width: 4.5rem;
+    }
+
+    /* ================= MOB HOME ================= */
+    .home__title,
+    .home__subtitle {
+        font-size: 4.8vw;
+    }
+
+    .home__img {
+        top: 8.5rem;
+    }
+
+    /* ================= MOB RYTHME ================= */
+    .wrapper {
+        display: block;
+    }
+
+    .column {
+        padding: 1rem var(--padding-main);
     }
     
     /* ================= MOB MODAL ================= */
