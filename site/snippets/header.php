@@ -18,8 +18,7 @@
     <script src="<?= url('assets') ?>/js/libraries/vue.js" type="module" defer></script>
 
     <!--========== SCRIPTS ==========-->   
-    <script src="<?= url('assets') ?>/js/components/nav/nav.js" type="module" defer></script>
-    <script src="<?= url('assets') ?>/js/shop.js" type="module" defer></script>
+    <script src="<?= url('assets') ?>/js/app.js" type="module" defer></script>
     <script src="<?= url('assets') ?>/js/script.js" type="module" defer></script>
     <script src="https://js.stripe.com/v3/" defer></script>
 
@@ -45,16 +44,4 @@
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
         </svg> -->
-        <header id="navigation" class="header" @click="test">
-            <nav-burger
-                :pages="pages"
-            ></nav-burger>
-            
-            <nav-logo></nav-logo>
-            
-            <nav-main
-                :pages="pages"
-            ></nav-main>
-
-            <div></div>
-        </header>
+        <vue-header></vue-header>

@@ -15,9 +15,11 @@ const navBurger = {
                 <span class="burgerNav__icon__bars--down"></span>
             </button>
             <div class="burgerNav__flap" :class="{ open: isOpen }">
-                <a v-for="page in pages" href="page.url" :key="page.title" class="burgerNav__flap__pages">
-                    <h1>{{ page.title }}</h1>
-                </a>
+                <div class="burgerNavWrapper">
+                    <a v-for="page in pages" :href="page.url" :key="page.title" class="nav__item">
+                        <h3>{{ page.title }}</h3>
+                    </a>
+                </div>
             </div>
         </nav>
     `,

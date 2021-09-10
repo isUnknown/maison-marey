@@ -1,8 +1,11 @@
 import { Data } from './libraries/app.js'
+
 import Filter from './components/filter.js'
 import Cart from './components/cart.js'
 import ProductSheet from './components/product/product-sheet.js'
 import ProductModal from './components/product/product-modal.js'
+import Nav from "./components/nav/nav.js";
+
 import EventBus from './eventBus.js'
 import Store from './store.js'
 
@@ -23,7 +26,8 @@ fetch(productsUrl).then(res => {
             'vue-filter': Filter,
             'cart': Cart,
             'product-sheet': ProductSheet,
-            'product-modal': ProductModal
+            'product-modal': ProductModal,
+            'vue-header': Nav
         },
         data: {
             products: Store.state.products,
