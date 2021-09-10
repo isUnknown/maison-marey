@@ -1,5 +1,5 @@
 <?php
 
 return function ($site) {
-    return $site->children()->listed();
+    return $site->children()->template('author');
 };

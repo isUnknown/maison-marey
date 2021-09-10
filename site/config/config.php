@@ -195,6 +195,18 @@ return [
 
             return $shop;
           }
-        ]
+        ],
+        // [
+        //   'pattern' => 'pages-titles',
+        //   'action' => function() {
+        //     $site = site();
+        //     $titles = [];
+        //     foreach ($site->children()-> as $page) {
+        //       $titles[] = $page->content()->title();
+        //     }
+            
+        //     return $titles;
+        //   }
+        // ]
     ]
 ];

@@ -92,14 +92,14 @@ const ProductModal = {
     template: `
         <div class="modal">
 
-            <div class="modal__product">
-                <div class="modal__product__images swiper-container">
+            <div class="modal__product modal__header">
+                <div class="modal__product__images swiper-container modal__header__images">
                     <div class="swiper-wrapper">
                         <img class="swiper-slide" v-for="image in product.images" :src="image" />
                     </div>
                 </div>
                 
-                <div class="modal__product__options">
+                <div class="modal__product__options modal__header__details">
                     <product-header :product="product" ></product-header>
                     
                     <product-models 
@@ -150,6 +150,7 @@ const ProductModal = {
                         :author="author"
                     >
                     </author>
+                    <h2 class="claim mgb2">Découvrez d'autres création</h2>
                     <other>
                     </other>
                 </div>
@@ -218,6 +219,7 @@ const ProductModal = {
             // Optional parameters
             direction: 'horizontal',
             loop: true,
+            keyboard: true
         
             // If we need pagination
             // pagination: {

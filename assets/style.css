@@ -1,13 +1,46 @@
-/* ================= CUSTOM PROPERTIES ================= */
+/* ================= DESK CUSTOM PROPERTIES - MOB VARIABLES ================= */
 :root {
     --padding-main: 2vw;
     --width-full: calc(100% - var(--padding-main) * 2);
     --color-main-bg: #DCB89F;
     --color-main-font: #D37456;
+    --color-shop-nav: #4F68BF;
+    --color-initiations: #528C70;
     --padding-top: 8rem;
     --transition-fast: .2s;
     --transition-normal: .5s;
     --transition-slow: .7s;
+}
+
+/* ================= FONT FACES  ================= */
+@font-face {
+    font-family: Messapia;
+    font-weight: normal;
+    src: url('./fonts/Messapia/Messapia-Regular.woff') format('woff'),
+        url('./fonts/Messapia/Messapia-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: Messapia;
+    font-weight: bold;
+    src: url('./fonts/Messapia/Messapia-Bold.woff') format('woff'),
+    url('./fonts/Messapia/Messapia-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Sequel-sans';
+    src: url('./fonts/sequel-sans/sequel_sans_book_body-webfont.woff2') format('woff2'),
+         url('./fonts/sequel-sans/sequel_sans_book_body-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sequel-sans';
+    src: url('./fonts/sequel-sans/sequel_sans_light_head-webfont.woff2') format('woff2'),
+         url('./fonts/sequel-sans/sequel_sans_light_head-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
 }
 
 /* ================= RESET ================= */
@@ -22,7 +55,7 @@
     text-decoration: none;
     border: none;
     background-color: transparent;
-    font-family: sans-serif;
+    font-family: 'Sequel-sans', sans-serif;
     color: inherit;
     /* cursor: none !important; */
 }
@@ -43,6 +76,11 @@ a, button {
     -ms-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    position: relative;
+    z-index: 10;
 }
 
 input[type="radio"],
@@ -91,17 +129,19 @@ li {
     list-style-type: none;
 }
 
-h1 {
-    font-size: 1.5rem;
+h1, h2 {
+    font-family: Messapia;
+    font-weight: bold;
+    color: #000;
     text-transform: uppercase;
-    color: var(--color-main-font);
-    font-weight: 300;
+}
+
+h1 {
+    font-size: 2.5rem;
 }
 
 h2 {
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--color-main-font);
+    font-size: 1.1rem;
 }
 
 h5 {
@@ -110,8 +150,10 @@ h5 {
 }
 
 p {
+    font-size: 1rem;
+}
+p:not(:last-child) {
     margin-bottom: 1rem;
-    font-size: .8rem;
 }
 
 img {
@@ -141,11 +183,11 @@ body {
     top: 0;
     z-index: 10;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 
-    padding: 1rem var(--padding-main);
-    background-color: var(--color-main-bg);
-    box-shadow: 0 2px 8px rgb(175, 175, 175);
+    padding: 1.5rem var(--padding-main);
+    background-color: #FFF;
+    box-shadow: 0 -11px 25px rgb(0, 0, 0);
 
     transition: all var(--transition-normal) ease-in-out;
     -webkit-transition: all var(--transition-normal) ease-in-out;
@@ -153,8 +195,37 @@ body {
     -o-transition: all var(--transition-normal) ease-in-out;
 }
 
-.header__logo h1 {
-    font-weight: 100;
+.mainNav {
+    display: flex;
+    flex-grow: 1;
+    gap: 4.5rem;
+    margin-left: 3rem;
+}
+
+.burgerNav {
+    display: none;
+}
+
+.nav__item {
+    position: relative;
+}
+.nav__item h3{
+    font-family: 'Sequel-sans', sans-serif;
+    font-size: .9rem;
+}
+.nav__item:first-child h3::before {
+    content: '';
+    background-color: #000;
+    width: 100%;
+    height: 1px;
+    text-align: center;
+    position: absolute;
+    transform: translateY(1.3rem);
+}
+
+.header__logo {
+    font-size: 1.1rem;
+    line-height: 1rem;
 }
 
 .header__filters {
@@ -231,8 +302,7 @@ body {
 /* ================= DESK HOME ================= */
 
 .home {
-    box-sizing: border-box;
-    width: 100%;
+    width: calc(100% - (var(--padding-top) var(--padding-main)));
     height: 100vh;
     overflow: hidden;
     padding: var(--padding-top) var(--padding-main);
@@ -249,8 +319,10 @@ body {
 .home__infos {
     position: relative;
     z-index: 2;
-    text-align: center;
     margin-bottom: 4rem;
+
+    text-align: center;
+    color: var(--color-main-font);
     text-transform: uppercase;
 }
 
@@ -270,7 +342,7 @@ body {
 }
 
 .home__title {
-    font-size: 5rem;
+    font-size: 4rem;
     pointer-events: none;
 }
 
@@ -283,14 +355,16 @@ body {
 }
 
 /* ================= DESK CRAFTMAN ================= */
-.row {
-    display: flex;
-    justify-content: space-between;
-}
 
 .presentation__text {
     margin-top: 1rem;
     margin-left: 2%;
+}
+
+/* ================= DESK RYTHME ================= */
+.row {
+    display: flex;
+    justify-content: space-between;
 }
 
 .column {
@@ -304,18 +378,11 @@ body {
     flex-direction: column;
 }
 
+.block h2 {
+    margin: .8rem 0;
+}
+
 /* ================= DESK AUTHORS ================= */
-.authors {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 4vw;
-
-    padding: 0 var(--padding-main);
-}
-
-.author__id {
-    margin: .5rem 0;
-}
 
 .author__job {
     text-transform: lowercase;
@@ -332,8 +399,12 @@ body {
     display: flex;
 }
 
+.product__images {
+    width: 16rem;
+}
+
 .product__infos {
-    margin-left: .7rem;
+    margin-left: 1.5rem;
 }
 
 .product__name {
@@ -353,34 +424,7 @@ body {
     width: 70%;
 }
 
-/* ================= DESK MODAL PRODUCT ================= */
-.modal {
-    position: fixed;  
-    background-color: #fff;
-    width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    padding: 2rem;
-    box-sizing: border-box;
-}
-
-.modal__product {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.modal__product__images {
-    width: 70%;
-    text-align: center;
-}
-.modal__product__images img {
-    width: 50%;
-}
-
 /* ================= DESK MODAL OPTIONS ================= */
-.modal__product__options {
-    width: 30%;
-}
 .productOptions {
     width: max-content;
 }
@@ -410,7 +454,6 @@ body {
 
 .modal__section {
     position: relative;
-    height: 30%;
 }
 
 /* ================= DESK MODAL AUTHOR ================= */
@@ -548,6 +591,25 @@ body {
     text-align: center;
 }
 
+/* ================= DESK FOOTER ================= */
+footer {
+    position: relative;
+    z-index: 0;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem var(--padding-main) 0 var(--padding-main);
+    margin: 3rem 0;
+}
+footer::before {
+    content: '';
+    background-color: #000;
+    width: calc(100% - (2 * var(--padding-main)));
+    height: 1px;
+    position: absolute;
+    transform: translateY(-3rem);
+}
+
 /* ================= SWIPER ================= */
 .swiper-container {
     max-height: 40vw;
@@ -558,17 +620,115 @@ body {
 }
 
 /* ================= GENERIC ================= */
+/* #app {
+    min-height: 90vh;
+} */
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 4vw;
+}
+
+.grid__image__caption {
+    margin: .5rem 0;
+}
+
+.mgt2 {
+    margin-top: 2rem;
+}
+.mgt4 {
+    margin-top: 4rem;
+}
+
+.mgb2 {
+    margin-bottom: 2rem;
+}
+
+.upline::before {
+    content: '';
+    background-color: #000;
+    width: calc(100% - (2 * var(--padding-main)));
+    height: 1px;
+    position: absolute;
+    transform: translateY(-1rem);
+}
+
+.main-padding {
+    padding: 0 var(--padding-main);
+}
+
 .hidden {
     visibility: hidden;
 }
+
 .content {
     opacity: 0;
 }
 
-.claim {
-    padding: 1rem var(--padding-main);
+.section {
+    padding: 0 var(--padding-main) 2rem var(--padding-main);
+}
+.section--first {
+    padding-top: 2rem;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.orange {
+    color: var(--color-main-font);
+}
+
+.green {
+    color: var(--color-initiations);
+}
+
+/* ================= TEXTE ================= */
+
+.description,
+.description p {
+    font-size: .8rem;
+    font-family: 'Sequel-sans', sans-serif;
+}
+
+.read,
+.block.read p,
+.block.read h1,
+.block.read h2,
+.block.read h3, {
+    font-size: 1rem;
+}
+
+.highlighted,
+.block.highlighted p,
+.block.highlighted h1,
+.block.highlighted h2,
+.block.highlighted h3 {
+    font-family: Sequel-sans, sans-serif;
     color: #000;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    text-transform: none;
+    font-weight: 300;
+}
+
+.catch,
+.catch p,
+.catch h1,
+.catch h2,
+.catch h3 {
+    font-family: 'Messapia';
+    font-weight: bold;
+    font-size: 4.7vw;
+}
+
+.content h1 {
+    margin-bottom: 1.5rem;
 }
 
 .see {
@@ -577,6 +737,7 @@ body {
     font-size: .9rem;
     font-weight: 300;
     padding: .3rem .5rem;
+    margin-right: .6rem;
     border: 1px solid #000;
     border-radius: 1rem;
 
@@ -623,6 +784,36 @@ body {
     margin-top: 2rem;
 }
 
+/* ================= DESK MODAL ================= */
+.modal {
+    position: fixed;  
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 2rem;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.modal__header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.modal__header__images {
+    width: 70%;
+    text-align: center;
+    overflow: hidden;
+}
+.modal__header__images img {
+    width: 50%;
+}
+
+.modal__header__details {
+    width: 30%;
+}
+
 /* ================= VUE TRANSITION ================= */
 
 .fade-item {
@@ -651,11 +842,128 @@ body {
 /* ================= MOBILE ================= */
 
 @media screen and (max-width: 800px) {
+
+    /* ================= MOB CUSTOM PROPERTIES - MOB VARIABLES ================= */
+    :root {
+        --padding-main: 4vw;
+    }
+
+    /* ================= MOB GENERIC ================= */
+    .grid-2,
+    .grid-3,
+    .grid-4,
     .row {
         display: block;
     }
     .column {
         width: 100%;
         padding: 1rem;
+    }
+    .presentation__text {
+        margin-top: 0;
+    }
+
+    /* ================= MOB HEADER NAV MOB BURGER ================= */
+
+    .header {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mainNav {
+        display: none;
+    }
+
+    .burgerNav {
+        display: block;
+        width: 2rem;
+    }
+
+    /* ================= MOB BURGER BUTTON ICON ================= */
+
+    .burgerNav__icon {
+        position: relative;
+        height: 1rem;
+        width: 2rem;
+        z-index: 1;
+    }
+
+    .burgerNav__icon__bars--up,
+    .burgerNav__icon__bars--middle,
+    .burgerNav__icon__bars--down {
+        display: block;
+        height: 1px;
+        width: 2rem;
+        background-color: #000;
+        opacity: 1;
+
+        transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+    }
+
+    .burgerNav__icon__bars--up,
+    .burgerNav__icon__bars--down {
+        position: absolute;
+    }
+
+    .burgerNav__icon__bars--up {
+        transform: translateY(-.5rem) rotateZ(0deg);
+    }
+
+    .burgerNav__icon__bars--down {
+        transform: translateY(.5rem) rotateZ(0deg);
+    }
+
+    .header__logo {
+        text-align: center;
+    }
+
+    .burgerNav.open .burgerNav__icon__bars--up {
+        transform: translateY(0rem) rotateZ(45deg);
+    }
+    .burgerNav.open .burgerNav__icon__bars--middle {
+        width: 0;
+        opacity: 0;
+    }
+    .burgerNav.open .burgerNav__icon__bars--down {
+        transform: translateY(0rem) rotateZ(-45deg);
+    }
+
+    /* ================= MOB BURGER NAV FLAP ================= */
+    .burgerNav__flap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        background-color: #fff;
+        height: 0;
+        
+        transition: all .5s ease-in-out;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+    }
+    .burgerNav__flap.open {
+        height: 100vh;
+    }
+    
+    /* ================= MOB MODAL ================= */
+    .modal__header {
+        display: block;
+    }
+
+    .modal__header__images {
+        width: 90%;
+    }
+
+    .swiper-container {
+        max-height: none;
+    }
+
+    /* ================= MOB FOOTER ================= */
+    footer {
+        display: block;
     }
 }

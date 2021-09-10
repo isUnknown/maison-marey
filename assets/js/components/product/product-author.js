@@ -6,12 +6,12 @@ const Author = {
             <div class="modal__section modal__author">
                 <div class="modal__authorWrapper">
                     <header>
-                        <h1>{{ author.name }}</h1><a :href="author.page" class="see">portrait</a>
+                        <h2>{{ author.name }}</h2><a :href="author.page" class="see">portrait</a>
                     </header>
                     <div class="modal__author__main">
                         <img :src="author.cover" class="modal__author__cover"/>
                         <div class="modal__author__text">
-                            <p class="modal__author__tags">
+                            <p class="modal__author__tags read">
                                 Matière(s) : {{ author.materials }}<br />
                                 Objets : {{ author.itemsTypes }}
                             </p>

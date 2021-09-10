@@ -1,0 +1,343 @@
+label: Rythme
+type: layout
+layouts:
+  - "1/1"
+  - "1/2, 1/2"
+  - "1/3, 1/3, 1/3"
+fieldsets:
+  - image
+  - markdown
+  - gallery
+settings:
+  tabs:
+    global:
+      fields:
+        layout:
+          label: Disposition
+          type: radio
+          options:
+            mono: Une colonne
+            duo: Deux colonnes
+            trio: Trois colonnes
+          default: mono
+          help: **Cette option doit correspondre à la disposition de votre rangée**, pour avoir accès aux bons réglages.
+
+        # ================================ WIDTH
+        
+        widthTitle:
+          label: Taille(s)
+          type: headline
+        width:
+          label: Largeur
+          type: number
+          min: 0
+          max: 100
+          after: %
+          default: 100
+          when:
+            layout: mono
+        
+        widthMode:
+          label: Colonnes
+          type: radio
+          options:
+            mono: Relatives
+            duo: Indépendantes
+          default: mono
+          width: 1/3
+          when:
+            layout: duo
+        noWidth:
+          label: Tailles identiques
+          type: info
+          text: En mode trois colonnes, les tailles des colonnes sont identiques.
+          when:
+            layout: trio
+
+        leftColumnWidth:
+          label: Colonne de gauche
+          icon: expand
+          type: number
+          min: 0
+          max: 100
+          after: %
+          default: 50
+          width: 1/3
+          help: La largeur de la colonne de droite s'adaptera.
+          when:
+            layout: duo
+            widthMode: mono
+        gutter:
+          label: Gouttière
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/3
+          when:
+            layout: duo
+            widthMode: mono
+
+        soloLeftColumnWidth:
+          label: Gauche
+          type: number
+          min: 0
+          max: 100
+          after: %
+          default: 50
+          width: 1/3
+          when:
+            layout: duo
+            widthMode: duo
+        soloRightColumnWidth:
+          label: Droite
+          type: number
+          min: 0
+          max: 100
+          after: %
+          default: 50
+          width: 1/3
+          when:
+            layout: duo
+            widthMode: duo
+
+      # ================================ MARGIN
+
+        marginTitle:
+          label: Marges
+          type: headline
+
+        marginMode:
+          label: Colonnes
+          type: radio
+          options:
+            mono: Identiques
+            duo: Indépendantes
+          default: mono
+          width: 1/3
+          when:
+            layout: duo
+        marginGap:
+          type: gap
+          width: 2/3
+          when:
+            layout: duo
+            marginMode: duo
+
+        #Use padding instead of margin because of the background color option. But keep "margin" for user info.
+        verticalPadding:
+          label: Marges verticales
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/3
+          when: 
+            marginMode: mono
+        horizontalPadding:
+          label: Marges horizontales
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/3
+          when: 
+            marginMode: mono
+        leftVerticalPadding:
+          label: Marges verticales colonne gauche
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/2
+          when: 
+            layout: duo
+            marginMode: duo
+        rightVerticalPadding:
+          label: Marges verticales colonne droite
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/2
+          when: 
+            layout: duo
+            marginMode: duo
+        leftHorizontalPadding:
+          label: Marges horizontales colonne gauche
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/2
+          when: 
+            layout: duo
+            marginMode: duo
+        rightHorizontalPadding:
+          label: Marges horizontales colonne droite
+          type: number
+          min: 0
+          max: 20
+          after: %
+          default: 2
+          width: 1/2
+          when: 
+            layout: duo
+            marginMode: duo
+
+        # ================================ COLOR
+
+        colorTitle:
+          label: Couleur(s)
+          type: headline
+        
+        colorMode:
+          label: Colonnes
+          type: radio
+          width: 1/3
+          options:
+            mono: Identiques
+            duo: Indépendantes
+          default: mono
+          when:
+            layout: duo
+        backgroundColor:
+          label: Arrière-plan
+          type: color
+          width: 1/3
+          when:
+            colorMode: mono
+        textColor:
+          label: Textes
+          type: color
+          default: '#000000'
+          width: 1/3
+          when:
+            colorMode: mono
+        colorGap:
+          type: gap
+          width: 1/2
+          when:
+            layout: duo
+            colorMode: duo
+        leftBackgroundColor:
+          label: Arrière-plan colonne gauche
+          type: color
+          width: 1/2
+          when:
+            layout: duo
+            colorMode: duo
+        rightBackgroundColor:
+          label: Arrière-plan colonne droite
+          type: color
+          width: 1/2
+          when:
+            layout: duo
+            colorMode: duo
+        leftTextColor:
+          label: Textes colonne gauche
+          type: color
+          default: '#000000'
+          width: 1/2
+          when:
+            layout: duo
+            colorMode: duo
+        rightTextColor:
+          label: Textes colonne droite
+          type: color
+          default: '#000000'
+          width: 1/2
+          when:
+            layout: duo
+            colorMode: duo
+
+
+        # ================================ POSITION
+        positionTitle:
+          label: Positions des contenus
+          type: headline
+        positionInfo:
+          label: Info
+          type: info
+          text: Les effets des réglages de position sont visibles uniquement pour des contenus dont les tailles sont inférieures à 100%. Ces tailles se règlent indépendamment pour chaque contenu.
+        positionMode:
+          label: Colonnes
+          type: radio
+          options:
+            mono: Identiques
+            duo: Indépendantes
+          default: mono
+          width: 1/2
+          when:
+            layout: duo
+        positionGap:
+          type: gap
+          width: 1/2
+          when:
+            layout: duo
+            positionMode: duo
+        globalPosition:
+          label: Position
+          type: radio
+          options:
+            flex-start: Ferrés à gauche
+            flex-end: Ferrés à droite
+            center: Centrés
+          default: center
+          width: 1/2
+          when:
+            positionMode: mono
+        leftPosition:
+          label: Colonne gauche
+          type: radio
+          options:
+            flex-start: Ferrés à gauche
+            flex-end: Ferrés à droite
+            center: Centrés
+          default: center
+          width: 1/2
+          when:
+            layout: duo
+            positionMode: duo
+        rightPosition:
+          label: Colonne droite
+          type: radio
+          options:
+            flex-start: Ferrés à gauche
+            flex-end: Ferrés à droite
+            center: Centrés
+          default: center
+          width: 1/2
+          when:
+            layout: duo
+            positionMode: duo
+        
+        # ================================ SPACE
+        spaceTitle:
+          label: Espace après la rangée
+          type: headline
+        space:
+          label: Taille
+          type: number
+          min: 0
+          max: 20
+          after: rem
+          default: 0
+
+        # ================================ VERTICAL TRANSLATE
+        translateTitle:
+          label: Translation vers le haut
+          type: headline
+        translate:
+          label: Valeur
+          type: number
+          after: %
+          min: 0
+          max: 50
+          default: 0

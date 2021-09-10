@@ -1,0 +1,73 @@
+Title: Une fleur durable
+
+----
+
+Cover:
+
+- fleur_hailane.jpg
+- ceramic.jpg
+- chaise_plongee.jpg
+
+----
+
+Author: Haïlane Fleur
+
+----
+
+Price: 45
+
+----
+
+Schedule: Samedi 10 juillet —  de 11h30 à 13h30
+
+----
+
+Place: Maison Marey, Paris 20
+
+----
+
+Shortdescription: Sur un atelier de 2h, venez apprendre à faire un coquelicot de la couleur que vous souhaitez !
+
+----
+
+Longdescription: 
+
+----
+
+Pictures: - fleur_hailane.jpg
+
+----
+
+Description: 
+
+----
+
+Withdrawal: true
+
+----
+
+Delivery: false
+
+----
+
+Order: true
+
+----
+
+Productiontime: 7
+
+----
+
+Options: 
+
+----
+
+Stock: false
+
+----
+
+Withdrawaltime: 0
+
+----
+
+Models: 

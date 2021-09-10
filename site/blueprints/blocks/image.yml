@@ -19,7 +19,7 @@ tabs:
     fields:
       blockWidth:
         label: Taille du bloc
-        type: range
+        type: number
         min: 0
         max: 100
         after: %
@@ -34,37 +34,29 @@ tabs:
         width: 1/2
       marginTop:
         label: Marge haute
-        type: range
+        type: number
         min: 0
-        max: 20
-        step: 0.5
         after: %
         default: 0
         width: 1/2
       marginBottom:
         label: Marge basse
-        type: range
+        type: number
         min: 0
-        max: 20
-        step: 0.5
         after: %
         default: 0
         width: 1/2  
       marginLeft:
         label: Marge gauche
-        type: range
+        type: number
         min: 0
-        max: 20
-        step: 0.5
         after: %
         default: 0
         width: 1/2
       marginRight:
         label: Marge droite
-        type: range
+        type: number
         min: 0
-        max: 20
-        step: 0.5
         after: %
         default: 0
         width: 1/2

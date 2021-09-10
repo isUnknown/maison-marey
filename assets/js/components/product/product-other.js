@@ -17,7 +17,7 @@ const Other = {
         }
     },
     template: `
-        <div class="modal__section modal__other">
+        <div class="modal__section grid-2">
             <product-sheet                
                 v-for="product in shuffledProducts"
                 :product="product"

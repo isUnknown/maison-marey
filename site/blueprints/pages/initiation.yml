@@ -1,0 +1,50 @@
+title: Product
+
+tabs:
+  infos:
+    icon: question
+    columns:
+      - width: 1/3
+        fields:
+          cover:
+            label: Images
+            type: files
+            layout: cards
+            image:
+              back: white
+
+      - width: 2/3
+        fields:
+          author:
+            label: Responsable
+            type: text
+            width: 1/2
+          price:
+            label: Prix
+            type: number
+            after: €
+            width: 1/4
+          schedule:
+            label: Horaires
+            type: text
+            width: 1/2
+          place:
+            label: Emplacement
+            type: text
+            width: 1/2
+          shortdescription:
+            label: Description courte
+            type: textarea
+          longdescription:
+            label: Description longue
+            type: textarea
+  gallery:
+    label: Galerie
+    icon: layers
+    sections:
+      gallerySection:
+        headline: Galerie
+        type: files
+        layout: cards
+        image:
+          back: black

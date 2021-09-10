@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '1a3e4d1ef0a7be50f8390250ec5ef5e93fa1d932',
+    'reference' => '8e90e10be3f521d8809a469d7547dfb6600585a1',
     'name' => 'getkirby/plainkit',
   ),
   'versions' => 
@@ -54,7 +54,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '1a3e4d1ef0a7be50f8390250ec5ef5e93fa1d932',
+      'reference' => '8e90e10be3f521d8809a469d7547dfb6600585a1',
     ),
     'laminas/laminas-escaper' => 
     array (

@@ -1,6 +1,6 @@
 <?= snippet('header') ?>
 
-    <div class="content">
+    <div class="content visible">
         <div class="home">
             <button class="home__img">
                 <video autoplay="true" loop="true" muted src="<?= $site->media()->toFile()->url() ?>" alt="">
@@ -11,10 +11,10 @@
                 75020 Paris
             </h1>
             <h2 class="home__subtitle">
-                Artisanat -
-                Initiations - <br />
-                Démonstrations - 
-                Résidences
+                Artisanat <br />
+                Initiations <br />
+                Démonstrations <br /> 
+                Résidences <br />
             </h2>
             <h3 class="home__infos">
                 Ouvert du mardi au samedi<br />
@@ -30,5 +30,5 @@
             </h3>
         </div>
     </div>
-</body>
-</html>
+
+<?php snippet('footer') ?>

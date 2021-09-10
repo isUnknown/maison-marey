@@ -16,7 +16,7 @@ const ProductSheet = {
                 <product-header
                     :product="product"
                 ></product-header>
-                <a :href="product.url" @click.prevent="open"><button class="see">voir</button></a>
+                <a :href="product.url" @click.prevent="open"><button class="see">shop</button></a>
             </div>
         </div>
     `,

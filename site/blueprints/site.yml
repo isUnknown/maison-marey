@@ -18,11 +18,22 @@ tabs:
             label: Texte introductif
             type: textarea
             width: 1/2
+
+  presentation:
+    icon: book
+    fields:
+      presentationContent: fields/rythme
   
   craftmans:
     icon: users
     label: Artisans
     sections:
+      authorsCatchSection:
+        type: fields
+        fields:
+          authorsCatch:
+            label: Accroche
+            type: textarea
       craftmansPages:
         headline: Artisans
         type: pages
@@ -35,14 +46,28 @@ tabs:
   exhibitions:
     icon: calendar
     label: Expositions
-    sections:
-      exhibitionsContent:
+    fields:
+      exhibitionsContent: fields/rythme
   
   initiations:
     icon: live
     label: Initiations
-    secions:
-      initiationsContent:
+    sections:
+      initiationsCatchSection:
+        type: fields
+        fields:
+          initiationsCatch:
+            label: Accroche
+            type: textarea
+            buttons: false
+      initiationsPages:
+        headline: Initiations
+        type: pages
+        templates:
+          - initiation
+        layout: cards
+        image:
+          back: black
   
   shop:
     icon: credit-card
@@ -103,3 +128,38 @@ tabs:
             type: pagesdisplay
             query: kirby.collection('products')
             layout: cards
+  
+  infos:
+    icon: account
+    columns:
+      - width: 1/2
+        fields:
+          adress:
+            label: Adresse
+            type: text
+            placeholder: 14 rue Étienne Marey
+          additional:
+            label: Complément
+            type: textarea
+            buttons: false
+            placeholder: Côté 21 rue du lieutenant Chauré
+          postalCode:
+            label: Code postal
+            type: number
+            placeholder: 75020
+            width: 1/2
+          city:
+            label: Ville
+            type: text
+            placeholder: Paris
+            width: 1/2
+      - width: 1/2
+        fields:
+          email:
+            type: email
+          instagram:
+            type: url
+            icon: instagram
+          facebook:
+            type: url
+            icon: facebook

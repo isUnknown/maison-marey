@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $site->title() ?></title>
+    <title><?= $site->title() ?> <?php e($page->url() !== $site->url(), ' - '. $page->title()) ?></title>
     
     <link rel="stylesheet" href="<?= url('assets') ?>/style.css?version-cache-prevent<?= rand(0, 1000)?>">
     
@@ -15,20 +15,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js" defer></script> -->
     
     <!--========== VUE ==========-->
-    <script src="<?= url('assets') ?>/js/libraries/vue.js"></script>
+    <script src="<?= url('assets') ?>/js/libraries/vue.js" type="module" defer></script>
 
     <!--========== SCRIPTS ==========-->   
+    <script src="<?= url('assets') ?>/js/components/nav/nav.js" type="module" defer></script>
     <script src="<?= url('assets') ?>/js/shop.js" type="module" defer></script>
     <script src="<?= url('assets') ?>/js/script.js" type="module" defer></script>
     <script src="https://js.stripe.com/v3/" defer></script>
 
     <!--========== SWIPER ==========-->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
 
     <!--========== OPEN GRAPHS ==========-->
-    <meta property='og:title' content='<?= $site->title() ?>' />
+    <meta property='og:title' content='<?= $site->title() ?> - <?= $page->title() ?>' />
     <meta property='og:type' content='website' />
     <meta property='og:url' content='<?= $site->url() ?>' />
     <meta property='og:image' content='<?php
@@ -45,28 +45,16 @@
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
         </svg> -->
-        <header class="header">
-            <div class="header__logo">
-                <h1>
-                    Maison<br />
-                    Marey
-                </h1>
-            </div>
-            <div class="header__filters filters">
-                <vue-filter 
-                    v-for="filter in filters.all"
-                    :filter="filter"
-                    :key="filter.name"
-                    @update-filters="refreshActiveFilters"
-                ></vue-filter>
-            </div>
-            <div class="header__right">
-                <button class="cartBtn" @click="store.toggleIsCartOpenAction">
-                    <h1>Panier<sup v-if="totalQuantity > 0">{{ totalQuantity }}</sup></h1>
-                </button>
-                <button class="header__navBtn navBtn">
-                    <span class="navBtn__bar"></span>
-                    <span class="navBtn__bar"></span>
-                </button>
-            </div>
+        <header id="navigation" class="header" @click="test">
+            <nav-burger
+                :pages="pages"
+            ></nav-burger>
+            
+            <nav-logo></nav-logo>
+            
+            <nav-main
+                :pages="pages"
+            ></nav-main>
+
+            <div></div>
         </header>

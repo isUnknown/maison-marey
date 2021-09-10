@@ -128,11 +128,13 @@ fetch(productsUrl).then(res => {
             }
         },
         created: function() {
-            let filters = JSON.parse(document.querySelector('[data-filters]').dataset.filters)
-            filters.forEach(filter => {
-                filter.isOpen = false
-            })
-            this.filters.all = Object.assign({}, this.filters.all, filters)
+            let filters = document.querySelector('[data-filters]') ? JSON.parse(document.querySelector('[data-filters]').dataset.filters) : null
+            if (filters) {
+                filters.forEach(filter => {
+                    filter.isOpen = false
+                })
+                this.filters.all = Object.assign({}, this.filters.all, filters)
+            }
 
             window.addEventListener('keydown', (e) => {
                 if (event.key === 'Escape') {
