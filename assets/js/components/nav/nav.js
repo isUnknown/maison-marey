@@ -28,27 +28,27 @@ const Nav = {
             pages: [
             {
                 title: 'E-SHOP',
-                url: 'http://localhost:8888/maison-marey/boutique'
+                url: 'http://maisonmarey.fr/v2/boutique'
             },
             {
                 title: 'Présentation',
-                url: 'http://localhost:8888/maison-marey/presentation'
+                url: 'http://maisonmarey.fr/v2/presentation'
             },
             {
                 title: 'Artisans',
-                url: 'http://localhost:8888/maison-marey/artisans'
+                url: 'http://maisonmarey.fr/v2/artisans'
             },
             {
                 title: 'Expositions',
-                url: 'http://localhost:8888/maison-marey/expositions'
+                url: 'http://maisonmarey.fr/v2/expositions'
             },
             {
                 title: 'Initiations',
-                url: 'http://localhost:8888/maison-marey/initiations'
+                url: 'http://maisonmarey.fr/v2/initiations'
             },
             {
                 title: 'Contact',
-                url: 'http://localhost:8888/maison-marey/contact'
+                url: 'http://maisonmarey.fr/v2/contact'
             }
         ]}
     },
