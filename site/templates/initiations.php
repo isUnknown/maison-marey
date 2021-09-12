@@ -3,7 +3,7 @@
 <h2 class="highlighted section section--first"><?= $site->initiationsCatch()->nl2br() ?></h2>
 
 <section class="grid-3 section">
-    <?php foreach($initiations = $kirby->collection('initiations') as $initiation): ?>
+    <?php foreach($page->children() as $initiation): ?>
         <div class="initiations">
             <figure>
                 <img class="initiation__cover" src="<?= $initiation->cover()->toFile()->crop(600, 800, 80)->url() ?>" alt="">

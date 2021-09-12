@@ -144,6 +144,10 @@ h2 {
     font-size: 1.1rem;
 }
 
+h3 {
+    text-transform: capitalize;
+}
+
 h5 {
     font-weight: 100;
     text-transform: uppercase;
@@ -366,6 +370,7 @@ body {
 .row {
     display: flex;
     justify-content: space-between;
+    gap: 8vw;
 }
 
 .column {
@@ -624,7 +629,7 @@ footer::before {
     object-position: center;
 }
 
-/* ================= GENERIC ================= */
+/* ================= DESK GENERIC ================= */
 /* #app {
     min-height: 90vh;
 } */
@@ -856,6 +861,10 @@ footer::before {
 
     /* ================= MOB GENERIC ================= */
 
+    h1 {
+        font-size: 1.8rem;
+    }
+
     h3 {
         font-weight: 400;
     }
@@ -999,6 +1008,7 @@ footer::before {
 
     .home__img {
         top: 8.5rem;
+        width: 100%;
     }
 
     /* ================= MOB RYTHME ================= */
@@ -1008,6 +1018,10 @@ footer::before {
 
     .column {
         padding: 1rem var(--padding-main);
+    }
+
+    .content h1 {
+        margin-bottom: .8rem;
     }
     
     /* ================= MOB MODAL ================= */

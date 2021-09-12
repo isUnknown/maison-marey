@@ -1,5 +1,6 @@
 import { Data } from './libraries/app.js'
 
+// COMPONENTS
 import Filter from './components/filter.js'
 import Cart from './components/cart.js'
 import ProductSheet from './components/product/product-sheet.js'
@@ -9,11 +10,14 @@ import Nav from "./components/nav/nav.js";
 import EventBus from './eventBus.js'
 import Store from './store.js'
 
+let navPages = JSON.parse(document.body.dataset.navPages)
+
 const productsUrl = `${document.body.dataset.rootUrl}/shop`
 fetch(productsUrl).then(res => {
     return res.json()
 }).then(shop => {
 
+    // STORE SHARED VARIABLES
     Store.state.coupons = shop.coupons
     Store.state.authors = shop.authors
     Store.state.products = shop.products
@@ -30,6 +34,7 @@ fetch(productsUrl).then(res => {
             'vue-header': Nav
         },
         data: {
+            rootUrl: document.body.dataset.rootUrl,
             products: Store.state.products,
             delivery: shop.delivery,
             filters: {
@@ -37,7 +42,8 @@ fetch(productsUrl).then(res => {
                 active: []
             },
             activeFilters: [],
-            store: Store
+            store: Store,
+            navPages: navPages
         },
         computed: {
             filteredProducts: function() {

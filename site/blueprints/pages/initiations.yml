@@ -1,0 +1,22 @@
+title: Initiations
+icon: live
+label: Initiations
+sections:
+  initiationsCatchSection:
+    type: fields
+    fields:
+      catch:
+        label: Accroche
+        type: textarea
+        buttons: false
+  initiationsPages:
+    headline: Initiations
+    type: pages
+    templates:
+      - initiation
+    layout: cards
+    size: small
+    image:
+      back: black
+      cover: true
+      ratio: 4/5

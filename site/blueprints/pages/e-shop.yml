@@ -1,0 +1,57 @@
+title: e-shop
+image: icon
+icon: credit-card
+columns:
+  - width: 1/2
+    fields:
+      materials:
+        label: Toutes les matières
+        type: tags
+      itemsTypes:
+        label: Tous les types d'objet
+        type: tags
+      minDeliveryTime:
+        label: Délai de livraison minimum
+        type: number
+        after: jours
+        width: 1/2
+      maxDeliveryTime:
+        label: Délai de livraison maximum
+        type: number
+        after: jours
+        width: 1/2
+      coupons:
+        label: Coupons de réductions
+        type: structure
+        fields:
+          code:
+            type: text
+            icon: key
+            width: 1/2
+            minlength: 8
+            maxlength: 8
+            autofocus: true
+          expiration:
+            label: Date d'expiration
+            type: date
+            width: 1/2
+          discountMode:
+            label: Mode de réduction
+            type: radio
+            width: 1/2
+            options:
+              percent: Pourcentage
+              amount: Montant
+            default: percent
+          discount:
+            label: Réduction
+            type: text
+            width: 1/2
+            after: % ou €
+  - width: 1/2
+    sections:
+      products:
+        headline: Articles
+        type: pagesdisplay
+        query: kirby.collection('products')
+        layout: cards

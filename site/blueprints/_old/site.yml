@@ -1,0 +1,165 @@
+title: Site
+
+tabs:
+  home:
+    icon: home
+    label: Accueil
+    sections:
+      homeContent:
+        type: fields
+        fields:
+          media:
+            label: Média (vidéo ou image)
+            type: files
+            multiple: false
+            layout: cards
+            width: 1/2
+          text:
+            label: Texte introductif
+            type: textarea
+            width: 1/2
+
+  presentation:
+    icon: book
+    fields:
+      presentationContent: fields/rythme
+  
+  craftmans:
+    icon: users
+    label: Artisans
+    sections:
+      authorsCatchSection:
+        type: fields
+        fields:
+          authorsCatch:
+            label: Accroche
+            type: textarea
+      craftmansPages:
+        headline: Artisans
+        type: pages
+        templates: 
+          - author
+        layout: cards
+        image:
+          back: black
+  
+  exhibitions:
+    icon: calendar
+    label: Expositions
+    fields:
+      exhibitionsContent: fields/rythme
+  
+  initiations:
+    icon: live
+    label: Initiations
+    sections:
+      initiationsCatchSection:
+        type: fields
+        fields:
+          initiationsCatch:
+            label: Accroche
+            type: textarea
+            buttons: false
+      initiationsPages:
+        headline: Initiations
+        type: pages
+        templates:
+          - initiation
+        layout: cards
+        image:
+          back: black
+  
+  shop:
+    icon: credit-card
+    label: Boutique
+    columns:
+      - width: 1/2
+        fields:
+          materials:
+            label: Toutes les matières
+            type: tags
+          itemsTypes:
+            label: Tous les types d'objet
+            type: tags
+          minDeliveryTime:
+            label: Délai de livraison minimum
+            type: number
+            after: jours
+            width: 1/2
+          maxDeliveryTime:
+            label: Délai de livraison maximum
+            type: number
+            after: jours
+            width: 1/2
+          coupons:
+            label: Coupons de réductions
+            type: structure
+            fields:
+              code:
+                type: text
+                icon: key
+                width: 1/2
+                minlength: 8
+                maxlength: 8
+                autofocus: true
+              expiration:
+                label: Date d'expiration
+                type: date
+                width: 1/2
+              discountMode:
+                label: Mode de réduction
+                type: radio
+                width: 1/2
+                options:
+                  percent: Pourcentage
+                  amount: Montant
+                default: percent
+              discount:
+                label: Réduction
+                type: text
+                width: 1/2
+                after: % ou €
+
+          
+      - width: 1/2
+        sections:
+          products:
+            headline: Articles
+            type: pagesdisplay
+            query: kirby.collection('products')
+            layout: cards
+  
+  infos:
+    icon: account
+    columns:
+      - width: 1/2
+        fields:
+          adress:
+            label: Adresse
+            type: text
+            placeholder: 14 rue Étienne Marey
+          additional:
+            label: Complément
+            type: textarea
+            buttons: false
+            placeholder: Côté 21 rue du lieutenant Chauré
+          postalCode:
+            label: Code postal
+            type: number
+            placeholder: 75020
+            width: 1/2
+          city:
+            label: Ville
+            type: text
+            placeholder: Paris
+            width: 1/2
+      - width: 1/2
+        fields:
+          email:
+            type: email
+          instagram:
+            type: url
+            icon: instagram
+          facebook:
+            type: url
+            icon: facebook

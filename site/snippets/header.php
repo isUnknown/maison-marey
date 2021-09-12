@@ -37,11 +37,22 @@
     ?>' />
     <meta property='og:description' content='<?= $site->desc() ?>' />
 </head>
-<body data-api-url="<?= $page->apiUrl() ?>" data-csrf=<?= csrf() ?> data-root-url="<?= $site->url() ?>">
+<body 
+    data-api-url="<?= $page->apiUrl() ?>"
+    data-csrf=<?= csrf() ?>
+    data-root-url="<?= $site->url() ?>"
+    data-nav-pages="<?= $kirby->collection('nav-pages') ?>"
+<?php if ($page->url() == $site->url()): ?>
+    style="background-color: var(--color-main-bg);"
+<?php endif ?>
+>
     <div id="app" v-on:keyup.esc="closeModal">
         <!-- <svg width="100" height="100" class="cursor">
             <circle class="stroke" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
             <circle class="fill" cx="25" cy="25" r="15" stroke="black" stroke-width="1" fill="none" />
         </svg> -->
-        <vue-header></vue-header>
+        <vue-header
+            :nav-pages="navPages"
+            :root-url="rootUrl"
+        ></vue-header>

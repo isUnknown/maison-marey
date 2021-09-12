@@ -1,6 +1,9 @@
 const NavLogo = {
+    props: {
+        rootUrl: String
+    },
     template: `
-        <a href="http://localhost:8888/maison-marey/"><h1 class="header__logo">Maison<br>Marey</h1></a>
+        <a :href="rootUrl"><h1 class="header__logo">Maison<br>Marey</h1></a>
     `
 }
 

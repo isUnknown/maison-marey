@@ -1,9 +1,9 @@
 <?= snippet('header') ?>
 
-<h2 class="highlighted section section--first"><?= $site->authorsCatch()->nl2br() ?></h2>
+<h2 class="highlighted section section--first"><?= $page->catch()->nl2br() ?></h2>
 
 <section class="authors section grid-3">
-    <?php foreach($authors = $kirby->collection('authors') as $author): ?>
+    <?php foreach($page->children() as $author): ?>
         <div class="author">
             <figure>
                 <img class="author__cover" src="<?= $author->cover()->toFile()->crop(600, 800, 80)->url() ?>" alt="">

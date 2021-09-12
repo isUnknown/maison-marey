@@ -1,6 +1,6 @@
 const navBurger = {
     props: {
-        pages: Array
+        pages: Object
     },
     data: function() {
         return {
@@ -17,7 +17,7 @@ const navBurger = {
             <div class="burgerNav__flap" :class="{ open: isOpen }">
                 <div class="burgerNavWrapper">
                     <a v-for="page in pages" :href="page.url" :key="page.title" class="nav__item">
-                        <h3>{{ page.title }}</h3>
+                        <h3>{{ page.content.title }}</h3>
                     </a>
                 </div>
             </div>

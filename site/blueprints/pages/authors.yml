@@ -1,0 +1,19 @@
+title: Artisans
+icon: users
+
+sections:
+  catchField:
+    type: fields
+    fields:
+      catch:
+        label: Accroche
+        type: textarea
+  authors:
+    type: pages
+    layout: cards
+    size: small
+    info: "{{ page.job }}"
+    image:
+      back: black
+      ratio: 4/5
+      cover: true

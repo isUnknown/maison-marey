@@ -3,16 +3,22 @@ import NavLogo from "./nav-logo.js"
 import navBurger from "./nav-burger.js"
         
 const Nav = {
+    props: {
+        rootUrl: String,
+        navPages: Object
+    },
     template: `
         <header class="header">
             <nav-burger
-                :pages="pages"
+                :pages="navPages"
             ></nav-burger>
 
-            <nav-logo></nav-logo>
+            <nav-logo
+                :root-url="rootUrl"
+            ></nav-logo>
 
             <nav-main
-                :pages="pages"
+                :pages="navPages"
             ></nav-main>
 
             <div></div>
